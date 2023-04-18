@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="1117" height="676" viewBox="0 0 1117 676" xmlns="http://www.w3.org/2000/svg">
+<rect id="frame" x="0" y="0" width="1117" height="676" fill="#FFF" stroke="none" stroke-width="0"/>
+
+<!-- Association associer4 -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<line x1="61" y1="43" x2="61" y2="144" stroke="#000" stroke-width="2"/>
+	<text x="66" y="94" fill="#000" font-family="Verdana" font-size="12">0,N</text>
+	<line x1="305" y1="355" x2="61" y2="144" stroke="#000" stroke-width="2"/>
+	<text x="225" y="319.82" fill="#000" font-family="Verdana" font-size="12">0,N</text>
+	<g>
+		<path d="M79 119 a14 14 90 0 1 14 14 V144 h-64 V133 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M93 144 v11 a14 14 90 0 1 -14 14 H43 a14 14 90 0 1 -14 -14 V144 H64" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="29" y="119" width="64" height="50" fill="none" rx="14" stroke="#000" stroke-width="2"/>
+		<line x1="29" y1="144" x2="93" y2="144" stroke="#000" stroke-width="1"/>
+		<text x="36" y="136.75" fill="#000" font-family="Verdana" font-size="12">associer</text>
+	</g>
+</g>
+
+<!-- Association posséder7 -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<line x1="305" y1="355" x2="185" y2="144" stroke="#000" stroke-width="2"/>
+	<text x="226" y="274.39" fill="#000" font-family="Verdana" font-size="12">1,1</text>
+	<line x1="185" y1="43" x2="185" y2="144" stroke="#000" stroke-width="2"/>
+	<text x="190" y="94" fill="#000" font-family="Verdana" font-size="12">1,N</text>
+	<g>
+		<path d="M206 119 a14 14 90 0 1 14 14 V144 h-70 V133 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M220 144 v11 a14 14 90 0 1 -14 14 H164 a14 14 90 0 1 -14 -14 V144 H70" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="150" y="119" width="70" height="50" fill="none" rx="14" stroke="#000" stroke-width="2"/>
+		<line x1="150" y1="144" x2="220" y2="144" stroke="#000" stroke-width="1"/>
+		<text x="158" y="136.75" fill="#000" font-family="Verdana" font-size="12">posséder</text>
+	</g>
+</g>
+
+<!-- Association composer -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<line x1="305" y1="355" x2="305" y2="144" stroke="#000" stroke-width="2"/>
+	<text x="310" y="237" fill="#000" font-family="Verdana" font-size="12">0,N</text>
+	<line x1="422" y1="144" x2="305" y2="144" stroke="#000" stroke-width="2"/>
+	<text x="351" y="161" fill="#000" font-family="Verdana" font-size="12">1,1</text>
+	<g>
+		<path d="M328 119 a14 14 90 0 1 14 14 V144 h-74 V133 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M342 144 v11 a14 14 90 0 1 -14 14 H282 a14 14 90 0 1 -14 -14 V144 H74" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="268" y="119" width="74" height="50" fill="none" rx="14" stroke="#000" stroke-width="2"/>
+		<line x1="268" y1="144" x2="342" y2="144" stroke="#000" stroke-width="1"/>
+		<text x="276" y="136.75" fill="#000" font-family="Verdana" font-size="12">composer</text>
+	</g>
+</g>
+
+<!-- Association contenir -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<line x1="647" y1="144" x2="538" y2="144" stroke="#000" stroke-width="2"/>
+	<text x="575" y="161" fill="#000" font-family="Verdana" font-size="12">0,N</text>
+	<line x1="422" y1="144" x2="538" y2="144" stroke="#000" stroke-width="2"/>
+	<text x="472" y="161" fill="#000" font-family="Verdana" font-size="12">1,1</text>
+	<g>
+		<path d="M556 119 a14 14 90 0 1 14 14 V144 h-64 V133 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M570 144 v11 a14 14 90 0 1 -14 14 H520 a14 14 90 0 1 -14 -14 V144 H64" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="506" y="119" width="64" height="50" fill="none" rx="14" stroke="#000" stroke-width="2"/>
+		<line x1="506" y1="144" x2="570" y2="144" stroke="#000" stroke-width="1"/>
+		<text x="513" y="136.75" fill="#000" font-family="Verdana" font-size="12">contenir</text>
+	</g>
+</g>
+
+<!-- Association appartenir -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<line x1="647" y1="144" x2="763" y2="144" stroke="#000" stroke-width="2"/>
+	<text x="697" y="161" fill="#000" font-family="Verdana" font-size="12">1,1</text>
+	<line x1="884" y1="144" x2="763" y2="144" stroke="#000" stroke-width="2"/>
+	<text x="807" y="161" fill="#000" font-family="Verdana" font-size="12">0,N</text>
+	<g>
+		<path d="M788 119 a14 14 90 0 1 14 14 V144 h-78 V133 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M802 144 v11 a14 14 90 0 1 -14 14 H738 a14 14 90 0 1 -14 -14 V144 H78" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="724" y="119" width="78" height="50" fill="none" rx="14" stroke="#000" stroke-width="2"/>
+		<line x1="724" y1="144" x2="802" y2="144" stroke="#000" stroke-width="1"/>
+		<text x="732" y="136.75" fill="#000" font-family="Verdana" font-size="12">appartenir</text>
+	</g>
+</g>
+
+<!-- Association posséder5 -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<line x1="1088" y1="144" x2="1001" y2="144" stroke="#000" stroke-width="2"/>
+	<text x="1041" y="161" fill="#000" font-family="Verdana" font-size="12">1,N</text>
+	<line x1="884" y1="144" x2="1001" y2="144" stroke="#000" stroke-width="2"/>
+	<text x="939" y="161" fill="#000" font-family="Verdana" font-size="12">1,1</text>
+	<g>
+		<path d="M1022 119 a14 14 90 0 1 14 14 V144 h-70 V133 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M1036 144 v11 a14 14 90 0 1 -14 14 H980 a14 14 90 0 1 -14 -14 V144 H70" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="966" y="119" width="70" height="50" fill="none" rx="14" stroke="#000" stroke-width="2"/>
+		<line x1="966" y1="144" x2="1036" y2="144" stroke="#000" stroke-width="1"/>
+		<text x="974" y="136.75" fill="#000" font-family="Verdana" font-size="12">posséder</text>
+	</g>
+</g>
+
+<!-- Association posséder2 -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<line x1="305" y1="355" x2="185" y2="355" stroke="#000" stroke-width="2"/>
+	<text x="226" y="372" fill="#000" font-family="Verdana" font-size="12">1,1</text>
+	<line x1="61" y1="355" x2="185" y2="355" stroke="#000" stroke-width="2"/>
+	<text x="95" y="372" fill="#000" font-family="Verdana" font-size="12">1,N</text>
+	<g>
+		<path d="M206 330 a14 14 90 0 1 14 14 V355 h-70 V344 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M220 355 v11 a14 14 90 0 1 -14 14 H164 a14 14 90 0 1 -14 -14 V355 H70" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="150" y="330" width="70" height="50" fill="none" rx="14" stroke="#000" stroke-width="2"/>
+		<line x1="150" y1="355" x2="220" y2="355" stroke="#000" stroke-width="1"/>
+		<text x="158" y="347.75" fill="#000" font-family="Verdana" font-size="12">posséder</text>
+	</g>
+</g>
+
+<!-- Association associer5 -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<line x1="538" y1="355" x2="422" y2="355" stroke="#000" stroke-width="2"/>
+	<text x="459" y="372" fill="#000" font-family="Verdana" font-size="12">0,N</text>
+	<line x1="305" y1="355" x2="422" y2="355" stroke="#000" stroke-width="2"/>
+	<text x="363" y="347" fill="#000" font-family="Verdana" font-size="12">0,N</text>
+	<g>
+		<path d="M440 330 a14 14 90 0 1 14 14 V355 h-64 V344 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M454 355 v11 a14 14 90 0 1 -14 14 H404 a14 14 90 0 1 -14 -14 V355 H64" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="390" y="330" width="64" height="50" fill="none" rx="14" stroke="#000" stroke-width="2"/>
+		<line x1="390" y1="355" x2="454" y2="355" stroke="#000" stroke-width="1"/>
+		<text x="397" y="347.75" fill="#000" font-family="Verdana" font-size="12">associer</text>
+	</g>
+</g>
+
+<!-- Association associer2 -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<line x1="305" y1="355" x2="185" y2="515" stroke="#000" stroke-width="2"/>
+	<text x="225" y="423.32" fill="#000" font-family="Verdana" font-size="12">0,N</text>
+	<line x1="61" y1="515" x2="185" y2="515" stroke="#000" stroke-width="2"/>
+	<text x="105" y="532" fill="#000" font-family="Verdana" font-size="12">0,N</text>
+	<g>
+		<path d="M203 490 a14 14 90 0 1 14 14 V515 h-64 V504 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M217 515 v11 a14 14 90 0 1 -14 14 H167 a14 14 90 0 1 -14 -14 V515 H64" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="153" y="490" width="64" height="50" fill="none" rx="14" stroke="#000" stroke-width="2"/>
+		<line x1="153" y1="515" x2="217" y2="515" stroke="#000" stroke-width="1"/>
+		<text x="160" y="507.75" fill="#000" font-family="Verdana" font-size="12">associer</text>
+	</g>
+</g>
+
+<!-- Association posséder6 -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<line x1="305" y1="355" x2="305" y2="515" stroke="#000" stroke-width="2"/>
+	<text x="310" y="482" fill="#000" font-family="Verdana" font-size="12">1,1</text>
+	<line x1="305" y1="616" x2="305" y2="515" stroke="#000" stroke-width="2"/>
+	<text x="310" y="574" fill="#000" font-family="Verdana" font-size="12">1,N</text>
+	<g>
+		<path d="M326 490 a14 14 90 0 1 14 14 V515 h-70 V504 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M340 515 v11 a14 14 90 0 1 -14 14 H284 a14 14 90 0 1 -14 -14 V515 H70" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="270" y="490" width="70" height="50" fill="none" rx="14" stroke="#000" stroke-width="2"/>
+		<line x1="270" y1="515" x2="340" y2="515" stroke="#000" stroke-width="1"/>
+		<text x="278" y="507.75" fill="#000" font-family="Verdana" font-size="12">posséder</text>
+	</g>
+</g>
+
+<!-- Association posséder -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<line x1="305" y1="355" x2="422" y2="515" stroke="#000" stroke-width="2"/>
+	<text x="363" y="425.02" fill="#000" font-family="Verdana" font-size="12">1,1</text>
+	<line x1="422" y1="616" x2="422" y2="515" stroke="#000" stroke-width="2"/>
+	<text x="427" y="574" fill="#000" font-family="Verdana" font-size="12">1,N</text>
+	<g>
+		<path d="M443 490 a14 14 90 0 1 14 14 V515 h-70 V504 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M457 515 v11 a14 14 90 0 1 -14 14 H401 a14 14 90 0 1 -14 -14 V515 H70" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="387" y="490" width="70" height="50" fill="none" rx="14" stroke="#000" stroke-width="2"/>
+		<line x1="387" y1="515" x2="457" y2="515" stroke="#000" stroke-width="1"/>
+		<text x="395" y="507.75" fill="#000" font-family="Verdana" font-size="12">posséder</text>
+	</g>
+</g>
+
+<!-- Association associer -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<line x1="305" y1="355" x2="538" y2="515" stroke="#000" stroke-width="2"/>
+	<text x="363" y="388.64" fill="#000" font-family="Verdana" font-size="12">0,N</text>
+	<line x1="538" y1="616" x2="538" y2="515" stroke="#000" stroke-width="2"/>
+	<text x="543" y="557" fill="#000" font-family="Verdana" font-size="12">0,N</text>
+	<g>
+		<path d="M556 490 a14 14 90 0 1 14 14 V515 h-64 V504 a14 14 90 0 1 14 -14" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<path d="M570 515 v11 a14 14 90 0 1 -14 14 H520 a14 14 90 0 1 -14 -14 V515 H64" fill="#FFF" stroke="#FFF" stroke-width="0"/>
+		<rect x="506" y="490" width="64" height="50" fill="none" rx="14" stroke="#000" stroke-width="2"/>
+		<line x1="506" y1="515" x2="570" y2="515" stroke="#000" stroke-width="1"/>
+		<text x="513" y="507.75" fill="#000" font-family="Verdana" font-size="12">associer</text>
+	</g>
+</g>
+
+<!-- Entity alliances -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<g>
+		<rect x="9" y="9" width="104" height="25" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="9" y="34" width="104" height="43" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="9" y="9" width="104" height="68" fill="none" stroke="#000" stroke-width="2" opacity="1"/>
+		<line x1="9" y1="34" x2="113" y2="34" stroke="#000" stroke-width="1"/>
+	</g>
+	<text x="35" y="26.75" fill="#000" font-family="Verdana" font-size="12">alliances</text>
+	<text x="14" y="51.8" fill="#000" font-family="Verdana" font-size="12">id</text>
+	<line x1="14" y1="54" x2="26" y2="54" stroke="#000" stroke-width="1"/>
+	<text x="14" y="68.8" fill="#000" font-family="Verdana" font-size="12">liste de légume</text>
+</g>
+
+<!-- Entity expositions -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<g>
+		<rect x="145" y="9" width="80" height="25" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="145" y="34" width="80" height="43" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="145" y="9" width="80" height="68" fill="none" stroke="#000" stroke-width="2" opacity="1"/>
+		<line x1="145" y1="34" x2="225" y2="34" stroke="#000" stroke-width="1"/>
+	</g>
+	<text x="151" y="26.75" fill="#000" font-family="Verdana" font-size="12">expositions</text>
+	<text x="150" y="51.8" fill="#000" font-family="Verdana" font-size="12">id</text>
+	<line x1="150" y1="54" x2="162" y2="54" stroke="#000" stroke-width="1"/>
+	<text x="150" y="68.8" fill="#000" font-family="Verdana" font-size="12">nom</text>
+</g>
+
+<!-- Entity cultures -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<g>
+		<rect x="377" y="68" width="90" height="25" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="377" y="93" width="90" height="127" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="377" y="68" width="90" height="152" fill="none" stroke="#000" stroke-width="2" opacity="1"/>
+		<line x1="377" y1="93" x2="467" y2="93" stroke="#000" stroke-width="1"/>
+	</g>
+	<text x="398" y="85.75" fill="#000" font-family="Verdana" font-size="12">cultures</text>
+	<text x="382" y="110.8" fill="#000" font-family="Verdana" font-size="12">id</text>
+	<line x1="382" y1="113" x2="394" y2="113" stroke="#000" stroke-width="1"/>
+	<text x="382" y="127.8" fill="#000" font-family="Verdana" font-size="12">semer</text>
+	<text x="382" y="144.8" fill="#000" font-family="Verdana" font-size="12">planter</text>
+	<text x="382" y="161.8" fill="#000" font-family="Verdana" font-size="12">récolter</text>
+	<text x="382" y="178.8" fill="#000" font-family="Verdana" font-size="12">id_legume</text>
+	<text x="382" y="195.8" fill="#000" font-family="Verdana" font-size="12">id_parcelle</text>
+	<text x="382" y="212.8" fill="#000" font-family="Verdana" font-size="12">commentaire</text>
+</g>
+
+<!-- Entity parcelles -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<g>
+		<rect x="602" y="85" width="90" height="25" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="602" y="110" width="90" height="93" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="602" y="85" width="90" height="118" fill="none" stroke="#000" stroke-width="2" opacity="1"/>
+		<line x1="602" y1="110" x2="692" y2="110" stroke="#000" stroke-width="1"/>
+	</g>
+	<text x="620" y="102.75" fill="#000" font-family="Verdana" font-size="12">parcelles</text>
+	<text x="607" y="127.8" fill="#000" font-family="Verdana" font-size="12">id</text>
+	<line x1="607" y1="130" x2="619" y2="130" stroke="#000" stroke-width="1"/>
+	<text x="607" y="144.8" fill="#000" font-family="Verdana" font-size="12">nom</text>
+	<text x="607" y="161.8" fill="#000" font-family="Verdana" font-size="12">position</text>
+	<text x="607" y="178.8" fill="#000" font-family="Verdana" font-size="12">disponibilité</text>
+	<text x="607" y="195.8" fill="#000" font-family="Verdana" font-size="12">id_utilisateur</text>
+</g>
+
+<!-- Entity utilisateurs -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<g>
+		<rect x="834" y="85" width="100" height="25" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="834" y="110" width="100" height="93" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="834" y="85" width="100" height="118" fill="none" stroke="#000" stroke-width="2" opacity="1"/>
+		<line x1="834" y1="110" x2="934" y2="110" stroke="#000" stroke-width="1"/>
+	</g>
+	<text x="851" y="102.75" fill="#000" font-family="Verdana" font-size="12">utilisateurs</text>
+	<text x="839" y="127.8" fill="#000" font-family="Verdana" font-size="12">id</text>
+	<line x1="839" y1="130" x2="851" y2="130" stroke="#000" stroke-width="1"/>
+	<text x="839" y="144.8" fill="#000" font-family="Verdana" font-size="12">pseudo</text>
+	<text x="839" y="161.8" fill="#000" font-family="Verdana" font-size="12">mail</text>
+	<text x="839" y="178.8" fill="#000" font-family="Verdana" font-size="12">mot_de_passe</text>
+	<text x="839" y="195.8" fill="#000" font-family="Verdana" font-size="12">id_role</text>
+</g>
+
+<!-- Entity rôles -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<g>
+		<rect x="1068" y="110" width="40" height="25" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="1068" y="135" width="40" height="43" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="1068" y="110" width="40" height="68" fill="none" stroke="#000" stroke-width="2" opacity="1"/>
+		<line x1="1068" y1="135" x2="1108" y2="135" stroke="#000" stroke-width="1"/>
+	</g>
+	<text x="1073" y="127.75" fill="#000" font-family="Verdana" font-size="12">rôles</text>
+	<text x="1073" y="152.8" fill="#000" font-family="Verdana" font-size="12">id</text>
+	<line x1="1073" y1="155" x2="1085" y2="155" stroke="#000" stroke-width="1"/>
+	<text x="1073" y="169.8" fill="#000" font-family="Verdana" font-size="12">nom</text>
+</g>
+
+<!-- Entity familles -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<g>
+		<rect x="32" y="321" width="58" height="25" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="32" y="346" width="58" height="43" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="32" y="321" width="58" height="68" fill="none" stroke="#000" stroke-width="2" opacity="1"/>
+		<line x1="32" y1="346" x2="90" y2="346" stroke="#000" stroke-width="1"/>
+	</g>
+	<text x="38" y="338.75" fill="#000" font-family="Verdana" font-size="12">familles</text>
+	<text x="37" y="363.8" fill="#000" font-family="Verdana" font-size="12">id</text>
+	<line x1="37" y1="366" x2="49" y2="366" stroke="#000" stroke-width="1"/>
+	<text x="37" y="380.8" fill="#000" font-family="Verdana" font-size="12">nom</text>
+</g>
+
+<!-- Entity légumes -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<g>
+		<rect x="252" y="245" width="106" height="25" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="252" y="270" width="106" height="195" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="252" y="245" width="106" height="220" fill="none" stroke="#000" stroke-width="2" opacity="1"/>
+		<line x1="252" y1="270" x2="358" y2="270" stroke="#000" stroke-width="1"/>
+	</g>
+	<text x="279" y="262.75" fill="#000" font-family="Verdana" font-size="12">légumes</text>
+	<text x="257" y="287.8" fill="#000" font-family="Verdana" font-size="12">id</text>
+	<line x1="257" y1="290" x2="269" y2="290" stroke="#000" stroke-width="1"/>
+	<text x="257" y="304.8" fill="#000" font-family="Verdana" font-size="12">nom</text>
+	<text x="257" y="321.8" fill="#000" font-family="Verdana" font-size="12">hauteur</text>
+	<text x="257" y="338.8" fill="#000" font-family="Verdana" font-size="12">semis</text>
+	<text x="257" y="355.8" fill="#000" font-family="Verdana" font-size="12">récoltes</text>
+	<text x="257" y="372.8" fill="#000" font-family="Verdana" font-size="12">conseil_culture</text>
+	<text x="257" y="389.8" fill="#000" font-family="Verdana" font-size="12">id_sol</text>
+	<text x="257" y="406.8" fill="#000" font-family="Verdana" font-size="12">id_famille</text>
+	<text x="257" y="423.8" fill="#000" font-family="Verdana" font-size="12">id_catégorie</text>
+	<text x="257" y="440.8" fill="#000" font-family="Verdana" font-size="12">id_exposition</text>
+	<text x="257" y="457.8" fill="#000" font-family="Verdana" font-size="12">caractéristiques</text>
+</g>
+
+<!-- Entity mésalliances -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<g>
+		<rect x="486" y="321" width="104" height="25" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="486" y="346" width="104" height="43" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="486" y="321" width="104" height="68" fill="none" stroke="#000" stroke-width="2" opacity="1"/>
+		<line x1="486" y1="346" x2="590" y2="346" stroke="#000" stroke-width="1"/>
+	</g>
+	<text x="499" y="338.75" fill="#000" font-family="Verdana" font-size="12">mésalliances</text>
+	<text x="491" y="363.8" fill="#000" font-family="Verdana" font-size="12">id</text>
+	<line x1="491" y1="366" x2="503" y2="366" stroke="#000" stroke-width="1"/>
+	<text x="491" y="380.8" fill="#000" font-family="Verdana" font-size="12">liste de légume</text>
+</g>
+
+<!-- Entity ravageurs -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<g>
+		<rect x="22" y="456" width="78" height="25" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="22" y="481" width="78" height="93" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="22" y="456" width="78" height="118" fill="none" stroke="#000" stroke-width="2" opacity="1"/>
+		<line x1="22" y1="481" x2="100" y2="481" stroke="#000" stroke-width="1"/>
+	</g>
+	<text x="31" y="473.75" fill="#000" font-family="Verdana" font-size="12">ravageurs</text>
+	<text x="27" y="498.8" fill="#000" font-family="Verdana" font-size="12">id</text>
+	<line x1="27" y1="501" x2="39" y2="501" stroke="#000" stroke-width="1"/>
+	<text x="27" y="515.8" fill="#000" font-family="Verdana" font-size="12">nom</text>
+	<text x="27" y="532.8" fill="#000" font-family="Verdana" font-size="12">description</text>
+	<text x="27" y="549.8" fill="#000" font-family="Verdana" font-size="12">prévention</text>
+	<text x="27" y="566.8" fill="#000" font-family="Verdana" font-size="12">traitement</text>
+</g>
+
+<!-- Entity sols -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<g>
+		<rect x="286" y="582" width="38" height="25" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="286" y="607" width="38" height="43" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="286" y="582" width="38" height="68" fill="none" stroke="#000" stroke-width="2" opacity="1"/>
+		<line x1="286" y1="607" x2="324" y2="607" stroke="#000" stroke-width="1"/>
+	</g>
+	<text x="293" y="599.75" fill="#000" font-family="Verdana" font-size="12">sols</text>
+	<text x="291" y="624.8" fill="#000" font-family="Verdana" font-size="12">id</text>
+	<line x1="291" y1="627" x2="303" y2="627" stroke="#000" stroke-width="1"/>
+	<text x="291" y="641.8" fill="#000" font-family="Verdana" font-size="12">nom</text>
+</g>
+
+<!-- Entity catégories -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<g>
+		<rect x="385" y="582" width="74" height="25" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="385" y="607" width="74" height="43" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="385" y="582" width="74" height="68" fill="none" stroke="#000" stroke-width="2" opacity="1"/>
+		<line x1="385" y1="607" x2="459" y2="607" stroke="#000" stroke-width="1"/>
+	</g>
+	<text x="391" y="599.75" fill="#000" font-family="Verdana" font-size="12">catégories</text>
+	<text x="390" y="624.8" fill="#000" font-family="Verdana" font-size="12">id</text>
+	<line x1="390" y1="627" x2="402" y2="627" stroke="#000" stroke-width="1"/>
+	<text x="390" y="641.8" fill="#000" font-family="Verdana" font-size="12">nom</text>
+</g>
+
+<!-- Entity maladies -->
+<g class="page_0_LVHANXxL diagram_page" visibility="visible">
+	<g>
+		<rect x="499" y="565" width="78" height="25" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="499" y="590" width="78" height="77" fill="#FFF" stroke="#FFF" stroke-width="0" opacity="1"/>
+		<rect x="499" y="565" width="78" height="102" fill="none" stroke="#000" stroke-width="2" opacity="1"/>
+		<line x1="499" y1="590" x2="577" y2="590" stroke="#000" stroke-width="1"/>
+	</g>
+	<text x="511" y="582.75" fill="#000" font-family="Verdana" font-size="12">maladies</text>
+	<text x="504" y="607.8" fill="#000" font-family="Verdana" font-size="12">id</text>
+	<line x1="504" y1="610" x2="516" y2="610" stroke="#000" stroke-width="1"/>
+	<text x="504" y="624.8" fill="#000" font-family="Verdana" font-size="12">description</text>
+	<text x="504" y="641.8" fill="#000" font-family="Verdana" font-size="12">prévention</text>
+	<text x="504" y="658.8" fill="#000" font-family="Verdana" font-size="12">traitement</text>
+</g>
+</svg>
