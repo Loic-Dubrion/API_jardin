@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS
   "pests",
   "categories",
   "families",
-  "grounds",
+  "soils",
   "exposures",
   "vegetables",
   "varieties",
@@ -46,7 +46,7 @@ CREATE TABLE categories (
   "updated_at" TIMESTAMPTZ
 );
 
-CREATE TABLE grounds (
+CREATE TABLE soils (
   "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   "name" VARCHAR(50),
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -84,7 +84,7 @@ CREATE TABLE vegetables (
   "planting_period" VARCHAR(100),
   "harvesting_period" VARCHAR(100),
   "id_exposure" INTEGER REFERENCES exposures("id") ON DELETE CASCADE,
-  "id_ground" INTEGER REFERENCES grounds("id") ON DELETE CASCADE,
+  "id_soil" INTEGER REFERENCES soils("id") ON DELETE CASCADE,
   "id_family" INTEGER REFERENCES families("id") ON DELETE CASCADE,
   "id_category" INTEGER REFERENCES categories("id") ON DELETE CASCADE,
   "id_variety" INTEGER REFERENCES varieties("id") ON DELETE CASCADE,

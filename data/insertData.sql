@@ -24,13 +24,13 @@ VALUES
 ('Category 3'),
 ('Category 4');
 
--- Insertion des données dans la table "grounds"
-INSERT INTO grounds (name)
+-- Insertion des données dans la table "soils"
+INSERT INTO soils (name)
 VALUES
-('Ground 1'),
-('Ground 2'),
-('Ground 3'),
-('Ground 4');
+('soil 1'),
+('soil 2'),
+('soil 3'),
+('soil 4');
 
 -- Insertion des données dans la table "exposures"
 INSERT INTO exposures (name)
@@ -79,7 +79,7 @@ VALUES
 ('Plot 4', 4, false, 4);
 
 -- Insertion des données dans la table "vegetables"
-INSERT INTO vegetables (name, height, sowing_period, planting_period, harvesting_period, id_exposure, id_ground, id_family, id_category, id_variety, cultivation_advice, characteristics)
+INSERT INTO vegetables (name, height, sowing_period, planting_period, harvesting_period, id_exposure, id_soil, id_family, id_category, id_variety, cultivation_advice, characteristics)
 VALUES
 ('Vegetable 1', 10, 'Period 1', 'Period 1', 'Period 1', 1, 1, 1, 1, 1, 'Advice 1', 'Characteristics 1'),
 ('Vegetable 2', 20, 'Period 2', 'Period 2', 'Period 2', 2, 2, 2, 2, 2, 'Advice 2', 'Characteristics 2'),
