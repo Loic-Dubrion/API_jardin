@@ -8,58 +8,59 @@ Pour mémoire :
 
 ## TABLES
 
-**categories**
+**categorie**
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
 | name | TEXT | |
 
-**families**
+**family**
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
 | name | TEXT | |
 
-**vegetables**
+**plant**
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
 | name | VARCHAR(50) | |
 | specification | ARRAY | |
 | culture_advice | ARRAY | |
-| id_family | INTEGER | Foreign Key - families.id |
-| id_category | INTEGER | Foreign Key - categories.id |
+| id_family | INTEGER | Foreign Key - familie.id |
+| id_category | INTEGER | Foreign Key - categorie.id |
+| id_alliance | INTEGER | Foreign Key - alliance.id |
 
 
-**plots**
+**plot**
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
 | name | TEXT | |
 | availability | BOOLEAN | |
-| id_user | INTEGER | Foreign Key - users.id |
+| id_user | INTEGER | Foreign Key - user.id |
 
-**cultures**
+**culture**
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
 | sowing | DATE | |
 | planting | DATE | |
 | harvesting | DATE | |
-| id_vegetable | INTEGER | Foreign Key - vegetables.id |
-| id_plot | INTEGER | Foreign Key - plots.id |
+| id_vegetable | INTEGER | Foreign Key - vegetable.id |
+| id_plot | INTEGER | Foreign Key - plot.id |
 | comment | TEXT | |
 
-**users**
+**user**
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
 | username | TEXT | |
 | email | TEXT | |
 | password | TEXT | |
-| id_role | INTEGER | Foreign Key - roles.id |
+| id_role | INTEGER | Foreign Key - role.id |
 
-**roles**
+**role**
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
@@ -69,12 +70,4 @@ Pour mémoire :
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
-| id_alliance | ARRAY[id_vegetable] | |
-
-## RELATIONSHIP TABLES
-
-**alliance_has_vegetables**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id_alliance | INTEGER | Foreign Key - alliance.id |
-| id_vegetable | INTEGER | Foreign Key - vegetables.id |
+| alliance | ARRAY[id_vegetable] | |

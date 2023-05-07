@@ -89,8 +89,7 @@
   Les critères d'acceptation pour l'application incluent la vérification que toutes les exigences fonctionnelles et non-fonctionnelles sont respectées, ainsi que la réussite des tests unitaires et des tests d'intégration.
 
 ## Annexes
-  User Stories
-  MCD détaillé
+  MCD
   MLD
   MPD
   Documentation
