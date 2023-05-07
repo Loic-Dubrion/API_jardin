@@ -8,70 +8,35 @@ Pour mémoire :
 
 ## TABLES
 
-**diseases**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id | INTEGER | Primary Key|
-| description | TEXT | |
-| prevention | TEXT | |
-| treatment | TEXT | |
-
-**pests**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id | INTEGER | Primary Key |
-| name | VARCHAR(50) | |
-| description | TEXT | |
-| prevention | TEXT | |
-| treatment | TEXT | |
-
 **categories**
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
-| name | VARCHAR(50) | |
-
-**soils**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id | INTEGER | Primary Key |
-| name | VARCHAR(50) | |
-
-**exposure**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id | INTEGER | Primary Key |
-| name | VARCHAR(50) | |
+| name | TEXT | |
 
 **families**
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
-| name | VARCHAR(50) | |
+| name | TEXT | |
 
 **vegetables**
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
 | name | VARCHAR(50) | |
-| height | INTEGER | |
-| sowing_period | VARCHAR(100) | |
-| planting_period | VARCHAR(100) | |
-| hervting_period | VARCHAR(100) | |
+| specification | ARRAY | |
+| culture_advice | ARRAY | |
 | id_family | INTEGER | Foreign Key - families.id |
 | id_category | INTEGER | Foreign Key - categories.id |
-| id_exposure | INTEGER | Foreign Key - exposures.id |
-| id_ground | INTEGER | Foreign Key - grounds.id |
-| cultivation_advice | TEXT | |
-| characteristics | TEXT | |
+
 
 **plots**
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
-| name | VARCHAR(50) | |
-| position | INTEGER | |
-| availability | BOOLEAN
+| name | TEXT | |
+| availability | BOOLEAN | |
 | id_user | INTEGER | Foreign Key - users.id |
 
 **cultures**
@@ -89,16 +54,16 @@ Pour mémoire :
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
-| username | VARCHAR(100) | |
-| email | VARCHAR(100) | |
-| password | VARCHAR(100) | |
+| username | TEXT | |
+| email | TEXT | |
+| password | TEXT | |
 | id_role | INTEGER | Foreign Key - roles.id |
 
 **roles**
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
-| name | VARCHAR(50) | |
+| name | TEXT | |
 
 **alliance**
 | Column | Type | |
@@ -106,34 +71,10 @@ Pour mémoire :
 | id | INTEGER | Primary Key |
 | id_alliance | ARRAY[id_vegetable] | |
 
-**misalliance**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id | INTEGER | Primary Key |
-| id_misalliance | ARRAY[id_vegetable] | |
-
 ## RELATIONSHIP TABLES
 
 **alliance_has_vegetables**
 | Column | Type | |
 | :--- | :--- | :--- |
 | id_alliance | INTEGER | Foreign Key - alliance.id |
-| id_vegetable | INTEGER | Foreign Key - vegetables.id |
-
-**misalliance_has_vegetables**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id_misalliance | INTEGER | Foreign Key - misalliance.id |
-| id_vegetable | INTEGER | Foreign Key - vegetables.id |
-
-**disease_has_vegetables**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id_disease | INTEGER | Foreign Key - diseases.id |
-| id_vegetable | INTEGER | Foreign Key - vegetables.id |
-
-**pest_has_vegetables**
-| Column | Type | |
-| :--- | :--- | :--- |
-| id_disease | INTEGER | Foreign Key - diseases.id |
 | id_vegetable | INTEGER | Foreign Key - vegetables.id |
