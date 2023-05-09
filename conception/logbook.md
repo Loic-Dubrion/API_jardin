@@ -19,3 +19,12 @@ Représentation des clefs étrangères
 ### Conception du MPD (Modèle Physique de Données)
 
 Schématisation des tables, des contraintes d'intégrité, des index.
+
+## Configuration de l'environnement de travail
+
+- eslint (configuration airBnB)
+- sqitch
+- initialisation d'un dépôt git
+- initialisation d'un projet Node.js
+- installation de jsDoc
+- installation de swagger pour express

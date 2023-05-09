@@ -8,7 +8,7 @@ Pour mémoire :
 
 ## TABLES
 
-**categorie**
+**category**
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
@@ -24,7 +24,7 @@ Pour mémoire :
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
-| name | VARCHAR(50) | |
+| name | TEXT | |
 | specification | ARRAY | |
 | culture_advice | ARRAY | |
 | id_family | INTEGER | Foreign Key - familie.id |
@@ -47,7 +47,7 @@ Pour mémoire :
 | sowing | DATE | |
 | planting | DATE | |
 | harvesting | DATE | |
-| id_vegetable | INTEGER | Foreign Key - vegetable.id |
+| id_plant | INTEGER | Foreign Key - vegetable.id |
 | id_plot | INTEGER | Foreign Key - plot.id |
 | comment | TEXT | |
 
