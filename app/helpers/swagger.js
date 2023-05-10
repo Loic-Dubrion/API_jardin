@@ -3,13 +3,19 @@ const logger = require('./logger');
 
 // swagger setup
 const swaggerOptions = {
+  servers: [
+    {
+      url: `http://${process.env.PGHOST}:${process.env.PORT}` || 'http://localhost:3000',
+    },
+  ],
   info: {
-    version: '1.0.0',
-    title: 'Connected Garden API',
-    description: '',
+    version: '1.0',
+    title: 'Connected Garden',
+    description: 'API de Connected Garden',
   },
+  baseDir: `${__dirname}/app`,
   filesPattern: './**/*.js',
-  swaggerUIPath: process.env.API_DOCUMENTATION_ROUTE ?? '/api-docs',
+  swaggerUIPath: '/api-docs',
   exposeSwaggerUI: true,
 };
 
@@ -19,7 +25,7 @@ const swaggerOptions = {
  * @param {string} baseDir - the beaseDir where to serach for docs
  */
 function injectSwagger(app, baseDir) {
-  logger.log('swagger UI injected');
+  logger.info('swagger UI injected');
   swaggerOptions.baseDir = baseDir;
   expressSwagger(app)(swaggerOptions);
 }

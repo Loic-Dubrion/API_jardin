@@ -2,6 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
-router.use('/', (req, res) => res.send('create OK'));
+const apiRouter = require('./API');
+
+router.use('/api', apiRouter);
 
 module.exports = router;
