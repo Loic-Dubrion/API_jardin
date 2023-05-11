@@ -6,7 +6,6 @@ const logger = require('../../helpers/logger');
  * @returns {function} a middleware controller with error management
  */
 function controllerHandler(controller) {
-  logger.info(`create new controller with error handling for ${controller.name}`);
   return async (request, response, next) => {
     try {
       await controller(request, response, next);

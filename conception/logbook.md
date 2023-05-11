@@ -82,4 +82,5 @@ Le 10/05
 
 Le 11/05
 
--Configuration de Jest et test de la route /api/plants
+- Création d'une view avec migration sqitch
+- Configuration de Jest et test de la route /api/plants

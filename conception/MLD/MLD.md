@@ -19,6 +19,7 @@ Pour mémoire :
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
 | name | TEXT | |
+| id_alliance | INTEGER | Foreign Key - alliance.id |
 
 **plant**
 | Column | Type | |
@@ -29,7 +30,6 @@ Pour mémoire :
 | culture_advice | ARRAY | |
 | id_family | INTEGER | Foreign Key - familie.id |
 | id_category | INTEGER | Foreign Key - categorie.id |
-| id_alliance | INTEGER | Foreign Key - alliance.id |
 
 
 **plot**
@@ -70,4 +70,4 @@ Pour mémoire :
 | Column | Type | |
 | :--- | :--- | :--- |
 | id | INTEGER | Primary Key |
-| alliance | ARRAY[id_vegetable] | |
+| alliance | ARRAY[id_family] | |

@@ -2,3 +2,4 @@
 %project=connectedGarden
 
 create_tables 2023-05-07T18:21:55Z Loic Dubrion <loic-dubrion@hotmail.fr> # create tables
+create_view_plant 2023-05-11T07:21:36Z Loic Dubrion <loic-dubrion@hotmail.fr> # A view that returns the detail of a plant

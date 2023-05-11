@@ -12,10 +12,10 @@ const plantController = require('../../controllers/API/plantController');
  * @property {number} id - plant id
  * @property {string} name - text slug
  * @property {array} specification - plant specification
- * @property {array} culture_advice - plant culture_advice
- * @property {string} category - plant category
- * @property {string} familly - plant familly
- * @property {array} alliance - alliance's plant
+ * @property {array} culture_advice - plant culture advice
+ * @property {string} category - plant category name
+ * @property {string} familly - plant familly name
+ * @property {array} alliance - Allied plant family list
  */
 
 /**
