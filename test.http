@@ -14,7 +14,7 @@ http://localhost:3000/api/users/1/cultures/in-progress
 http://localhost:3000/api/users/1/cultures/completed
 ###
 // All culture by plot in progress
-http://localhost:3000/api/users/1/cultures/plots/1
+http://localhost:3000/api/users/2/cultures/plots/6
 ###
 // All culture by culture in progress
 http://localhost:3000/api/users/1/cultures/2

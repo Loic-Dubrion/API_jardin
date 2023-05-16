@@ -11,7 +11,11 @@ const userController = {
   async getProfil(request, response) {
     const userId = Number(request.params.userId);
     const result = await dataMapper.getProfil(userId);
-    response.json(result.rows);
+    if (result.rows.length === 0) {
+      response.status(404).json({ status: 404, error: 'No user found with this ID.' });
+    } else {
+      response.json(result.rows);
+    }
   },
 
   /** Get production details based on specified filters
@@ -28,7 +32,11 @@ const userController = {
     plotId = plotId ? Number(request.params.plotId) : null;
     cultureId = cultureId ? Number(request.params.cultureId) : null;
     const result = await dataMapper.getProduction(userId, isHarvestingNull, plotId, cultureId);
-    response.json(result.rows);
+    if (result.rows.length === 0) {
+      response.status(404).json({ status: 404, error: 'No production found with these parameters.' });
+    } else {
+      response.json(result.rows);
+    }
   },
 };
 

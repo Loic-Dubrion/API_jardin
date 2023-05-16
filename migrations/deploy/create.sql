@@ -11,7 +11,7 @@ CREATE TABLE "category" (
 
 CREATE TABLE "alliance" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "alliance" INT[] NOT NULL,
+    "alliance" INT[] UNIQUE NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );
@@ -52,7 +52,7 @@ CREATE TABLE "plot" (
 
 CREATE TABLE "plant" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "name" TEXT NOT NULL UNIQUE,
+    "name" TEXT NOT NULL,
     "specification" TEXT[] DEFAULT NULL,
     "culture_advice" TEXT[] DEFAULT NULL,
     "id_family" INTEGER REFERENCES "family" ("id"),

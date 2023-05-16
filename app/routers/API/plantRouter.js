@@ -18,16 +18,29 @@ const plantController = require('../../controllers/API/plantController');
  * @property {array} alliance - Allied plant family list
  */
 
-/**
- * GET /api/plants
+/** GET /api/plants
  *
  * @summary get all plants with category, familly and alliance
  * @tags Plants - The plants
- *
+ * @description
+ * This route returns all the information relating to plants
  * @return {array<Post>} 200 - success response
  * @return {object} 500 - internal server error
  */
 router.get('/', controllerHandler(plantController.getAllPlants));
+
+/** GET /api/plants/{plantId}
+ *
+ * @summary Get all plants with category, familly and alliance
+ * @tags Plants - Everything about one plant
+ * @description
+ * This route returns all the information relating to a plant
+ * The plant's ID is expected to be included in the request parameters.
+ * @param {number} plantId.path - ID of the user to fetch
+ * @return {User} 200 - success response - user's profile information
+ * @return {object} 404 - Plant not found error
+ * @return {object} 500 - internal server error
+ */
 router.get('/:plantId', controllerHandler(plantController.getOnePlant));
 
 module.exports = router;

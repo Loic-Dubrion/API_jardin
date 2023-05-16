@@ -24,6 +24,11 @@ const plantController = {
   async getOnePlant(request, response) {
     const plantId = Number(request.params.plantId);
     const result = await dataMapper.getOnePlant(plantId);
+    if (result.rows.length === 0) {
+      response.status(404).json({ status: 404, error: 'No plant found with these parameters.' });
+    } else {
+      response.json(result.rows);
+    }
     response.json(result.rows);
   },
 };
