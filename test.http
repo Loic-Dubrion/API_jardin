@@ -2,7 +2,7 @@
 http://localhost:3000/api/plants
 ###
 // One plant
-http://localhost:3000/api/plants/1
+http://localhost:3000/api/plants/2
 ###
 // User Profil
 http://localhost:3000/api/users/1

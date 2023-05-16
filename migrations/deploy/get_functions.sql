@@ -113,4 +113,40 @@ AS $$
     WHERE "plant"."id" = "_plant_id"
 $$;
 
+CREATE TYPE culture_info AS (
+    category_name TEXT,
+    family_name TEXT,
+    harvesting_date TEXT
+);
+
+CREATE OR REPLACE FUNCTION record_to_culture_info(r RECORD)
+RETURNS culture_info AS $$
+BEGIN
+    RETURN (r.category_name, r.family_name, r.harvesting_date)::culture_info;
+END
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION get_last_cultures(_plot_id INTEGER)
+RETURNS TABLE (
+    plot_name TEXT,
+    three_last_culture culture_info[]
+) AS $$
+    SELECT
+        plot.name AS plot_name,
+        ARRAY_AGG(record_to_culture_info((category.name, family.name, culture.harvesting::TEXT))) AS three_last_culture
+    FROM plot
+    JOIN culture ON plot.id = culture.id_plot
+    JOIN plant ON plant.id = culture.id_plant
+    JOIN family ON family.id = plant.id_family
+    JOIN category ON category.id = plant.id_category
+    WHERE plot.id = _plot_id
+    AND culture.harvesting IS NOT NULL
+    GROUP BY plot.name
+    ORDER BY ABS(EXTRACT(DAY FROM (NOW() - MIN(culture.harvesting))))
+    LIMIT 3;
+$$
+LANGUAGE SQL;
+
+
+
 COMMIT;

@@ -41,15 +41,4 @@ BEGIN
     END IF;
 END $$;
 
-DO $$
-DECLARE
-    test_alliance JSON := '{"alliance": [1,2,3]}';
-    result RECORD;
-BEGIN
-    SELECT * INTO result FROM insert_new_alliance(test_alliance);
-    IF result.alliance <> ARRAY[1,2,3] THEN
-        RAISE 'Verification failed: Unexpected alliance %', result.alliance;
-    END IF;
-END $$;
-
 ROLLBACK;

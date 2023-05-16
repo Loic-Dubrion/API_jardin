@@ -70,7 +70,9 @@ VALUES
 -- Insérer des cultures
 INSERT INTO "culture" ("sowing", "planting", "harvesting", "id_plant", "id_plot", "comment")
 VALUES
-('2023-04-01', '2023-04-15', '2023-06-30', 1, 1, 'Récolte abondante'),
+('2023-04-01', '2023-04-15', '2023-05-10', 1, 1, 'Récolte abondante'),
+('2023-04-01', '2023-02-15', '2023-04-10', 2, 1, 'Récolte abondante'),
+('2023-04-01', '2022-02-15', '2023-01-10', 3, 1, 'Récolte abondante'),
 ('2023-05-01', '2023-05-15', NULL, 2, 2, ''),
 ('2023-04-01', '2023-04-15', NULL, 3, 1, ''),
 ('2023-04-10', '2023-05-01', NULL, 4, 3, ''),
