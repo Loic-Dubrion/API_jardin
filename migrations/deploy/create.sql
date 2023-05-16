@@ -1,4 +1,4 @@
--- Deploy connectedGarden:create_tables to pg
+-- Deploy connectedGarden:create to pg
 
 BEGIN;
 
@@ -63,14 +63,15 @@ CREATE TABLE "plant" (
 
 CREATE TABLE "culture" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "sowing" DATE DEFAULT NULL,
-    "planting" DATE DEFAULT NULL,
-    "harvesting" DATE DEFAULT NULL,
+    "sowing" TIMESTAMPTZ DEFAULT NULL,
+    "planting" TIMESTAMPTZ DEFAULT NULL,
+    "harvesting" TIMESTAMPTZ DEFAULT NULL,
     "id_plant" INTEGER REFERENCES "plant" ("id"),
     "id_plot" INTEGER REFERENCES "plot" ("id"),
     "comment" TEXT,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );
+
 
 COMMIT;

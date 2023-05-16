@@ -18,8 +18,8 @@
 
   2.3. Fonctionnalités principales
     - Gestion des utilisateurs et des rôles
-      - Une version limité gratuite
-      - Une version complète payante
+      - Un accès admin pour l'ajout des informations liés aux légumes
+      - Un accès user pour gérer leurs jardins
     - Gestion des parcelles
       - L'utilisateur doit pouvoir enregistrer ses parcelles cultivable ainsi que leurs caractéristique
     - Gestion des cultures

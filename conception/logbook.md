@@ -84,3 +84,11 @@ Le 11/05
 
 - Création d'une view avec migration sqitch
 - Configuration de Jest et test de la route /api/plants
+
+## CRUD
+
+Le 12/05
+
+- Création de la route get /plots/:userId
+- Création et migration sqitch d'une fonction sql pour récupérer les parcelles par utilisateur
+- Test Unitaire de la route

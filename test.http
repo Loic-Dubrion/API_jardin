@@ -1,0 +1,20 @@
+// All plants
+http://localhost:3000/api/plants
+###
+// One plant
+http://localhost:3000/api/plants/1
+###
+// User Profil
+http://localhost:3000/api/users/1
+###
+// All culture in-progress for one user
+http://localhost:3000/api/users/1/cultures/in-progress
+###
+// All culture completed for one user
+http://localhost:3000/api/users/1/cultures/completed
+###
+// All culture by plot in progress
+http://localhost:3000/api/users/1/cultures/plots/1
+###
+// All culture by culture in progress
+http://localhost:3000/api/users/1/cultures/2

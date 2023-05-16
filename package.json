@@ -9,7 +9,9 @@
   "scripts": {
     "dev": "nodemon index.js | bunyan -o short",
     "docs": "./node_modules/.bin/jsdoc -c ./jsdoc.config.json",
-    "resetdb": "sqitch revert -y && sqitch deploy && node data/seeding.sql",
+    "db:create": "sqitch revert -y && sqitch deploy",
+    "db:seed": "psql connected_garden -f data/seeding.sql",
+    "db:reset": "npm run db:create && npm run db:seed",
     "start": "node index.js",
     "test": "jest"
   },

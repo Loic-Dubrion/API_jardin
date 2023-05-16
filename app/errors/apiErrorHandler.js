@@ -1,5 +1,4 @@
 const NoResourceFoundError = require('./NoResourceFoundError');
-
 /**
  * Middleware of error management for API calls.
  *

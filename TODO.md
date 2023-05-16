@@ -1,56 +1,108 @@
-# Compétences TP
+# TODO LIST
 
-## Maquetté une application
+- Faire un sauvegarde automatique de la BDD
 
-- Réalisation d'un cahier des charges
-- User Stories
-- Wireframes légendés
+## Fonction profil de l'utilisateur
+CREATE OR REPLACE FUNCTION public.get_user_details(user_id integer)
+    RETURNS TABLE (
+        username text,
+        email text,
+        id_role integer,
+        total_plots bigint
+    )
+    LANGUAGE SQL
+AS $function$
+    SELECT
+        "user"."username",
+        "user"."email",
+        "user"."id_role",
+        COUNT("plot") AS total_plots
+    FROM "user"
+    JOIN "plot" ON "user"."id" = "plot"."id_user"
+    WHERE "user"."id" = user_id
+    GROUP BY "user"."id";
+$function$
 
-## Réaliser une interface utilisateur web statique et adaptable
 
-- HTML, CSS, Responsive
+## Fonction pour récupérer tous les légumes en cours de production ou non par utilisateur par parcelle ou non
+CREATE OR REPLACE FUNCTION public.get_production_by_user_with_condition(user_id integer, is_harvesting_null boolean, plot_id integer DEFAULT NULL)
+    RETURNS TABLE (
+        username text,
+        plot_id integer,
+        name text,
+        availability boolean,
+        family text,
+        variety text,
+        category text,
+        sowing date,
+        planting date,
+        harvesting date
+    )
+    LANGUAGE SQL
+AS $function$
+    SELECT
+        "user"."username",
+        "plot"."id" AS plot_id,
+        "plot"."name" AS name,
+        "plot"."availability",
+        "family"."name" AS family,
+        "plant"."name" AS variety,
+        "category"."name" AS category,
+        "culture"."sowing",
+        "culture"."planting",
+        "culture"."harvesting",
+        "culture"."comment"
+    FROM
+        "plot"
+    JOIN
+        "user" ON "user"."id" = "plot"."id_user"
+    JOIN
+        "culture" ON "culture"."id_plot" = "plot"."id"
+    JOIN
+        "plant" ON "plant"."id" = "culture"."id_plant"
+    JOIN
+        "family" ON "family"."id" = "plant"."id_family"
+    JOIN
+        "category" ON "category"."id" = "plant"."id_category"
+    WHERE
+        "plot"."id_user" = user_id
+        AND (
+            is_harvesting_null = TRUE AND "culture"."harvesting" IS NULL
+            OR is_harvesting_null = FALSE
+        )
+        AND ("plot"."id" = plot_id OR plot_id IS NULL);
+$function$
 
-## Développer une interface utilisateur web dynamique
-
-- javascript et ses déclinaisons front : react, jquery, vue.js, typescript etc
-- Dans cette compétence, la bonne connaissance des mécanismes asynchrones
-est demandée, comme AJAX. Par contre attention, vous êtes côté client de
-l’application, donc il ne s’agit pas d’aller chercher des données en back dans
-cette compétence.
-
-## Réaliser une interface utilisateur avec une solution de gestion de contenu ou e-commerce
-
-- CMS
-- Concrètement, un thème où vous avez mis du HTML, du CSS, du Javascript, et le tout responsive
-
-## Créer une base de donnée
-
-- MCD
-- MLD
-- MPD
-- SGBD
-
-## Développer les composants d’accès aux données
-
-- Sequelize
-- Requête SQL
-- CRUD
-- MCV
-
-## Développer la partie back-end d’une application web ou web mobile
-
-- expliquer tout ce qui englobe le back d’un projet, de l’architecture de votre projet
-- son design pattern, comme le MVC par exemple
-- la façon dont vous le codez - en POO par exemple aussi - tout en sécurisant l’application côté serveur.
-
-## Elaborer et mettre en œuvre des composants dans une application de gestion de contenu ou e-commerce
-
-- CMS, mais côté back. Pour répondre à cette compétence, il va falloir mettre les mains dans le back et créer,
-par exemple dans wordpress, des CPT, les fameux Custom Post Type30, mais pas seulement. Il vous est demandé
-ici, comme dans la CP 7, d’expliquer comment la donnée circule dans l’architecture de votre CMS et ce, de manière sécurisée : 
-ce sont les mêmes mots-clés que la CP 7 mais dans un CMS.
-
-### Question pour TP
-- utilisation de mongo (possibilité avec les schemas de mettre des relations entre les collections) ?
-- Compétence 6 Sequelize or not sequelize ?
-- Compétences 4 & 8 pour les CMS ?
+## Récupère le détail d'une plante
+CREATE OR REPLACE FUNCTION public.get_plants_details()
+    RETURNS TABLE (
+        name text,
+        specification text,
+        culture_advice text,
+        category text,
+        family text,
+        alliances text[]
+    )
+    LANGUAGE SQL
+AS $function$
+    SELECT
+        "plant"."name",
+        "plant"."specification",
+        "plant"."culture_advice",
+        "category"."name" AS "category",
+        "family"."name" AS "family",
+        "plant_alliances"."alliances"
+    FROM "plant"
+    JOIN "category" ON "category"."id" = "plant"."id_category"
+    LEFT JOIN "family" ON "family"."id" = "plant"."id_family"
+    LEFT JOIN (
+        SELECT
+            "plant"."id" AS "plant_id",
+            ARRAY_AGG("alliance_family"."name") AS "alliances"
+        FROM "plant"
+        LEFT JOIN "family" ON "family"."id" = "plant"."id_family"
+        LEFT JOIN "alliance" ON "alliance"."id" = "family"."id_alliance"
+        LEFT JOIN "family" AS "alliance_family" ON "alliance_family"."id" = ANY("alliance"."alliance")
+        GROUP BY "plant"."id"
+    ) AS "plant_alliances" ON "plant_alliances"."plant_id" = "plant"."id";
+$function$

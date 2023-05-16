@@ -1,8 +1,8 @@
--- Deploy connectedGarden:create_view_plant to pg
+-- Deploy connectedGarden:view to pg
 
 BEGIN;
 
-CREATE VIEW plant_details AS
+CREATE VIEW "plants_details" AS
 SELECT
     "plant"."name",
     "plant"."specification",
@@ -23,5 +23,6 @@ LEFT JOIN (
     LEFT JOIN "family" AS "alliance_family" ON "alliance_family"."id" = ANY("alliance"."alliance")
     GROUP BY "plant"."id"
 ) AS "plant_alliances" ON "plant_alliances"."plant_id" = "plant"."id";
+
 
 COMMIT;

@@ -1,9 +1,9 @@
--- Revert connectedGarden:create_tables from pg
+-- Revert connectedGarden:create from pg
 
 BEGIN;
 
-DROP TABLE 
-    "culture", 
+DROP TABLE
+    "culture",
     "plot",
     "plant",
     "alliance",

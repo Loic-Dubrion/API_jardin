@@ -1,16 +1,16 @@
--- Verify connectedGarden:create_tables on pg
+-- Verify connectedGarden:create on pg
 
 BEGIN;
 
-SELECT * FROM 
-    "culture", 
+SELECT * FROM
+    "culture",
     "plot",
     "plant",
     "alliance",
     "family",
     "category",
     "user",
-    "role" 
+    "role"
 WHERE false;
 
 ROLLBACK;

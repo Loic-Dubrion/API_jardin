@@ -10,7 +10,7 @@ const plantController = require('../../controllers/API/plantController');
  *
  * @typedef {object} Plant
  * @property {number} id - plant id
- * @property {string} name - text slug
+ * @property {string} name - plant name
  * @property {array} specification - plant specification
  * @property {array} culture_advice - plant culture advice
  * @property {string} category - plant category name
@@ -28,5 +28,6 @@ const plantController = require('../../controllers/API/plantController');
  * @return {object} 500 - internal server error
  */
 router.get('/', controllerHandler(plantController.getAllPlants));
+router.get('/:plantId', controllerHandler(plantController.getOnePlant));
 
 module.exports = router;

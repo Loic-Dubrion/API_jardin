@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const express = require('express');
 const plantRouter = require('./plantRouter');
+const userRouter = require('./userRouter');
 // const { apiController } = require(' ');
 const NoResourceFoundError = require('../../errors/NoResourceFoundError');
 const apiErrorHandler = require('../../errors/apiErrorHandler');
@@ -17,6 +18,7 @@ const router = express.Router();
  */
 
 router.use('/plants', plantRouter);
+router.use('/users', userRouter);
 
 router.use((request, response, next) => {
   next(new NoResourceFoundError());
