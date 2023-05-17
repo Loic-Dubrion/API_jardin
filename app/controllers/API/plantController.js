@@ -13,6 +13,7 @@ const plantController = {
     const result = await dataMapper.getAllPlants();
     response.json(result.rows);
   },
+
   /**
    * plant API controller for GET /plants
    * Recovers One API plant
@@ -30,6 +31,58 @@ const plantController = {
       response.json(result.rows);
     }
     response.json(result.rows);
+  },
+
+  /**
+   * plant API controller for POST /plants
+   * Create a new plant
+   *
+   * @param {object} request - Contains the body with plant information
+   * @param {object} response
+   * @returns {object} - The new plant object in the response body.
+   */
+  async postPlant(request, response) {
+    const newPlant = await dataMapper.postPlant(request.body);
+    response.json(newPlant.rows);
+  },
+
+  /**
+   * plant API controller for POST /families
+   * Create a new family
+   *
+   * @param {object} request - Contains the body with family information
+   * @param {object} response
+   * @returns {object} - The new family object in the response body.
+   */
+  async postFamily(request, response) {
+    const newFamily = await dataMapper.postFamily(request.body);
+    response.json(newFamily.rows);
+  },
+
+  /**
+   * plant API controller for POST /categories
+   * Create a new category
+   *
+   * @param {object} request - Contains the body with category information
+   * @param {object} response
+   * @returns {object} - The new category object in the response body.
+   */
+  async postCategory(request, response) {
+    const newCategory = await dataMapper.postCategory(request.body);
+    response.json(newCategory.rows);
+  },
+
+  /**
+   * plant API controller for POST /alliances
+   * Create a new alliance
+   *
+   * @param {object} request - Contains the body with alliance information
+   * @param {object} response
+   * @returns {object} - The new alliance object in the response body.
+   */
+  async postAlliance(request, response) {
+    const newAlliance = await dataMapper.postAlliance(request.body);
+    response.json(newAlliance.rows);
   },
 };
 

@@ -78,6 +78,4 @@ FROM new_alliance;
 $$
 LANGUAGE sql;
 
-
-
 COMMIT;

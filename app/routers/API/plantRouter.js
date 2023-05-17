@@ -43,4 +43,9 @@ router.get('/', controllerHandler(plantController.getAllPlants));
  */
 router.get('/:plantId', controllerHandler(plantController.getOnePlant));
 
+router.post('/', controllerHandler(plantController.postPlant));
+router.post('/categories', controllerHandler(plantController.postCategory));
+router.post('/families', controllerHandler(plantController.postFamily));
+router.post('/alliance', controllerHandler(plantController.postAlliance));
+
 module.exports = router;

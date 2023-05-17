@@ -2,7 +2,8 @@ const dataMapper = require('../../models/userDataMapper');
 
 const userController = {
 
-  /** Get profile information of a specific user
+  /**
+   * Get profile information of a specific user
    *
    * @param {object} request - The request object
    * @param {object} response - The response object
@@ -18,7 +19,8 @@ const userController = {
     }
   },
 
-  /** Get production details based on specified filters
+  /**
+   * Get production details based on specified filters
    *
    * @param {object} request - The request object
    * @param {object} response - The response object
@@ -39,7 +41,8 @@ const userController = {
     }
   },
 
-  /** Get the last three categories
+  /**
+   * Get the last three categories
    *
    * @param {object} request - The request object
    * @param {object} response - The response object
@@ -55,6 +58,13 @@ const userController = {
     }
   },
 
+  /**
+   * Get all the alliances for the plants in a specific plot
+   *
+   * @param {object} request - The request object
+   * @param {object} response - The response object
+   * @returns {void}
+   */
   async getAlliancesForPlot(request, response) {
     const plotId = Number(request.params.plotId);
     const userId = Number(request.params.userId);

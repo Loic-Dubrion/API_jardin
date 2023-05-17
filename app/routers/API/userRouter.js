@@ -130,8 +130,21 @@ router.get(
   controllerHandler(userController.getLastCategories),
 );
 
+/** GET /api/users/{userId}/plots/{plotId}/alliances
+ *
+ * @summary Get the list of possible plants for this plot
+ * @tags Users
+ * @description
+ * This route retrieves the list of possible plants for this plot.
+ * The user's ID and plot ID are expected to be included in the request parameters.
+ * @param {number} userId.path - ID of the user
+ * @param {number} plotId.path - ID of the plot
+ * @return {Categories} 200 - success response - details of the last categories
+ * @return {object} 404 - Ressource not found error
+ * @return {object} 500 - internal server error
+ */
 router.get(
-  '/:userId/cultures/plots/:plotId/alliances',
+  '/:userId/plots/:plotId/alliances',
   controllerHandler(userController.getAlliancesForPlot),
 );
 
