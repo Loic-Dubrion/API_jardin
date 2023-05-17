@@ -7,6 +7,9 @@ module.exports = {
   extends: [
     'airbnb-base',
   ],
+  plugins: [
+    'jest',
+  ],
   parserOptions: {
     ecmaVersion: 12,
     sourceType: 'module',

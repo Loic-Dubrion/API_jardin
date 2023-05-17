@@ -20,6 +20,7 @@ const userController = require('../../controllers/API/userController');
  * @property {number} plot_id - ID of the plot
  * @property {string} name - Name of the plot
  * @property {boolean} availability - Availability status of the plot
+ * @property {number} family_id - id of the family
  * @property {string} family - Family name of the plant
  * @property {string} variety - Variety name of the plant
  * @property {string} category - Category name of the plant
@@ -27,6 +28,12 @@ const userController = require('../../controllers/API/userController');
  * @property {string} planting - Planting date of the culture
  * @property {string} harvesting - Harvesting date of the culture
  * @property {string} comment - Comment for the culture
+ */
+
+/**
+ * @typedef {object} Culture
+ * @property {string} plot_name - The name of the plot
+ * @property {string[]} three_last_culture - Array of 'category, family, harvesting'
  */
 
 /** GET /api/users/{userId}
@@ -42,12 +49,15 @@ const userController = require('../../controllers/API/userController');
  * @return {object} 500 - internal server error
  */
 
-router.get('/:userId', controllerHandler(userController.getProfil));
+router.get(
+  '/:userId',
+  controllerHandler(userController.getProfil),
+);
 
 /** GET /api/users/{userId}/cultures/in-progress
  *
  * @summary Get in-progress cultures of a specific user
- * @tags Users - Everything about Users
+ * @tags Users
  * @description
  * This route retrieves the in-progress cultures of a specific user.
  * The user's ID is expected to be included in the request parameters.
@@ -56,12 +66,12 @@ router.get('/:userId', controllerHandler(userController.getProfil));
  * @return {object} 404 - Ressource not found error
  * @return {object} 500 - internal server error
  */
-router.get('/:userId/cultures/in-progress', (req, res) => userController.getProduction(req, res, true));
+router.get('/:userId/cultures/in-progress', (req, res) => controllerHandler(userController.getProduction(req, res, true)));
 
 /** GET /api/users/{userId}/cultures/completed
  *
  * @summary Get completed cultures of a specific user
- * @tags Users - Everything about Users
+ * @tags Users
  * @description
  * This route retrieves the completed cultures of a specific user.
  * The user's ID is expected to be included in the request parameters.
@@ -70,12 +80,12 @@ router.get('/:userId/cultures/in-progress', (req, res) => userController.getProd
  * @return {object} 404 - Ressource not found error
  * @return {object} 500 - internal server error
  */
-router.get('/:userId/cultures/completed', (req, res) => userController.getProduction(req, res, false));
+router.get('/:userId/cultures/completed', (req, res) => controllerHandler(userController.getProduction(req, res, false)));
 
 /** GET /api/users/{userId}/cultures/plots/{plotId}
  *
  * @summary Get cultures of a specific user for a particular plot
- * @tags Users - Everything about Users
+ * @tags Users
  * @description
  * This route retrieves the cultures of a specific user for a particular plot.
  * The user's ID and plot ID are expected to be included in the request parameters.
@@ -85,12 +95,12 @@ router.get('/:userId/cultures/completed', (req, res) => userController.getProduc
  * @return {object} 404 - Ressource not found error
  * @return {object} 500 - internal server error
  */
-router.get('/:userId/cultures/plots/:plotId', (req, res) => userController.getProduction(req, res, true, req.params.plotId));
+router.get('/:userId/cultures/plots/:plotId', (req, res) => controllerHandler(userController.getProduction(req, res, true, req.params.plotId)));
 
 /** GET /api/users/{userId}/cultures/{cultureId}
  *
  * @summary Get details of a specific culture of a user
- * @tags Users - Everything about Users
+ * @tags Users
  * @description
  * This route retrieves the details of a specific culture of a user.
  * The user's ID and culture ID are expected to be included in the request parameters.
@@ -100,7 +110,29 @@ router.get('/:userId/cultures/plots/:plotId', (req, res) => userController.getPr
  * @return {object} 404 - Ressource not found error
  * @return {object} 500 - internal server error
  */
-router.get('/:userId/cultures/:cultureId', (req, res) => userController.getProduction(req, res, true, null, req.params.cultureId));
+router.get('/:userId/cultures/:cultureId', (req, res) => controllerHandler(userController.getProduction(req, res, true, null, req.params.cultureId)));
 
+/** GET /api/users/{userId}/cultures/plots/{plotId}/last-cultures
+ *
+ * @summary Get the last three categories of culture
+ * @tags Users
+ * @description
+ * This route retrieves the last three categories of one plot.
+ * The user's ID and plot ID are expected to be included in the request parameters.
+ * @param {number} userId.path - ID of the user
+ * @param {number} plotId.path - ID of the plot
+ * @return {Categories} 200 - success response - details of the last categories
+ * @return {object} 404 - Ressource not found error
+ * @return {object} 500 - internal server error
+ */
+router.get(
+  '/:userId/cultures/plots/:plotId/last-cultures',
+  controllerHandler(userController.getLastCategories),
+);
+
+router.get(
+  '/:userId/cultures/plots/:plotId/alliances',
+  controllerHandler(userController.getAlliancesForPlot),
+);
 
 module.exports = router;

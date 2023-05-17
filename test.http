@@ -18,3 +18,9 @@ http://localhost:3000/api/users/2/cultures/plots/6
 ###
 // All culture by culture in progress
 http://localhost:3000/api/users/1/cultures/2
+###
+// The last categories
+http://localhost:3000/api/users/1/cultures/plots/1/last-cultures
+###
+// Alliance
+http://localhost:3000/api/users/4/cultures/plots/11/alliances

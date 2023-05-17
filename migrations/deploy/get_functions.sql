@@ -34,7 +34,8 @@ RETURNS TABLE (
     "plot_id" integer,
     "name" TEXT,
     "availability" BOOLEAN,
-    "family" TEXT,
+    "family_id" INT,
+    "family_name" TEXT,
     "variety" TEXT,
     "category" TEXT,
     "sowing" TIMESTAMPTZ,
@@ -49,6 +50,7 @@ SELECT
     "plot"."id" AS "plot_id",
     "plot"."name" AS "name",
     "plot"."availability",
+    "family"."id" AS "family_id",
     "family"."name" AS "family",
     "plant"."name" AS "variety",
     "category"."name" AS "category",
@@ -113,40 +115,41 @@ AS $$
     WHERE "plant"."id" = "_plant_id"
 $$;
 
-CREATE TYPE culture_info AS (
-    category_name TEXT,
-    family_name TEXT,
-    harvesting_date TEXT
-);
-
-CREATE OR REPLACE FUNCTION record_to_culture_info(r RECORD)
-RETURNS culture_info AS $$
-BEGIN
-    RETURN (r.category_name, r.family_name, r.harvesting_date)::culture_info;
-END
-$$ LANGUAGE plpgsql;
-
-CREATE OR REPLACE FUNCTION get_last_cultures(_plot_id INTEGER)
+CREATE OR REPLACE FUNCTION "get_last_cultures"(_plot_id INTEGER)
 RETURNS TABLE (
-    plot_name TEXT,
-    three_last_culture culture_info[]
+    "plot_name" TEXT,
+    "three_last_culture" TEXT[]
 ) AS $$
     SELECT
-        plot.name AS plot_name,
-        ARRAY_AGG(record_to_culture_info((category.name, family.name, culture.harvesting::TEXT))) AS three_last_culture
-    FROM plot
-    JOIN culture ON plot.id = culture.id_plot
-    JOIN plant ON plant.id = culture.id_plant
-    JOIN family ON family.id = plant.id_family
-    JOIN category ON category.id = plant.id_category
-    WHERE plot.id = _plot_id
-    AND culture.harvesting IS NOT NULL
-    GROUP BY plot.name
-    ORDER BY ABS(EXTRACT(DAY FROM (NOW() - MIN(culture.harvesting))))
+        "plot"."name" AS "plot_name",
+        ARRAY_AGG("category"."name" || ', ' || "family"."name" || ', ' || "culture"."harvesting"::TEXT) AS "three_last_culture"
+    FROM "plot"
+    JOIN "culture" ON "plot"."id" = "culture"."id_plot"
+    JOIN "plant" ON "plant"."id" = "culture"."id_plant"
+    JOIN "family" ON "family"."id" = "plant"."id_family"
+    JOIN "category" ON "category"."id" = "plant"."id_category"
+    WHERE "plot"."id" = "_plot_id"
+    AND "culture"."harvesting" IS NOT NULL
+    GROUP BY "plot"."name"
+    ORDER BY ABS(EXTRACT(DAY FROM (NOW() - MIN("culture"."harvesting"))))
     LIMIT 3;
 $$
 LANGUAGE SQL;
 
-
+CREATE OR REPLACE FUNCTION "get_alliance"("family_id" INTEGER)
+RETURNS TABLE (
+    "alliance" INT[],
+    "family_names" TEXT[]
+) AS $$
+    SELECT
+        "alliance"."alliance",
+        ARRAY(
+            SELECT "family"."name"
+            FROM UNNEST("alliance"."alliance") AS "temporary_table"("id")
+            JOIN "family" ON "family"."id" = "temporary_table"."id"
+        ) AS "family_names"
+    FROM "alliance"
+    WHERE "family_id" = ANY ("alliance"."alliance");
+$$ LANGUAGE sql;
 
 COMMIT;
