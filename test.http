@@ -55,24 +55,18 @@ Content-Type: application/json
   "alliance": [3,2]
 }
 ###
-### Post a new plot
-POST http://localhost:3000/api/users/2/plots
+PUT http://localhost:3000/api/users/1/plots/1
 Content-Type: application/json
 
 {
-  "name": "test",
-  "availability": true,
-  "id_user": 3
+  "availability": true
 }
 ###
 ### Post a new culture
-POST http://localhost:3000/api/users/2/cultures
+PUT http://localhost:3000/api/users/1
 Content-Type: application/json
 
 {
-  "sowing": "2023-06-01",
-  "id_plant": 4,
-  "id_plot": 8,
-  "comment": "This is a test culture."
+  "username": "boby"
 }
 ###

@@ -13,7 +13,7 @@ const userController = {
     const userId = Number(request.params.userId);
     const result = await dataMapper.getProfil(userId);
     if (result.rows.length === 0) {
-      response.status(404).json({ status: 404, error: 'No user found with this ID.' });
+      response.status(404).json({ status: 404, error: 'Not Found', message: 'No user found with this ID.' });
     } else {
       response.json(result.rows);
     }
@@ -35,7 +35,11 @@ const userController = {
     const cultureId = cultIdParam ? Number(request.params.cultureId) : null;
     const result = await dataMapper.getProduction(userId, isHarvestingNull, plotId, cultureId);
     if (result.rows.length === 0) {
-      response.status(404).json({ status: 404, error: 'No production found with these parameters.' });
+      response.status(404).json({
+        status: 404,
+        error: 'Not Found',
+        message: 'No production found with these parameters.',
+      });
     } else {
       response.json(result.rows);
     }
@@ -52,7 +56,7 @@ const userController = {
     const plotId = Number(request.params.plotId);
     const result = await dataMapper.getLastCultures(plotId);
     if (result.rows.length === 0) {
-      response.status(404).json({ status: 404, error: 'No ressource found with this ID.' });
+      response.status(404).json({ status: 404, error: 'Not Found', message: 'No ressource found with this ID.' });
     } else {
       response.json(result.rows);
     }
@@ -72,7 +76,7 @@ const userController = {
     const plantFamilies = await dataMapper.getProduction(userId, true, plotId);
 
     if (plantFamilies.rows.length === 0) {
-      response.status(404).json({ status: 404, error: 'No plants in the plot, no alliance.' });
+      response.status(404).json({ status: 404, error: 'Not Found', message: 'No plants in the plot, no alliance.' });
     } else {
       // Sinon, on va chercher les alliances pour chaque famille de plantes.
       // Chaque demande d'alliance est asynchrone, on utilise donc Promise.all
@@ -116,7 +120,7 @@ const userController = {
     if (newPlot.rows.length > 0) {
       response.status(201).json(newPlot.rows[0]);
     } else {
-      response.status(400).json({ error: 'Could not insert Plot.' });
+      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not insert Plot.' });
     }
   },
 
@@ -135,12 +139,68 @@ const userController = {
     if (newCulture.rows.length > 0) {
       response.status(201).json(newCulture.rows[0]);
     } else {
-      response.status(400).json({ error: 'Could not insert culture.' });
+      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not insert culture.' });
     }
   },
 
   //! Controller for Updating
 
+  /**
+   * Updates an existing user in the database.
+   *
+   * @param {object} request - The request object
+   * @param {object} response - The response object
+   * @returns {void} - This function does not return anything.
+   *                   It ends the request-response cycle by sending a response to the client.
+   *                   Sends a 200 status code along with the details if the operation is successful,
+   *                   or a 400 status code along with an error message if it is not.
+   */
+  async updateUser(request, response) {
+    const updatedUser = await dataMapper.updateUser(request.body, request.params.userId);
+    if (updatedUser.rows.length > 0) {
+      response.status(200).json(updatedUser.rows[0]);
+    } else {
+      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not update user.' });
+    }
+  },
+
+  /**
+     * Updates an existing plot in the database.
+     *
+     * @param {object} request - The request object
+     * @param {object} response - The response object
+     * @returns {void} - This function does not return anything.
+     *                   It ends the request-response cycle by sending a response to the client.
+     *                   Sends a 200 status code along with the details if the operation is successful,
+     *                   or a 400 status code along with an error message if it is not.
+     */
+  async updatePlot(request, response) {
+    const updatedPlot = await dataMapper.updatePlot(request.body, request.params.plotId);
+    if (updatedPlot.rows.length > 0) {
+      response.status(200).json(updatedPlot.rows[0]);
+    } else {
+      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not update plot.' });
+    }
+  },
+
+  /**
+     * Updates an existing culture in the database.
+     *
+     * @param {object} request - The request object
+     * @param {object} response - The response object
+     * @returns {void} - This function does not return anything.
+     *                   It ends the request-response cycle by sending a response to the client.
+     *                   Sends a 200 status code along with the details if the operation is successful,
+     *                   or a 400 status code along with an error message if it is not.
+     */
+  async updateCulture(request, response) {
+    const updatedCulture = await dataMapper.updateCulture(request.body, request.params.cultureId);
+    if (updatedCulture.rows.length > 0) {
+      response.status(200).json(updatedCulture.rows[0]);
+    } else {
+      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not update culture.' });
+    }
+  },
 };
 
 module.exports = userController;

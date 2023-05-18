@@ -1,7 +1,7 @@
 const client = require('../services/clientdb');
 
 const userDataMapper = {
-  // Models for "get"
+  //! Models for Reading
   getProfil: (userId) => {
     const query = 'SELECT * FROM get_user_details($1);';
     const values = [userId];
@@ -23,7 +23,7 @@ const userDataMapper = {
     return client.query(query, values);
   },
 
-  // Models for "Post"
+  //! Models for Creating
   insertPlot: (objPlot) => {
     const query = 'SELECT * FROM insert_new_plot($1);';
     const values = [objPlot];
@@ -32,6 +32,25 @@ const userDataMapper = {
   insertCulture: (objCulture) => {
     const query = 'SELECT * FROM insert_new_culture($1);';
     const values = [objCulture];
+    return client.query(query, values);
+  },
+
+  //! Models for Updating
+  updateUser: (objUser, userId) => {
+    const query = 'SELECT * FROM update_user($1, $2);';
+    const values = [objUser, userId];
+    return client.query(query, values);
+  },
+
+  updatePlot: (objPlot, plotId) => {
+    const query = 'SELECT * FROM update_plot($1, $2);';
+    const values = [objPlot, plotId];
+    return client.query(query, values);
+  },
+
+  updateCulture: (objCulture, cultureId) => {
+    const query = 'SELECT * FROM update_culture($1, $2);';
+    const values = [objCulture, cultureId];
     return client.query(query, values);
   },
 };

@@ -27,7 +27,11 @@ const plantController = {
     const plantId = Number(request.params.plantId);
     const result = await dataMapper.getOnePlant(plantId);
     if (result.rows.length === 0) {
-      response.status(404).json({ status: 404, error: 'No plant found with these parameters.' });
+      response.status(404).json({
+        status: 404,
+        error: 'Not Found',
+        message: 'No plant found with these parameters.',
+      });
     } else {
       response.json(result.rows);
     }
@@ -48,7 +52,7 @@ const plantController = {
     if (newPlant.rows.length > 0) {
       response.status(201).json(newPlant.rows[0]);
     } else {
-      response.status(400).json({ error: 'Could not insert lant.' });
+      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not insert lant.' });
     }
   },
 
@@ -65,7 +69,7 @@ const plantController = {
     if (newFamily.rows.length > 0) {
       response.status(201).json(newFamily.rows[0]);
     } else {
-      response.status(400).json({ error: 'Could not insert family.' });
+      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not insert family.' });
     }
   },
 
@@ -82,7 +86,7 @@ const plantController = {
     if (newCategory.rows.length > 0) {
       response.status(201).json(newCategory.rows[0]);
     } else {
-      response.status(400).json({ error: 'Could not insert caregory.' });
+      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not insert caregory.' });
     }
   },
 
@@ -99,7 +103,7 @@ const plantController = {
     if (newAlliance.rows.length > 0) {
       response.status(201).json(newAlliance.rows[0]);
     } else {
-      response.status(400).json({ error: 'Could not insert Alliance.' });
+      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not insert Alliance.' });
     }
   },
 
@@ -117,7 +121,7 @@ const plantController = {
     if (updatedPlant.rows.length > 0) {
       response.status(200).json(updatedPlant.rows[0]);
     } else {
-      response.status(400).json({ error: 'Could not update plant.' });
+      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not update plant.' });
     }
   },
 
@@ -134,7 +138,7 @@ const plantController = {
     if (updatedFamily.rows.length > 0) {
       response.status(200).json(updatedFamily.rows[0]);
     } else {
-      response.status(400).json({ error: 'Could not update family.' });
+      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not update family.' });
     }
   },
 
@@ -151,7 +155,7 @@ const plantController = {
     if (updatedCategory.rows.length > 0) {
       response.status(200).json(updatedCategory.rows[0]);
     } else {
-      response.status(400).json({ error: 'Could not update category.' });
+      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not update category.' });
     }
   },
 
@@ -168,7 +172,7 @@ const plantController = {
     if (updatedAlliance.rows.length > 0) {
       response.status(200).json(updatedAlliance.rows[0]);
     } else {
-      response.status(400).json({ error: 'Could not update alliance.' });
+      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not update alliance.' });
     }
   },
 };
