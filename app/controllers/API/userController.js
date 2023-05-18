@@ -1,7 +1,7 @@
 const dataMapper = require('../../models/userDataMapper');
 
 const userController = {
-
+  //! Controller for Reading
   /**
    * Get profile information of a specific user
    *
@@ -74,8 +74,9 @@ const userController = {
     if (plantFamilies.rows.length === 0) {
       response.status(404).json({ status: 404, error: 'No plants in the plot, no alliance.' });
     } else {
-      // For each family of plants, launches a request to obtain their alliances
-      // When the promise is finish, "then", create an object with alliances and family name
+      // Sinon, on va chercher les alliances pour chaque famille de plantes.
+      // Chaque demande d'alliance est asynchrone, on utilise donc Promise.all
+      // "then" retourne un objet qui contient le nom de la famille de plantes et son alliance
       const alliancePromises = plantFamilies.rows.map(
         (plantFamily) => dataMapper.getAlliance(plantFamily.family_id).then((alliance) => ({
           family_name: plantFamily.family_name,
@@ -83,11 +84,11 @@ const userController = {
         })),
       );
 
+      const alliances = await Promise.all(alliancePromises);
       // Reduces the table of objects into a single object where the keys are family names
       // and values are the associated alliances
-      const alliances = await Promise.all(alliancePromises);
-      const results = alliances.reduce((acc, { family_name, alliance }) => {
-        acc[family_name] = alliance;
+      const results = alliances.reduce((acc, { familyName, alliance }) => {
+        acc[familyName] = alliance;
         return acc;
       }, {});
 
@@ -99,19 +100,23 @@ const userController = {
     }
   },
 
+  //! Controller for Creating
   /**
- * Inserts a new plot in the database.
- *
- * @param {object} request - The request object
- * @param {object} response - The response object
- * @returns {void}
- */
+   * Inserts a new plot in the database.
+   *
+   * @param {object} request - The request object
+   * @param {object} response - The response object
+   * @returns {void} - This function does not return anything.
+   *                   It ends the request-response cycle by sending a response to the client.
+   *                   Sends a 201 status code along with the details if the operation is successful
+   *                   or a 400 status code along with an error message if it is not.
+   */
   async insertPlot(request, response) {
     const newPlot = await dataMapper.insertPlot(request.body);
     if (newPlot.rows.length > 0) {
       response.status(201).json(newPlot.rows[0]);
     } else {
-      response.status(400).json({ error: 'Could not insert plot.' });
+      response.status(400).json({ error: 'Could not insert Plot.' });
     }
   },
 
@@ -120,7 +125,10 @@ const userController = {
  *
  * @param {object} request - The request object
  * @param {object} response - The response object
- * @returns {void}
+ * @returns {void} - This function does not return anything.
+ *                   It ends the request-response cycle by sending a response to the client.
+ *                   Sends a 201 status code along with the details if the operation is successful,
+ *                   or a 400 status code along with an error message if it is not.
  */
   async insertCulture(request, response) {
     const newCulture = await dataMapper.insertCulture(request.body);
@@ -130,6 +138,8 @@ const userController = {
       response.status(400).json({ error: 'Could not insert culture.' });
     }
   },
+
+  //! Controller for Updating
 
 };
 

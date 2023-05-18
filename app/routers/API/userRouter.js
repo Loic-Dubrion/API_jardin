@@ -30,11 +30,15 @@ const userController = require('../../controllers/API/userController');
  * @property {string} comment - Comment for the culture
  */
 
-/**
- * @typedef {object} Culture
+/** a categories type
+ * @typedef {object} Categories
  * @property {string} plot_name - The name of the plot
  * @property {string[]} three_last_culture - Array of 'category, family, harvesting'
  */
+
+//! ==================//
+//! ===== GETS ===== //
+//! ==================//
 
 /** GET /api/users/{userId}
  *
@@ -146,6 +150,19 @@ router.get(
 router.get(
   '/:userId/plots/:plotId/alliances',
   controllerHandler(userController.getAlliancesForPlot),
+);
+
+//! ==================//
+//! ===== POSTS ===== //
+//! ==================//
+router.post(
+  '/:userId/plots',
+  controllerHandler(userController.insertPlot),
+);
+
+router.post(
+  '/:userId/cultures',
+  controllerHandler(userController.insertCulture),
 );
 
 module.exports = router;

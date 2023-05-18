@@ -1,6 +1,7 @@
 const dataMapper = require('../../models/plantDataMapper');
 
 const plantController = {
+  //! Controller for Reading
   /**
    * plant API controller for GET /plants
    * Recovers all API plants
@@ -33,6 +34,7 @@ const plantController = {
     response.json(result.rows);
   },
 
+  //! Controller for Creating
   /**
    * plant API controller for POST /plants
    * Create a new plant
@@ -43,7 +45,11 @@ const plantController = {
    */
   async postPlant(request, response) {
     const newPlant = await dataMapper.postPlant(request.body);
-    response.json(newPlant.rows);
+    if (newPlant.rows.length > 0) {
+      response.status(201).json(newPlant.rows[0]);
+    } else {
+      response.status(400).json({ error: 'Could not insert lant.' });
+    }
   },
 
   /**
@@ -56,7 +62,11 @@ const plantController = {
    */
   async postFamily(request, response) {
     const newFamily = await dataMapper.postFamily(request.body);
-    response.json(newFamily.rows);
+    if (newFamily.rows.length > 0) {
+      response.status(201).json(newFamily.rows[0]);
+    } else {
+      response.status(400).json({ error: 'Could not insert family.' });
+    }
   },
 
   /**
@@ -69,7 +79,11 @@ const plantController = {
    */
   async postCategory(request, response) {
     const newCategory = await dataMapper.postCategory(request.body);
-    response.json(newCategory.rows);
+    if (newCategory.rows.length > 0) {
+      response.status(201).json(newCategory.rows[0]);
+    } else {
+      response.status(400).json({ error: 'Could not insert caregory.' });
+    }
   },
 
   /**
@@ -82,7 +96,80 @@ const plantController = {
    */
   async postAlliance(request, response) {
     const newAlliance = await dataMapper.postAlliance(request.body);
-    response.json(newAlliance.rows);
+    if (newAlliance.rows.length > 0) {
+      response.status(201).json(newAlliance.rows[0]);
+    } else {
+      response.status(400).json({ error: 'Could not insert Alliance.' });
+    }
+  },
+
+  //! Controller for Updating
+  /**
+   * plant API controller for PUT /plants/{plantId}
+   * Update a plant
+   *
+   * @param {object} request - Contains the body with plant information and the plant id
+   * @param {object} response
+   * @returns {object} - The updated plant object in the response body.
+   */
+  async updatePlant(request, response) {
+    const updatedPlant = await dataMapper.updatePlant(request.body, request.params.plantId);
+    if (updatedPlant.rows.length > 0) {
+      response.status(200).json(updatedPlant.rows[0]);
+    } else {
+      response.status(400).json({ error: 'Could not update plant.' });
+    }
+  },
+
+  /**
+     * family API controller for PUT /families/{familyId}
+     * Update a family
+     *
+     * @param {object} request - Contains the body with family information and the family id
+     * @param {object} response
+     * @returns {object} - The updated family object in the response body.
+     */
+  async updateFamily(request, response) {
+    const updatedFamily = await dataMapper.updateFamily(request.body, request.params.familyId);
+    if (updatedFamily.rows.length > 0) {
+      response.status(200).json(updatedFamily.rows[0]);
+    } else {
+      response.status(400).json({ error: 'Could not update family.' });
+    }
+  },
+
+  /**
+     * category API controller for PUT /categories/{categoryId}
+     * Update a category
+     *
+     * @param {object} request - Contains the body with category information and the category id
+     * @param {object} response
+     * @returns {object} - The updated category object in the response body.
+     */
+  async updateCategory(request, response) {
+    const updatedCategory = await dataMapper.updateCategory(request.body, request.params.categoryId);
+    if (updatedCategory.rows.length > 0) {
+      response.status(200).json(updatedCategory.rows[0]);
+    } else {
+      response.status(400).json({ error: 'Could not update category.' });
+    }
+  },
+
+  /**
+     * alliance API controller for PUT /alliances/{allianceId}
+     * Update an alliance
+     *
+     * @param {object} request - Contains the body with alliance information and the alliance id
+     * @param {object} response
+     * @returns {object} - The updated alliance object in the response body.
+     */
+  async updateAlliance(request, response) {
+    const updatedAlliance = await dataMapper.updateAlliance(request.body, request.params.allianceId);
+    if (updatedAlliance.rows.length > 0) {
+      response.status(200).json(updatedAlliance.rows[0]);
+    } else {
+      response.status(400).json({ error: 'Could not update alliance.' });
+    }
   },
 };
 

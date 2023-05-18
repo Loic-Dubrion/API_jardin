@@ -54,7 +54,7 @@ LANGUAGE sql;
 CREATE OR REPLACE FUNCTION "insert_new_category"("o_category" JSON)
 RETURNS TABLE("id" INT, "name" TEXT) AS
 $$
-    WITH new_category AS (
+    WITH "new_category" AS (
         INSERT INTO "category" ("name")
         VALUES (o_category->>'name')
         RETURNING *

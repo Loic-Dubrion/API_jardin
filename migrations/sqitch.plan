@@ -7,3 +7,4 @@ view 2023-05-16T08:06:46Z Loic Dubrion <loic-dubrion@hotmail.fr> # view all plan
 get_functions 2023-05-16T08:12:09Z Loic Dubrion <loic-dubrion@hotmail.fr> # functions for GET
 post_functions_plant 2023-05-16T13:25:45Z Loic Dubrion <loic-dubrion@hotmail.fr> # add functions for router of plant in post
 post_functions_user 2023-05-18T08:16:31Z Loic Dubrion <loic-dubrion@hotmail.fr> # functions for 'post' user router
+put_functions 2023-05-18T10:10:35Z Loic Dubrion <loic-dubrion@hotmail.fr> # functions for 'put' router

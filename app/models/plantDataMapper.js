@@ -1,7 +1,7 @@
 const client = require('../services/clientdb');
 
 const plantDataMapper = {
-  //! Models for "get" routers
+  //! Models for Read
   getAllPlants: () => {
     const query = 'SELECT * FROM plants_details';
     const promiseData = client.query(query);
@@ -13,7 +13,7 @@ const plantDataMapper = {
     const promiseData = client.query(query, values);
     return promiseData;
   },
-  //! Models for "post" routers
+  //! Models for Create
   postPlant: (plantObj) => {
     const query = 'SELECT * FROM insert_new_plant($1)';
     const values = [plantObj];
@@ -35,6 +35,32 @@ const plantDataMapper = {
   postAlliance: (allianceObj) => {
     const query = 'SELECT * FROM insert_new_alliance($1)';
     const values = [allianceObj];
+    const promiseData = client.query(query, values);
+    return promiseData;
+  },
+
+  //! Models for Update
+  updatePlant: (plantObj, plantId) => {
+    const query = 'SELECT * FROM update_plant($1, $2)';
+    const values = [plantId, plantObj];
+    const promiseData = client.query(query, values);
+    return promiseData;
+  },
+  updateFamily: (familyObj, familyId) => {
+    const query = 'SELECT * FROM update_family($1, $2)';
+    const values = [familyObj, familyId];
+    const promiseData = client.query(query, values);
+    return promiseData;
+  },
+  updateCategory: (categoryObj, categoryId) => {
+    const query = 'SELECT * FROM update_category($1, $2)';
+    const values = [categoryObj, categoryId];
+    const promiseData = client.query(query, values);
+    return promiseData;
+  },
+  updateAlliance: (allianceObj, allianceId) => {
+    const query = 'SELECT * FROM update_alliance($1, $2)';
+    const values = [allianceObj, allianceId];
     const promiseData = client.query(query, values);
     return promiseData;
   },

@@ -48,4 +48,60 @@ router.post('/categories', controllerHandler(plantController.postCategory));
 router.post('/families', controllerHandler(plantController.postFamily));
 router.post('/alliance', controllerHandler(plantController.postAlliance));
 
+/** PUT /api/plants/{plantId}
+ *
+ * @summary Update a plant with new information
+ * @tags Plants - Updating plant information
+ * @description
+ * This route allows for the updating of a plant's information
+ * @bodyContent {Plant} application/json
+ * @bodyRequired
+ * @return {Plant} 200 - success response - updated plant information
+ * @return {object} 400 - Bad request error
+ * @return {object} 500 - internal server error
+ */
+router.put('/:plantId', controllerHandler(plantController.updatePlant));
+
+/** PUT /api/plants/categories/{categoryId}
+ *
+ * @summary Update a category with new information
+ * @tags Plants - Updating category information
+ * @description
+ * This route allows for the updating of a category's information
+ * @bodyContent {Category} application/json
+ * @bodyRequired
+ * @return {Category} 200 - success response - updated category information
+ * @return {object} 400 - Bad request error
+ * @return {object} 500 - internal server error
+ */
+router.put('/categories/:categoryId', controllerHandler(plantController.updateCategory));
+
+/** PUT /api/plants/families/{familyId}
+ *
+ * @summary Update a family with new information
+ * @tags Plants - Updating family information
+ * @description
+ * This route allows for the updating of a family's information
+ * @bodyContent {Family} application/json
+ * @bodyRequired
+ * @return {Family} 200 - success response - updated family information
+ * @return {object} 400 - Bad request error
+ * @return {object} 500 - internal server error
+ */
+router.put('/families/:familyId', controllerHandler(plantController.updateFamily));
+
+/** PUT /api/plants/alliances/{allianceId}
+ *
+ * @summary Update an alliance with new information
+ * @tags Plants - Updating alliance information
+ * @description
+ * This route allows for the updating of an alliance's information
+ * @bodyContent {Alliance} application/json
+ * @bodyRequired
+ * @return {Alliance} 200 - success response - updated alliance information
+ * @return {object} 400 - Bad request error
+ * @return {object} 500 - internal server error
+ */
+router.put('/alliances/:allianceId', controllerHandler(plantController.updateAlliance));
+
 module.exports = router;
