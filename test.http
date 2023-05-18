@@ -30,9 +30,7 @@ POST http://localhost:3000/api/plants
 Content-Type: application/json
 
 {
-  "name": "Rose",
-  "specification": ["Thorny", "Blooms in summer"],
-  "culture_advice": ["Needs lots of sunlight", "Water regularly"],
+  "name": "Blé",
   "id_family": 1,
   "id_category": 1
 }
@@ -58,6 +56,6 @@ POST http://localhost:3000/api/plants/alliance
 Content-Type: application/json
 
 {
-  "alliance": [1, 3], // This should be an array of family IDs
+  "alliance": [1, 3]
 }
 ###

@@ -73,7 +73,10 @@ WITH new_alliance AS (
     )
     RETURNING id, alliance
 )
-SELECT new_alliance.id, ARRAY(SELECT "family"."name" FROM "family" WHERE "family"."id" = ANY(new_alliance.alliance)) AS family_names
+SELECT new_alliance.id,
+ARRAY(SELECT "family"."name"
+FROM "family" WHERE "family"."id" = ANY(new_alliance.alliance))
+AS family_names
 FROM new_alliance;
 $$
 LANGUAGE sql;

@@ -99,6 +99,38 @@ const userController = {
     }
   },
 
+  /**
+ * Inserts a new plot in the database.
+ *
+ * @param {object} request - The request object
+ * @param {object} response - The response object
+ * @returns {void}
+ */
+  async insertPlot(request, response) {
+    const newPlot = await dataMapper.insertPlot(request.body);
+    if (newPlot.rows.length > 0) {
+      response.status(201).json(newPlot.rows[0]);
+    } else {
+      response.status(400).json({ error: 'Could not insert plot.' });
+    }
+  },
+
+  /**
+ * Inserts a new culture in the database.
+ *
+ * @param {object} request - The request object
+ * @param {object} response - The response object
+ * @returns {void}
+ */
+  async insertCulture(request, response) {
+    const newCulture = await dataMapper.insertCulture(request.body);
+    if (newCulture.rows.length > 0) {
+      response.status(201).json(newCulture.rows[0]);
+    } else {
+      response.status(400).json({ error: 'Could not insert culture.' });
+    }
+  },
+
 };
 
 module.exports = userController;
