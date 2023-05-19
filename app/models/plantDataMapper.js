@@ -13,6 +13,7 @@ const plantDataMapper = {
     const promiseData = client.query(query, values);
     return promiseData;
   },
+
   //! Models for Create
   postPlant: (plantObj) => {
     const query = 'SELECT * FROM insert_new_plant($1)';
@@ -61,6 +62,32 @@ const plantDataMapper = {
   updateAlliance: (allianceObj, allianceId) => {
     const query = 'SELECT * FROM update_alliance($1, $2)';
     const values = [allianceObj, allianceId];
+    const promiseData = client.query(query, values);
+    return promiseData;
+  },
+
+  //! Models for Delete
+  deletePlant: (plantId) => {
+    const query = 'SELECT * FROM delete_plant($1)';
+    const values = [plantId];
+    const promiseData = client.query(query, values);
+    return promiseData;
+  },
+  deleteFamily: (familyId) => {
+    const query = 'SELECT * FROM delete_family($1)';
+    const values = [familyId];
+    const promiseData = client.query(query, values);
+    return promiseData;
+  },
+  deleteCategory: (categoryId) => {
+    const query = 'SELECT * FROM delete_Category($1)';
+    const values = [categoryId];
+    const promiseData = client.query(query, values);
+    return promiseData;
+  },
+  deleteAlliance: (allianceId) => {
+    const query = 'SELECT * FROM delete_alliance($1)';
+    const values = [allianceId];
     const promiseData = client.query(query, values);
     return promiseData;
   },

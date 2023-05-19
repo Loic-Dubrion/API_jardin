@@ -38,7 +38,10 @@ router.get(
  * @return {error} 404 - Ressource not found error
  * @return {error} 500 - internal server error
  */
-router.get('/:userId/cultures/in-progress', (req, res) => controllerHandler(userController.getProduction(req, res, true)));
+router.get(
+  '/:userId/cultures/in-progress',
+  (req, res) => controllerHandler(userController.getProduction(req, res, true)),
+);
 
 /** GET /api/users/{userId}/cultures/completed
  *
@@ -52,7 +55,10 @@ router.get('/:userId/cultures/in-progress', (req, res) => controllerHandler(user
  * @return {error} 404 - Ressource not found error
  * @return {error} 500 - internal server error
  */
-router.get('/:userId/cultures/completed', (req, res) => controllerHandler(userController.getProduction(req, res, false)));
+router.get(
+  '/:userId/cultures/completed',
+  (req, res) => controllerHandler(userController.getProduction(req, res, false)),
+);
 
 /** GET /api/users/{userId}/cultures/plots/{plotId}
  *
@@ -67,7 +73,10 @@ router.get('/:userId/cultures/completed', (req, res) => controllerHandler(userCo
  * @return {error} 404 - Ressource not found error
  * @return {error} 500 - internal server error
  */
-router.get('/:userId/cultures/plots/:plotId', (req, res) => controllerHandler(userController.getProduction(req, res, true, req.params.plotId)));
+router.get(
+  '/:userId/cultures/plots/:plotId',
+  (req, res) => controllerHandler(userController.getProduction(req, res, true, req.params.plotId)),
+);
 
 /** GET /api/users/{userId}/cultures/{cultureId}
  *
@@ -82,7 +91,10 @@ router.get('/:userId/cultures/plots/:plotId', (req, res) => controllerHandler(us
  * @return {error} 404 - Ressource not found error
  * @return {error} 500 - internal server error
  */
-router.get('/:userId/cultures/:cultureId', (req, res) => controllerHandler(userController.getProduction(req, res, true, null, req.params.cultureId)));
+router.get(
+  '/:userId/cultures/:cultureId',
+  (req, res) => controllerHandler(userController.getProduction(req, res, true, null, req.params.cultureId)),
+);
 
 /** GET /api/users/{userId}/cultures/plots/{plotId}/last-cultures
  *

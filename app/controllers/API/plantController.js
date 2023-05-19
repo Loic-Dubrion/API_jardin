@@ -175,6 +175,59 @@ const plantController = {
       response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not update alliance.' });
     }
   },
+
+  //! Controller for Delete
+  /**
+   * Delete a plant
+   *
+   * @param {object} request - Contains the plant id in the request parameters
+   * @param {object} response
+   */
+  async deletePlant(request, response) {
+    await dataMapper.deletePlant(request.params.plantId);
+    response.status(200).json({
+      message: `Plant with ID ${request.params.plantId} has been successfully deleted.`,
+    });
+  },
+
+  /**
+ * Delete a family
+ *
+ * @param {object} request - Contains the family id in the request parameters
+ * @param {object} response
+ */
+  async deleteFamily(request, response) {
+    await dataMapper.deleteFamily(request.params.familyId);
+    response.status(200).json({
+      message: `Family with ID ${request.params.familyId} has been successfully deleted.`,
+    });
+  },
+
+  /**
+ * Delete a category
+ *
+ * @param {object} request - Contains the category id in the request parameters
+ * @param {object} response
+ */
+  async deleteCategory(request, response) {
+    await dataMapper.deleteCategory(request.params.categoryId);
+    response.status(200).json({
+      message: `Category with ID ${request.params.categoryId} has been successfully deleted.`,
+    });
+  },
+
+  /**
+ * Delete an alliance
+ *
+ * @param {object} request - Contains the alliance id in the request parameters
+ * @param {object} response
+ */
+  async deleteAlliance(request, response) {
+    await dataMapper.deleteAlliance(request.params.allianceId);
+    response.status(200).json({
+      message: `Alliance with ID ${request.params.allianceId} has been successfully deleted.`,
+    });
+  },
 };
 
 module.exports = plantController;

@@ -14,7 +14,7 @@ http://localhost:3000/api/users/1/cultures/in-progress
 http://localhost:3000/api/users/1/cultures/completed
 ###
 // All culture by plot in progress
-http://localhost:3000/api/users/2/cultures/plots/6
+http://localhost:3000/api/users/2/cultures/plots/36
 ###
 // All culture by culture in progress
 http://localhost:3000/api/users/1/cultures/2
@@ -25,14 +25,14 @@ http://localhost:3000/api/users/1/cultures/plots/1/last-cultures
 // Alliance
 http://localhost:3000/api/users/4/plots/11/alliances
 ###
-PUT http://localhost:3000/api/plants/1
+PUT http://localhost:3000/api/plants/60
 Content-Type: application/json
 
 {
   "name": "Blé",
   "id_category": 1
 }
-###
+### Post a new category
 PUT http://localhost:3000/api/plants/categories/3
 Content-Type: application/json
 
@@ -40,6 +40,7 @@ Content-Type: application/json
   "name": "test"
 }
 ###
+### Post a new family
 PUT http://localhost:3000/api/plants/families/1
 Content-Type: application/json
 
@@ -48,25 +49,32 @@ Content-Type: application/json
   "id_alliance": 2
 }
 ###
-PUT http://localhost:3000/api/plants/alliances/1
+### Post a new alliance
+PUT http://localhost:3000/api/plants/alliances/7
 Content-Type: application/json
 
 {
-  "alliance": [3,2]
+  "alliance": [4]
 }
 ###
-PUT http://localhost:3000/api/users/1/plots/1
+### Post a new plot
+POST http://localhost:3000/api/users/2/plots
 Content-Type: application/json
 
 {
-  "availability": true
+  "name": "test",
+  "availability": true,
+  "id_user": 3
 }
 ###
 ### Post a new culture
-PUT http://localhost:3000/api/users/1
+POST http://localhost:3000/api/users/2/cultures
 Content-Type: application/json
 
 {
-  "username": "boby"
+  "sowing": "2023-06-01",
+  "id_plant": 4,
+  "id_plot": 8,
+  "comment": "This is a test culture."
 }
 ###
