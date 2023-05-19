@@ -1,4 +1,4 @@
 # TODO LIST
 
 - Faire un sauvegarde automatique de la BDD
-- Faire type pour user et plant router
+- Faire delete en cascade pour user > plot > culture et plot > culture

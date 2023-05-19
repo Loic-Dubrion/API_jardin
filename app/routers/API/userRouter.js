@@ -60,7 +60,7 @@ router.get(
   (req, res) => controllerHandler(userController.getProduction(req, res, false)),
 );
 
-/** GET /api/users/{userId}/cultures/plots/{plotId}
+/** GET /api/users/{userId}/plots/{plotId}
  *
  * @summary Get cultures of a specific user for a particular plot
  * @tags Users
@@ -74,7 +74,7 @@ router.get(
  * @return {error} 500 - internal server error
  */
 router.get(
-  '/:userId/cultures/plots/:plotId',
+  '/:userId/plots/:plotId',
   (req, res) => controllerHandler(userController.getProduction(req, res, true, req.params.plotId)),
 );
 
@@ -96,7 +96,7 @@ router.get(
   (req, res) => controllerHandler(userController.getProduction(req, res, true, null, req.params.cultureId)),
 );
 
-/** GET /api/users/{userId}/cultures/plots/{plotId}/last-cultures
+/** GET /api/users/{userId}/plots/{plotId}/last-cultures
  *
  * @summary Get the last three categories of culture
  * @tags Users
@@ -110,7 +110,7 @@ router.get(
  * @return {error} 500 - internal server error
  */
 router.get(
-  '/:userId/cultures/plots/:plotId/last-cultures',
+  '/:userId/plots/:plotId/last-cultures',
   controllerHandler(userController.getLastCategories),
 );
 
@@ -228,6 +228,63 @@ router.put(
 router.put(
   '/:userId/cultures/:cultureId',
   controllerHandler(userController.updateCulture),
+);
+
+//! ==================//
+//! ===== DELETE ==== //
+//! ==================//
+
+/** DELETE /api/users/{userId}
+ *
+ * @summary Delete a specific user
+ * @tags Users - Everything about Users
+ * @description
+ * This route deletes a user.
+ * The user's ID is expected to be included in the request parameters.
+ * @param {number} userId.path - ID of the user to delete
+ * @return {SuccessResponse} 200 - success response - successful deletion message
+ * @return {error} 404 - User not found error
+ * @return {error} 500 - internal server error
+ */
+router.delete(
+  '/:userId',
+  controllerHandler(userController.deleteUser),
+);
+
+/** DELETE /api/users/{userId}/plots/{plotId}
+ *
+ * @summary Delete a specific plot
+ * @tags Users - Everything about Plots
+ * @description
+ * This route deletes a plot.
+ * The user's ID and the plot's ID are expected to be included in the request parameters.
+ * @param {number} userId.path - ID of the user
+ * @param {number} plotId.path - ID of the plot to delete
+ * @return {SuccessResponse} 200 - success response - successful deletion message
+ * @return {error} 404 - Plot not found error
+ * @return {error} 500 - internal server error
+ */
+router.delete(
+  '/:userId/plots/:plotId',
+  controllerHandler(userController.deletePlot),
+);
+
+/** DELETE /api/users/{userId}/cultures/{cultureId}
+ *
+ * @summary Delete a specific culture
+ * @tags Users - Everything about Cultures
+ * @description
+ * This route deletes a culture.
+ * The user's ID and the culture's ID are expected to be included in the request parameters.
+ * @param {number} userId.path - ID of the user
+ * @param {number} cultureId.path - ID of the culture to delete
+ * @return {SuccessResponse} 200 - success response - successful deletion message
+ * @return {error} 404 - Culture not found error
+ * @return {error} 500 - internal server error
+ */
+router.delete(
+  '/:userId/cultures/:cultureId',
+  controllerHandler(userController.deleteCulture),
 );
 
 module.exports = router;

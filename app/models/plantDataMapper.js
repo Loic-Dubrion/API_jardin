@@ -80,7 +80,7 @@ const plantDataMapper = {
     return promiseData;
   },
   deleteCategory: (categoryId) => {
-    const query = 'SELECT * FROM delete_Category($1)';
+    const query = 'SELECT * FROM delete_category($1)';
     const values = [categoryId];
     const promiseData = client.query(query, values);
     return promiseData;

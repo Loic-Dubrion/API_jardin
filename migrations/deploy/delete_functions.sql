@@ -17,11 +17,6 @@ RETURNS VOID AS $$
     DELETE FROM "family" WHERE "id" = _id;
 $$ LANGUAGE sql;
 
-CREATE OR REPLACE FUNCTION "delete_role"(_id INT)
-RETURNS VOID AS $$
-    DELETE FROM "role" WHERE "id" = _id;
-$$ LANGUAGE sql;
-
 CREATE OR REPLACE FUNCTION "delete_user"(_id INT)
 RETURNS VOID AS $$
     DELETE FROM "user" WHERE "id" = _id;

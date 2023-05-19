@@ -144,7 +144,6 @@ const userController = {
   },
 
   //! Controller for Updating
-
   /**
    * Updates an existing user in the database.
    *
@@ -201,6 +200,77 @@ const userController = {
       response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not update culture.' });
     }
   },
+
+  //! Controller for Delete
+  /**
+ * Deletes an existing user from the database.
+ *
+ * @param {object} request - The request object
+ * @param {object} response - The response object
+ * @returns {void} - This function does not return anything.
+ *                   It ends the request-response cycle by sending a response to the client.
+ *                   Sends a 200 status code along with the details if the operation is successful,
+ *                   or a 400 status code along with an error message if it is not.
+ */
+  async deleteUser(request, response) {
+    const deletedUser = await dataMapper.deleteUser(request.params.userId);
+    if (deletedUser.rowCount === 0) {
+      response.status(400).json(
+        { status: 400, error: 'Bad Request', message: 'Could not delete user.' },
+      );
+    } else {
+      response.status(200).json(
+        { status: 200, message: `User with id: ${request.params.userId} successfully deleted.` },
+      );
+    }
+  },
+
+  /**
+ * Deletes an existing plot from the database.
+ *
+ * @param {object} request - The request object
+ * @param {object} response - The response object
+ * @returns {void} - This function does not return anything.
+ *                   It ends the request-response cycle by sending a response to the client.
+ *                   Sends a 200 status code along with the details if the operation is successful,
+ *                   or a 400 status code along with an error message if it is not.
+ */
+  async deletePlot(request, response) {
+    const deletedPlot = await dataMapper.deletePlot(request.params.plotId);
+    if (deletedPlot.rowCount === 0) {
+      response.status(400).json(
+        { status: 400, error: 'Bad Request', message: 'Could not delete plot.' },
+      );
+    } else {
+      response.status(200).json(
+        { status: 200, message: `Plot with id: ${request.params.plotId} successfully deleted.` },
+      );
+    }
+  },
+
+  /**
+ * Deletes an existing culture from the database.
+ *
+ * @param {object} request - The request object
+ * @param {object} response - The response object
+ * @returns {void} - This function does not return anything.
+ *                   It ends the request-response cycle by sending a response to the client.
+ *                   Sends a 200 status code along with the details if the operation is successful,
+ *                   or a 400 status code along with an error message if it is not.
+ */
+  async deleteCulture(request, response) {
+    const deletedCulture = await dataMapper.deleteCulture(request.params.cultureId);
+    if (deletedCulture.rowCount === 0) {
+      response.status(400).json(
+        { status: 400, error: 'Bad Request', message: 'Could not delete culture.' },
+      );
+    } else {
+      response.status(200).json(
+        { status: 200, message: `Culture with id: ${request.params.cultureId} successfully deleted.` },
+      );
+    }
+  },
+
 };
 
 module.exports = userController;

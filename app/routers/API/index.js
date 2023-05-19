@@ -8,15 +8,6 @@ const apiErrorHandler = require('../../errors/apiErrorHandler');
 
 const router = express.Router();
 
-/**
- * GET /api
- *
- * @summary get API documentation URL
- * @tags Docs - The Connected Garden's API documentation
- *
- * @return {object} 200 - success response
- */
-
 router.use('/plants', plantRouter);
 router.use('/users', userRouter);
 
@@ -24,10 +15,9 @@ router.use((request, response, next) => {
   next(new NoResourceFoundError());
 });
 
-// Need all params so disable eslint
-// eslint-disable-next-line no-unused-vars
 router.use((err, req, res, next) => {
   apiErrorHandler(err, req, res);
+  next();
 });
 
 module.exports = router;

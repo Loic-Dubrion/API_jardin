@@ -48,6 +48,15 @@
  * @property {string} message - Detailed error message
  */
 
+/**
+ * a sucess response type
+ *
+ * @typedef {object} SuccessResponse
+ * @property {number} status - Status code of the response
+ * @property {string} message - Success message
+ * @property {number} id - Identifier of the deleted entity
+ */
+
 /** a user type
  * @typedef {object} User
  * @property {number} id - user id

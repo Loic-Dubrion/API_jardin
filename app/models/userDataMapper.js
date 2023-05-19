@@ -53,6 +53,26 @@ const userDataMapper = {
     const values = [objCulture, cultureId];
     return client.query(query, values);
   },
+
+  //! Models for Delete
+  deleteUser: (userId) => {
+    const query = 'SELECT * FROM delete_user($1)';
+    const values = [userId];
+    const promiseData = client.query(query, values);
+    return promiseData;
+  },
+  deletePlot: (plotId) => {
+    const query = 'SELECT * FROM delete_plot($1)';
+    const values = [plotId];
+    const promiseData = client.query(query, values);
+    return promiseData;
+  },
+  deleteCulture: (cultureId) => {
+    const query = 'SELECT * FROM delete_culture($1)';
+    const values = [cultureId];
+    const promiseData = client.query(query, values);
+    return promiseData;
+  },
 };
 
 module.exports = userDataMapper;

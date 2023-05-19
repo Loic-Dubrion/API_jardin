@@ -5,6 +5,7 @@ const router = express.Router();
 const controllerHandler = require('../../controllers/helpers/controllerHandler');
 const plantController = require('../../controllers/API/plantController');
 
+//! ROUTER GET
 /** GET /api/plants
  *
  * @summary get all plants with category, familly and alliance
@@ -30,6 +31,7 @@ router.get('/', controllerHandler(plantController.getAllPlants));
  */
 router.get('/:plantId', controllerHandler(plantController.getOnePlant));
 
+//! ROUTER POST
 /** POST /api/plants/
  *
  * @summary Creates a new plant
@@ -83,6 +85,7 @@ router.post('/families', controllerHandler(plantController.postFamily));
  */
 router.post('/alliance', controllerHandler(plantController.postAlliance));
 
+//! ROUTER PUT
 /** PUT /api/plants/{plantId}
  *
  * @summary Update a plant with new information
@@ -138,5 +141,54 @@ router.put('/families/:familyId', controllerHandler(plantController.updateFamily
  * @return {error} 500 - internal server error
  */
 router.put('/alliances/:allianceId', controllerHandler(plantController.updateAlliance));
+
+//! ROUTER DELETE
+/** DELETE /api/plants/{plantId}
+ *
+ * @summary Delete a plant
+ * @tags Plants - Deleting plant information
+ * @description
+ * This route allows for the deletion of a plant
+ * @return {SuccessResponse} 200 - success response - confirmation of deletion
+ * @return {error} 400 - Bad request error
+ * @return {error} 500 - internal server error
+ */
+router.delete('/:plantId', controllerHandler(plantController.deletePlant));
+
+/** DELETE /api/plants/categories/{categoryId}
+ *
+ * @summary Delete a category
+ * @tags Plants - Deleting category information
+ * @description
+ * This route allows for the deletion of a category
+ * @return {SuccessResponse} 200 - success response - confirmation of deletion
+ * @return {error} 400 - Bad request error
+ * @return {error} 500 - internal server error
+ */
+router.delete('/categories/:categoryId', controllerHandler(plantController.deleteCategory));
+
+/** DELETE /api/plants/families/{familyId}
+ *
+ * @summary Delete a family
+ * @tags Plants - Deleting family information
+ * @description
+ * This route allows for the deletion of a family
+ * @return {SuccessResponse} 200 - success response - confirmation of deletion
+ * @return {error} 400 - Bad request error
+ * @return {error} 500 - internal server error
+ */
+router.delete('/families/:familyId', controllerHandler(plantController.deleteFamily));
+
+/** DELETE /api/plants/alliances/{allianceId}
+ *
+ * @summary Delete an alliance
+ * @tags Plants - Deleting alliance information
+ * @description
+ * This route allows for the deletion of an alliance
+ * @return {SuccessResponse} 200 - success response - confirmation of deletion
+ * @return {error} 400 - Bad request error
+ * @return {error} 500 - internal server error
+ */
+router.delete('/alliances/:allianceId', controllerHandler(plantController.deleteAlliance));
 
 module.exports = router;
