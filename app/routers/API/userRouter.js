@@ -148,7 +148,7 @@ router.post(
   controllerHandler(userController.insertPlot),
 );
 
-/** POST /api/users/{userId}/cultures
+/** POST /api/users/{userId}/plots/1/cultures
  *
  * @summary Creates a new culture for a specific user
  * @tags Users - Everything about Users
@@ -163,7 +163,7 @@ router.post(
  * @return {error} 500 - internal server error
  */
 router.post(
-  '/:userId/cultures',
+  '/:userId/plots/:plotId/cultures',
   controllerHandler(userController.insertCulture),
 );
 

@@ -2,8 +2,8 @@
 
 BEGIN;
 
-CREATE OR REPLACE FUNCTION "insert_new_plot"(o_plot json)
- RETURNS TABLE("id" INT, "name" TEXT, "availability" BOOLEAN, "id_user" INT, "username" TEXT)
+CREATE OR REPLACE FUNCTION "insert_new_plot"("_id_user" INT, "o_plot" JSON)
+ RETURNS TABLE("id" integer, "name" text, "availability" boolean, "id_user" integer, "username" text)
  LANGUAGE sql
 AS $$
   WITH "new_plot" AS (
@@ -11,7 +11,7 @@ AS $$
       VALUES (
         o_plot->>'name',
         (o_plot->>'availability')::BOOLEAN,
-        (o_plot->>'id_user')::INTEGER
+        _id_user
         )
       RETURNING *
     )
@@ -25,7 +25,7 @@ AS $$
     INNER JOIN "user" ON "new_plot"."id_user" = "user"."id";
 $$;
 
-CREATE OR REPLACE FUNCTION "insert_new_culture"(o_culture json)
+CREATE OR REPLACE FUNCTION "insert_new_culture"("_id_plot" INT, "o_culture" json)
  RETURNS TABLE("id" INT, "sowing" TIMESTAMPTZ, "planting" TIMESTAMPTZ, "id_plant" INT, "id_plot" INT, "comment" TEXT, "family" TEXT, "plant" TEXT, "category" TEXT)
  LANGUAGE sql
 AS $$
@@ -35,7 +35,7 @@ AS $$
         (o_culture->>'sowing')::TIMESTAMPTZ,
         (o_culture->>'planting')::TIMESTAMPTZ,
         (o_culture->>'id_plant')::INTEGER,
-        (o_culture->>'id_plot')::INTEGER,
+        _id_plot,
         o_culture->>'comment'
       )
       RETURNING *

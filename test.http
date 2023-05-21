@@ -74,9 +74,6 @@ DELETE  http://localhost:3000/api/plants/10
 // All culture in-progress for one user
 http://localhost:3000/api/users/1/cultures/in-progress
 ###
-###
-
-
 http://localhost:3000/api/users/3
 ###
 http://localhost:3000/api/users/2/cultures/in-progress
@@ -87,20 +84,19 @@ http://localhost:3000/api/users/1/plots/1/last-cultures
 ###
 http://localhost:3000/api/users/1/plots/6/alliances
 ###
-POST  http://localhost:3000/api/users/1/plots
+POST  http://localhost:3000/api/users/3/plots
 Content-Type: application/json
 
 {
-  "name": "3",
-  "availability": true
+"name": "Plot",
+"availability": false
 }
 ###
-POST  http://localhost:3000/api/users/1/cultures
+POST  http://localhost:3000/api/users/1/plots/2/cultures
 Content-Type: application/json
 
 {
-  "id_plot": 80,
-  "id_plant": 2
+  "id_plant": 65
 }
 ###
 PUT  http://localhost:3000/api/users/1

@@ -24,14 +24,14 @@ const userDataMapper = {
   },
 
   //! Models for Creating
-  insertPlot: (objPlot) => {
-    const query = 'SELECT * FROM insert_new_plot($1);';
-    const values = [objPlot];
+  insertPlot: (userId, objPlot) => {
+    const query = 'SELECT * FROM insert_new_plot($1, $2);';
+    const values = [userId, objPlot];
     return client.query(query, values);
   },
-  insertCulture: (objCulture) => {
-    const query = 'SELECT * FROM insert_new_culture($1);';
-    const values = [objCulture];
+  insertCulture: (plotId, objCulture) => {
+    const query = 'SELECT * FROM insert_new_culture($1, $2);';
+    const values = [plotId, objCulture];
     return client.query(query, values);
   },
 

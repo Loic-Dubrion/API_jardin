@@ -58,8 +58,10 @@ CREATE TABLE "plant" (
     "id_family" INTEGER REFERENCES "family" ("id"),
     "id_category" INTEGER REFERENCES "category"("id"),
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
-    "updated_at" TIMESTAMPTZ
+    "updated_at" TIMESTAMPTZ,
+    UNIQUE ("name", "id_family")
 );
+
 
 CREATE TABLE "culture" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,

@@ -105,7 +105,8 @@ const userController = {
    *                   or a 400 status code along with an error message if it is not.
    */
   async insertPlot(request, response) {
-    const newPlot = await dataMapper.insertPlot(request.body);
+    const userId = Number(request.params.userId);
+    const newPlot = await dataMapper.insertPlot(userId, request.body);
     response.status(201).json(newPlot.rows[0]);
   },
 
@@ -120,7 +121,8 @@ const userController = {
  *                   or a 400 status code along with an error message if it is not.
  */
   async insertCulture(request, response) {
-    const newCulture = await dataMapper.insertCulture(request.body);
+    const plotId = Number(request.params.plotId);
+    const newCulture = await dataMapper.insertCulture(plotId, request.body);
     response.status(201).json(newCulture.rows[0]);
   },
 
