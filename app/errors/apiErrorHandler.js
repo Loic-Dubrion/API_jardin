@@ -1,13 +1,22 @@
 const NoResourceFoundError = require('./NoResourceFoundError');
+const ForeignKeyViolationError = require('./ForeignKeyViolationError');
+const BadRequestError = require('./BadRequestError');
+const UniqueConstraintViolationError = require('./UniqueConstraintViolationError');
+
 /**
- * Middleware of error management for API calls.
+ * Middleware for handling errors in API calls.
  *
- * @param {Error} err - The error to manage.
- * @param {import('express').Request} req - request object.
- * @param {import('express').Response} res - response object.
+ * @param {Error} err - The error to handle.
+ * @param {import('express').Request} req - The request object.
+ * @param {import('express').Response} res - The response object.
  */
 function apiErrorHandler(err, __req, res) {
-  if (err instanceof NoResourceFoundError) {
+  if (
+    err instanceof NoResourceFoundError
+    || err instanceof ForeignKeyViolationError
+    || err instanceof BadRequestError
+    || err instanceof UniqueConstraintViolationError
+  ) {
     res.status(err.httpStatusCode).json({
       httpCode: err.httpStatusCode,
       status: 'error',

@@ -1,67 +1,132 @@
-// All plants
 http://localhost:3000/api/plants
 ###
-// One plant
-http://localhost:3000/api/plants/2
+http://localhost:3000/api/plants/1
 ###
-// User Profil
-DELETE http://localhost:3000/api/users/1
+POST  http://localhost:3000/api/plants
+Content-Type: application/json
+
+{
+  "name": "test",
+  "id_family": 2,
+  "id_category": 2
+}
 ###
+POST  http://localhost:3000/api/plants/categories
+Content-Type: application/json
+
+{
+  "name": "try"
+}
+###
+POST  http://localhost:3000/api/plants/families
+Content-Type: application/json
+
+{
+  "nime": "try"
+}
+###
+POST  http://localhost:3000/api/plants/alliances
+Content-Type: application/json
+
+{
+  "alliance": [16,17]
+}
+###
+PUT  http://localhost:3000/api/plants/1
+Content-Type: application/json
+
+{
+  "name": "tt",
+  "id_family": 2,
+  "id_category": 2
+}
+###
+PUT  http://localhost:3000/api/plants/categories/1
+Content-Type: application/json
+
+{
+  "name": "tdxtrry"
+}
+###
+PUT  http://localhost:3000/api/plants/families/1
+Content-Type: application/json
+
+{
+  "name": 1
+}
+###
+PUT  http://localhost:3000/api/plants/alliances/2
+Content-Type: application/json
+
+{
+  "alliance": [12,25,11]
+}
+###
+DELETE http://localhost:3000/api/plants/categories/2
+###
+DELETE   http://localhost:3000/api/plants/families/2
+###
+DELETE  http://localhost:3000/api/plants/alliances/2
+###
+DELETE  http://localhost:3000/api/plants/10
+
+
 // All culture in-progress for one user
 http://localhost:3000/api/users/1/cultures/in-progress
 ###
-// All culture completed for one user
-http://localhost:3000/api/users/1/cultures/completed
 ###
-// All culture by plot in progress
-http://localhost:3000/api/users/2/cultures/plots/36
+
+
+http://localhost:3000/api/users/3
 ###
-// All culture by culture in progress
-http://localhost:3000/api/users/1/cultures/2
+http://localhost:3000/api/users/2/cultures/in-progress
 ###
-// The last categories
-http://localhost:3000/api/users/1/cultures/plots/1/last-cultures
+http://localhost:3000/api/users/2/cultures/completed
 ###
-// Alliance
-http://localhost:3000/api/users/4/plots/11/alliances
+http://localhost:3000/api/users/1/plots/1/last-cultures
 ###
-DELETE  http://localhost:3000/api/plants/60
+http://localhost:3000/api/users/1/plots/6/alliances
+###
+POST  http://localhost:3000/api/users/1/plots
 Content-Type: application/json
 
 {
-  "name": "Blé",
-  "id_category": 1
+  "name": "3",
+  "availability": true
 }
-### Post a new category
-DELETE  http://localhost:3000/api/plants/categories/3
+###
+POST  http://localhost:3000/api/users/1/cultures
 Content-Type: application/json
 
 {
-  "name": "test"
+  "id_plot": 80,
+  "id_plant": 2
 }
 ###
-### Post a new family
-PUT http://localhost:3000/api/plants/families/1
+PUT  http://localhost:3000/api/users/1
 Content-Type: application/json
 
 {
-  "name": "drgwname",
-  "id_alliance": 2
+  "username": "tt"
 }
 ###
-### Post a new alliance
-PUT http://localhost:3000/api/plants/alliances/7
+PUT  http://localhost:3000/api/users/1/plots/1
 Content-Type: application/json
 
 {
-  "alliance": [4]
+  "name": "tdxtrry"
 }
 ###
-### Post a new plot
-DELETE http://localhost:3000/api/users/1
+PUT  http://localhost:3000/api/users/1/cultures/1
+Content-Type: application/json
 
+{
+  "id_plot": 2
+}
 ###
-### Post a new culture
-POST http://localhost:3000/api/users/1/cultures/2
-
+DELETE http://localhost:3000/api/users/100
+###
+DELETE http://localhost:3000/api/users/1/plots/1
+###
+DELETE http://localhost:3000/api/users/1/cultures/1
 ###

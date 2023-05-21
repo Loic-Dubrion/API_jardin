@@ -83,7 +83,7 @@ router.post('/families', controllerHandler(plantController.postFamily));
  * @return {error} 400 - Bad request response
  * @return {error} 500 - internal server error
  */
-router.post('/alliance', controllerHandler(plantController.postAlliance));
+router.post('/alliances', controllerHandler(plantController.postAlliance));
 
 //! ROUTER PUT
 /** PUT /api/plants/{plantId}
@@ -94,6 +94,11 @@ router.post('/alliance', controllerHandler(plantController.postAlliance));
  * This route allows for the updating of a plant's information
  * @bodyContent {Plant} application/json
  * @bodyRequired
+ * @param {number} plantId.path - ID of the plant to update
+ * @param {object} requestBody.body.required - Updated plant information
+ * @param {string} requestBody.name - New name of the plant
+ * @param {string} requestBody.specification - New specification of the plant
+ * @param {string} requestBody.culture_advice - New culture advice for the plant
  * @return {Plant} 200 - success response - updated plant information
  * @return {error} 400 - Bad request error
  * @return {error} 500 - internal server error
@@ -148,7 +153,7 @@ router.put('/alliances/:allianceId', controllerHandler(plantController.updateAll
  * @summary Delete a plant
  * @tags Plants - Deleting plant information
  * @description
- * This route allows for the deletion of a plant
+ * This route allows for the deletion of a plant IF NO ASSOCIATED CULTURES EXIST
  * @return {SuccessResponse} 200 - success response - confirmation of deletion
  * @return {error} 400 - Bad request error
  * @return {error} 500 - internal server error
@@ -157,7 +162,7 @@ router.delete('/:plantId', controllerHandler(plantController.deletePlant));
 
 /** DELETE /api/plants/categories/{categoryId}
  *
- * @summary Delete a category
+ * @summary Delete a category IF NO ASSOCIATED PLANTS EXIST
  * @tags Plants - Deleting category information
  * @description
  * This route allows for the deletion of a category
@@ -170,7 +175,7 @@ router.delete('/categories/:categoryId', controllerHandler(plantController.delet
 /** DELETE /api/plants/families/{familyId}
  *
  * @summary Delete a family
- * @tags Plants - Deleting family information
+ * @tags Plants - Deleting family information IF NO ASSOCIATED PLANTS EXIST
  * @description
  * This route allows for the deletion of a family
  * @return {SuccessResponse} 200 - success response - confirmation of deletion
@@ -182,7 +187,7 @@ router.delete('/families/:familyId', controllerHandler(plantController.deleteFam
 /** DELETE /api/plants/alliances/{allianceId}
  *
  * @summary Delete an alliance
- * @tags Plants - Deleting alliance information
+ * @tags Plants - Deleting alliance information IF NO ASSOCIATED PLANTS EXIST
  * @description
  * This route allows for the deletion of an alliance
  * @return {SuccessResponse} 200 - success response - confirmation of deletion

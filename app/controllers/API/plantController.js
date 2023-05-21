@@ -1,4 +1,5 @@
 const dataMapper = require('../../models/plantDataMapper');
+const NoRessourceFoundError = require('../../errors/NoResourceFoundError');
 
 const plantController = {
   //! Controller for Reading
@@ -27,15 +28,10 @@ const plantController = {
     const plantId = Number(request.params.plantId);
     const result = await dataMapper.getOnePlant(plantId);
     if (result.rows.length === 0) {
-      response.status(404).json({
-        status: 404,
-        error: 'Not Found',
-        message: 'No plant found with these parameters.',
-      });
+      throw new NoRessourceFoundError(`Plant with ID ${plantId} not found.`);
     } else {
       response.json(result.rows);
     }
-    response.json(result.rows);
   },
 
   //! Controller for Creating
@@ -49,11 +45,7 @@ const plantController = {
    */
   async postPlant(request, response) {
     const newPlant = await dataMapper.postPlant(request.body);
-    if (newPlant.rows.length > 0) {
-      response.status(201).json(newPlant.rows[0]);
-    } else {
-      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not insert lant.' });
-    }
+    response.status(201).json(newPlant.rows[0]);
   },
 
   /**
@@ -66,11 +58,7 @@ const plantController = {
    */
   async postFamily(request, response) {
     const newFamily = await dataMapper.postFamily(request.body);
-    if (newFamily.rows.length > 0) {
-      response.status(201).json(newFamily.rows[0]);
-    } else {
-      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not insert family.' });
-    }
+    response.status(201).json(newFamily.rows[0]);
   },
 
   /**
@@ -83,11 +71,7 @@ const plantController = {
    */
   async postCategory(request, response) {
     const newCategory = await dataMapper.postCategory(request.body);
-    if (newCategory.rows.length > 0) {
-      response.status(201).json(newCategory.rows[0]);
-    } else {
-      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not insert caregory.' });
-    }
+    response.status(201).json(newCategory.rows[0]);
   },
 
   /**
@@ -100,11 +84,7 @@ const plantController = {
    */
   async postAlliance(request, response) {
     const newAlliance = await dataMapper.postAlliance(request.body);
-    if (newAlliance.rows.length > 0) {
-      response.status(201).json(newAlliance.rows[0]);
-    } else {
-      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not insert Alliance.' });
-    }
+    response.status(201).json(newAlliance.rows[0]);
   },
 
   //! Controller for Updating
@@ -118,11 +98,7 @@ const plantController = {
    */
   async updatePlant(request, response) {
     const updatedPlant = await dataMapper.updatePlant(request.body, request.params.plantId);
-    if (updatedPlant.rows.length > 0) {
-      response.status(200).json(updatedPlant.rows[0]);
-    } else {
-      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not update plant.' });
-    }
+    response.status(200).json(updatedPlant.rows[0]);
   },
 
   /**
@@ -135,11 +111,7 @@ const plantController = {
      */
   async updateFamily(request, response) {
     const updatedFamily = await dataMapper.updateFamily(request.body, request.params.familyId);
-    if (updatedFamily.rows.length > 0) {
-      response.status(200).json(updatedFamily.rows[0]);
-    } else {
-      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not update family.' });
-    }
+    response.status(200).json(updatedFamily.rows[0]);
   },
 
   /**
@@ -152,11 +124,7 @@ const plantController = {
      */
   async updateCategory(request, response) {
     const updatedCategory = await dataMapper.updateCategory(request.body, request.params.categoryId);
-    if (updatedCategory.rows.length > 0) {
-      response.status(200).json(updatedCategory.rows[0]);
-    } else {
-      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not update category.' });
-    }
+    response.status(200).json(updatedCategory.rows[0]);
   },
 
   /**
@@ -169,11 +137,7 @@ const plantController = {
      */
   async updateAlliance(request, response) {
     const updatedAlliance = await dataMapper.updateAlliance(request.body, request.params.allianceId);
-    if (updatedAlliance.rows.length > 0) {
-      response.status(200).json(updatedAlliance.rows[0]);
-    } else {
-      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not update alliance.' });
-    }
+    response.status(200).json(updatedAlliance.rows[0]);
   },
 
   //! Controller for Delete

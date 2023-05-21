@@ -19,11 +19,16 @@ $$ LANGUAGE sql;
 
 CREATE OR REPLACE FUNCTION "delete_user"(_id INT)
 RETURNS VOID AS $$
+    DELETE FROM "culture" WHERE "id_plot" IN (
+      SELECT "id" FROM "plot" WHERE "id_user" = _id
+      );
+    DELETE FROM "plot" WHERE "id_user" = _id;
     DELETE FROM "user" WHERE "id" = _id;
 $$ LANGUAGE sql;
 
 CREATE OR REPLACE FUNCTION "delete_plot"(_id INT)
 RETURNS VOID AS $$
+    DELETE FROM "culture" WHERE "id_plot" = _id;
     DELETE FROM "plot" WHERE "id" = _id;
 $$ LANGUAGE sql;
 

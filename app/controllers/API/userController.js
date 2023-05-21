@@ -1,4 +1,5 @@
 const dataMapper = require('../../models/userDataMapper');
+const NoResourceFoundError = require('../../errors/NoResourceFoundError');
 
 const userController = {
   //! Controller for Reading
@@ -13,7 +14,7 @@ const userController = {
     const userId = Number(request.params.userId);
     const result = await dataMapper.getProfil(userId);
     if (result.rows.length === 0) {
-      response.status(404).json({ status: 404, error: 'Not Found', message: 'No user found with this ID.' });
+      throw new NoResourceFoundError(`User with ID ${userId} not found.`);
     } else {
       response.json(result.rows);
     }
@@ -34,15 +35,7 @@ const userController = {
     const plotId = plotIdParam ? Number(request.params.plotId) : null;
     const cultureId = cultIdParam ? Number(request.params.cultureId) : null;
     const result = await dataMapper.getProduction(userId, isHarvestingNull, plotId, cultureId);
-    if (result.rows.length === 0) {
-      response.status(404).json({
-        status: 404,
-        error: 'Not Found',
-        message: 'No production found with these parameters.',
-      });
-    } else {
-      response.json(result.rows);
-    }
+    response.json(result.rows);
   },
 
   /**
@@ -55,11 +48,7 @@ const userController = {
   async getLastCategories(request, response) {
     const plotId = Number(request.params.plotId);
     const result = await dataMapper.getLastCultures(plotId);
-    if (result.rows.length === 0) {
-      response.status(404).json({ status: 404, error: 'Not Found', message: 'No ressource found with this ID.' });
-    } else {
-      response.json(result.rows);
-    }
+    response.json(result.rows);
   },
 
   /**
@@ -76,7 +65,7 @@ const userController = {
     const plantFamilies = await dataMapper.getProduction(userId, true, plotId);
 
     if (plantFamilies.rows.length === 0) {
-      response.status(404).json({ status: 404, error: 'Not Found', message: 'No plants in the plot, no alliance.' });
+      throw new NoResourceFoundError('Alliance for this plot not found.');
     } else {
       // Sinon, on va chercher les alliances pour chaque famille de plantes.
       // Chaque demande d'alliance est asynchrone, on utilise donc Promise.all
@@ -117,11 +106,7 @@ const userController = {
    */
   async insertPlot(request, response) {
     const newPlot = await dataMapper.insertPlot(request.body);
-    if (newPlot.rows.length > 0) {
-      response.status(201).json(newPlot.rows[0]);
-    } else {
-      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not insert Plot.' });
-    }
+    response.status(201).json(newPlot.rows[0]);
   },
 
   /**
@@ -136,11 +121,7 @@ const userController = {
  */
   async insertCulture(request, response) {
     const newCulture = await dataMapper.insertCulture(request.body);
-    if (newCulture.rows.length > 0) {
-      response.status(201).json(newCulture.rows[0]);
-    } else {
-      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not insert culture.' });
-    }
+    response.status(201).json(newCulture.rows[0]);
   },
 
   //! Controller for Updating
@@ -156,11 +137,7 @@ const userController = {
    */
   async updateUser(request, response) {
     const updatedUser = await dataMapper.updateUser(request.body, request.params.userId);
-    if (updatedUser.rows.length > 0) {
-      response.status(200).json(updatedUser.rows[0]);
-    } else {
-      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not update user.' });
-    }
+    response.status(200).json(updatedUser.rows[0]);
   },
 
   /**
@@ -175,11 +152,7 @@ const userController = {
      */
   async updatePlot(request, response) {
     const updatedPlot = await dataMapper.updatePlot(request.body, request.params.plotId);
-    if (updatedPlot.rows.length > 0) {
-      response.status(200).json(updatedPlot.rows[0]);
-    } else {
-      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not update plot.' });
-    }
+    response.status(200).json(updatedPlot.rows[0]);
   },
 
   /**
@@ -194,11 +167,7 @@ const userController = {
      */
   async updateCulture(request, response) {
     const updatedCulture = await dataMapper.updateCulture(request.body, request.params.cultureId);
-    if (updatedCulture.rows.length > 0) {
-      response.status(200).json(updatedCulture.rows[0]);
-    } else {
-      response.status(400).json({ status: 404, error: 'Bad Request', message: 'Could not update culture.' });
-    }
+    response.status(200).json(updatedCulture.rows[0]);
   },
 
   //! Controller for Delete
@@ -213,16 +182,15 @@ const userController = {
  *                   or a 400 status code along with an error message if it is not.
  */
   async deleteUser(request, response) {
-    const deletedUser = await dataMapper.deleteUser(request.params.userId);
-    if (deletedUser.rowCount === 0) {
-      response.status(400).json(
-        { status: 400, error: 'Bad Request', message: 'Could not delete user.' },
-      );
-    } else {
-      response.status(200).json(
-        { status: 200, message: `User with id: ${request.params.userId} successfully deleted.` },
-      );
+    const userId = Number(request.params.userId);
+    const existingUser = await dataMapper.getProfil(userId);
+    if (existingUser.rows.length === 0) {
+      throw new NoResourceFoundError(`User with ID ${userId} not found.`);
     }
+    await dataMapper.deleteUser(userId);
+    response.status(200).json(
+      { status: 200, message: `User with id: ${userId} successfully deleted.` },
+    );
   },
 
   /**
@@ -236,16 +204,11 @@ const userController = {
  *                   or a 400 status code along with an error message if it is not.
  */
   async deletePlot(request, response) {
-    const deletedPlot = await dataMapper.deletePlot(request.params.plotId);
-    if (deletedPlot.rowCount === 0) {
-      response.status(400).json(
-        { status: 400, error: 'Bad Request', message: 'Could not delete plot.' },
-      );
-    } else {
-      response.status(200).json(
-        { status: 200, message: `Plot with id: ${request.params.plotId} successfully deleted.` },
-      );
-    }
+    const plotId = Number(request.params.plotId);
+    await dataMapper.deletePlot(plotId);
+    response.status(200).json(
+      { status: 200, message: `Plot with id: ${request.params.plotId} successfully deleted.` },
+    );
   },
 
   /**
@@ -259,16 +222,10 @@ const userController = {
  *                   or a 400 status code along with an error message if it is not.
  */
   async deleteCulture(request, response) {
-    const deletedCulture = await dataMapper.deleteCulture(request.params.cultureId);
-    if (deletedCulture.rowCount === 0) {
-      response.status(400).json(
-        { status: 400, error: 'Bad Request', message: 'Could not delete culture.' },
-      );
-    } else {
-      response.status(200).json(
-        { status: 200, message: `Culture with id: ${request.params.cultureId} successfully deleted.` },
-      );
-    }
+    await dataMapper.deleteCulture(request.params.cultureId);
+    response.status(200).json(
+      { status: 200, message: `Culture with id: ${request.params.cultureId} successfully deleted.` },
+    );
   },
 
 };

@@ -5,10 +5,7 @@ const router = express.Router();
 const controllerHandler = require('../../controllers/helpers/controllerHandler');
 const userController = require('../../controllers/API/userController');
 
-//! ==================//
-//! ===== GET   ===== //
-//! ==================//
-
+//!  GET
 /** GET /api/users/{userId}
  *
  * @summary Get profile information of a specific user
@@ -132,10 +129,7 @@ router.get(
   controllerHandler(userController.getAlliancesForPlot),
 );
 
-//! ==================//
-//! ===== POST  ===== //
-//! ==================//
-
+//! POST
 /** POST /api/users/{userId}/plots
  *
  * @summary Creates a new plot for a specific user
@@ -173,10 +167,7 @@ router.post(
   controllerHandler(userController.insertCulture),
 );
 
-//! ==================//
-//! ===== PUT   ===== //
-//! ==================//
-
+//! PUT
 /** PUT /api/users/{userId}
  *
  * @summary Update profile information of a specific user
@@ -236,10 +227,10 @@ router.put(
 
 /** DELETE /api/users/{userId}
  *
- * @summary Delete a specific user
+ * @summary Delete a specific user and all related plots and cultures
  * @tags Users - Everything about Users
  * @description
- * This route deletes a user.
+ * This route deletes a user and all the plots and cultures related to this user.
  * The user's ID is expected to be included in the request parameters.
  * @param {number} userId.path - ID of the user to delete
  * @return {SuccessResponse} 200 - success response - successful deletion message
@@ -253,10 +244,10 @@ router.delete(
 
 /** DELETE /api/users/{userId}/plots/{plotId}
  *
- * @summary Delete a specific plot
+ * @summary Delete a specific plot and all related cultures
  * @tags Users - Everything about Plots
  * @description
- * This route deletes a plot.
+ * This route deletes a plot and all the cultures related to this plot.
  * The user's ID and the plot's ID are expected to be included in the request parameters.
  * @param {number} userId.path - ID of the user
  * @param {number} plotId.path - ID of the plot to delete

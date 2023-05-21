@@ -5,8 +5,9 @@ class NoResourceFoundError extends Error {
    *
    * @augments Error
    */
-  constructor() {
-    super('No resource found');
+  constructor(message) {
+    super(message);
+    this.name = 'NotFoundError';
     this.httpStatusCode = 404;
   }
 }
