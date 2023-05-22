@@ -10,7 +10,6 @@ CREATE FUNCTION "get_user_details"("user_id" INT)
         "id_role" INT,
         "total_plots" BIGINT
     )
-    LANGUAGE SQL
 AS $$
     SELECT
         "user"."username",
@@ -21,7 +20,8 @@ AS $$
     JOIN "plot" ON "user"."id" = "plot"."id_user"
     WHERE "user"."id" = "user_id"
     GROUP BY "user"."id";
-$$;
+$$
+LANGUAGE SQL STABLE;
 
 -- For detail culture, plot, plant with conditions
 CREATE OR REPLACE FUNCTION "get_production_by_user"(
@@ -43,7 +43,6 @@ RETURNS TABLE (
     "harvesting" TIMESTAMPTZ,
     "comment" TEXT
 )
-LANGUAGE SQL
 AS $$
 SELECT
     "user"."username",
@@ -78,7 +77,8 @@ WHERE
     )
     AND ("plot"."id" = _plot_id OR _plot_id IS NULL)
     AND ("culture"."id" = _culture_id OR _culture_id IS NULL);
-$$;
+$$
+LANGUAGE SQL STABLE;
 
 -- plant detail
 CREATE FUNCTION "get_plant_detail"("_plant_id" INTEGER)
@@ -90,7 +90,6 @@ CREATE FUNCTION "get_plant_detail"("_plant_id" INTEGER)
         "family" TEXT,
         "alliances" TEXT[]
     )
-    LANGUAGE SQL
 AS $$
     SELECT
         "plant"."name",
@@ -113,7 +112,8 @@ AS $$
         GROUP BY "plant"."id"
     ) AS "plant_alliances" ON "plant_alliances"."plant_id" = "plant"."id"
     WHERE "plant"."id" = "_plant_id"
-$$;
+$$
+LANGUAGE SQL STABLE;
 
 CREATE OR REPLACE FUNCTION "get_last_cultures"(_plot_id INTEGER)
 RETURNS TABLE (
@@ -134,7 +134,7 @@ RETURNS TABLE (
     ORDER BY ABS(EXTRACT(DAY FROM (NOW() - MIN("culture"."harvesting"))))
     LIMIT 3;
 $$
-LANGUAGE SQL;
+LANGUAGE SQL STABLE;
 
 CREATE OR REPLACE FUNCTION "get_alliance"("family_id" INTEGER)
 RETURNS TABLE (
@@ -150,6 +150,6 @@ RETURNS TABLE (
         ) AS "family_names"
     FROM "alliance"
     WHERE "family_id" = ANY ("alliance"."alliance");
-$$ LANGUAGE sql;
+$$ LANGUAGE sql STABLE;
 
 COMMIT;

@@ -1,5 +1,6 @@
 const NoResourceFoundError = require('./NoResourceFoundError');
 const ForeignKeyViolationError = require('./ForeignKeyViolationError');
+const ForbiddenError = require('./ForbiddenError');
 const BadRequestError = require('./BadRequestError');
 const UniqueConstraintViolationError = require('./UniqueConstraintViolationError');
 
@@ -14,6 +15,7 @@ function apiErrorHandler(err, __req, res) {
   if (
     err instanceof NoResourceFoundError
     || err instanceof ForeignKeyViolationError
+    || err instanceof ForbiddenError
     || err instanceof BadRequestError
     || err instanceof UniqueConstraintViolationError
   ) {

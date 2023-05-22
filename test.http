@@ -7,8 +7,8 @@ Content-Type: application/json
 
 {
   "name": "test",
-  "id_family": 2,
-  "id_category": 2
+  "id_family": 3,
+  "id_category": 3
 }
 ###
 POST  http://localhost:3000/api/plants/categories
@@ -29,7 +29,7 @@ POST  http://localhost:3000/api/plants/alliances
 Content-Type: application/json
 
 {
-  "alliance": [16,17]
+  "alliance": [16,19]
 }
 ###
 PUT  http://localhost:3000/api/plants/1
@@ -70,7 +70,7 @@ DELETE  http://localhost:3000/api/plants/alliances/2
 ###
 DELETE  http://localhost:3000/api/plants/10
 
-
+###
 // All culture in-progress for one user
 http://localhost:3000/api/users/1/cultures/in-progress
 ###
@@ -84,7 +84,7 @@ http://localhost:3000/api/users/1/plots/1/last-cultures
 ###
 http://localhost:3000/api/users/1/plots/6/alliances
 ###
-POST  http://localhost:3000/api/users/3/plots
+POST  http://localhost:3000/api/users/1/plots
 Content-Type: application/json
 
 {
@@ -96,7 +96,7 @@ POST  http://localhost:3000/api/users/1/plots/2/cultures
 Content-Type: application/json
 
 {
-  "id_plant": 65
+  "id_plant": 6
 }
 ###
 PUT  http://localhost:3000/api/users/1
@@ -124,5 +124,5 @@ DELETE http://localhost:3000/api/users/100
 ###
 DELETE http://localhost:3000/api/users/1/plots/1
 ###
-DELETE http://localhost:3000/api/users/1/cultures/1
+DELETE http://localhost:3000/api/users/1/cultures/98
 ###

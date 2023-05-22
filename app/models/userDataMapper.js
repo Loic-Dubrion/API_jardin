@@ -73,6 +73,27 @@ const userDataMapper = {
     const promiseData = client.query(query, values);
     return promiseData;
   },
+
+  //! Models for Verify
+  findPlotByIdAndUserId: (plotId, userId) => {
+    const query = 'SELECT * FROM plot WHERE id = $1 AND id_user = $2;';
+    const values = [plotId, userId];
+    const promiseData = client.query(query, values);
+    return promiseData;
+  },
+
+  findCultureByIdAndUserId: (cultureId, userId) => {
+    const query = `
+        SELECT *
+        FROM culture
+        INNER JOIN plot ON culture.id_plot = plot.id
+        WHERE culture.id = $1 AND plot.id_user = $2;
+      `;
+    const values = [cultureId, userId];
+    const promiseData = client.query(query, values);
+    return promiseData;
+  },
+
 };
 
 module.exports = userDataMapper;

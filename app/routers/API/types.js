@@ -8,11 +8,11 @@
  * @typedef {object} Plant
  * @property {number} id - plant id
  * @property {string} name - plant name
- * @property {array} specification - plant specification
- * @property {array} culture_advice - plant culture advice
+ * @property {object[]} specification - plant specification
+ * @property {object[]} culture_advice - plant culture advice
  * @property {string} category - plant category name
  * @property {string} familly - plant familly name
- * @property {array} alliance - Allied plant family list
+ * @property {object[]} alliance - Allied plant family list
  */
 
 /**
@@ -36,7 +36,7 @@
  *
  * @typedef {object} Alliance
  * @property {number} id - category id
- * @property {array} alliance - array of alliances family names
+ * @property {object[]} alliance - array of alliances family names
  */
 
 /**

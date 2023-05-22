@@ -5,7 +5,6 @@ BEGIN;
 DROP FUNCTION IF EXISTS "delete_category",
   "delete_alliance",
   "delete_family",
-  "delete_role",
   "delete_user",
   "delete_plot",
   "delete_plant",

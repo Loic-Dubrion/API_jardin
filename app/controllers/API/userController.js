@@ -1,5 +1,6 @@
 const dataMapper = require('../../models/userDataMapper');
 const NoResourceFoundError = require('../../errors/NoResourceFoundError');
+const ForbiddenError = require('../../errors/ForbiddenError');
 
 const userController = {
   //! Controller for Reading
@@ -121,9 +122,19 @@ const userController = {
  *                   or a 400 status code along with an error message if it is not.
  */
   async insertCulture(request, response) {
-    const plotId = Number(request.params.plotId);
-    const newCulture = await dataMapper.insertCulture(plotId, request.body);
-    response.status(201).json(newCulture.rows[0]);
+    const { userId, plotId } = request.params;
+
+    // Rechercher le parcelle appartenant à cet utilisateur
+    const plot = await dataMapper.findPlotByIdAndUserId(Number(plotId), Number(userId));
+
+    // Si aucune parcelle n'est trouvée, renvoyer une erreur
+    if (plot.rows.length === 0) {
+      throw new ForbiddenError('User does not have permission to add culture to this plot.');
+    }
+
+    // Sinon, continuer avec l'insertion de la culture
+    const newCulture = await dataMapper.insertCulture(Number(plotId), request.body);
+    return response.status(201).json(newCulture.rows[0]);
   },
 
   //! Controller for Updating
@@ -153,8 +164,19 @@ const userController = {
      *                   or a 400 status code along with an error message if it is not.
      */
   async updatePlot(request, response) {
-    const updatedPlot = await dataMapper.updatePlot(request.body, request.params.plotId);
-    response.status(200).json(updatedPlot.rows[0]);
+    const { userId, plotId } = request.params;
+
+    // Rechercher le plot appartenant à cet utilisateur
+    const plot = await dataMapper.findPlotByIdAndUserId(Number(plotId), Number(userId));
+
+    // Si aucun plot n'est trouvé, renvoyer une erreur
+    if (plot.rows.length === 0) {
+      return response.status(403).json({ error: 'User does not have permission to update this plot.' });
+    }
+
+    // Sinon, continuer avec la mise à jour du plot
+    const updatedPlot = await dataMapper.updatePlot(request.body, Number(plotId));
+    return response.status(200).json(updatedPlot.rows[0]);
   },
 
   /**
@@ -168,9 +190,21 @@ const userController = {
      *                   or a 400 status code along with an error message if it is not.
      */
   async updateCulture(request, response) {
-    const updatedCulture = await dataMapper.updateCulture(request.body, request.params.cultureId);
-    response.status(200).json(updatedCulture.rows[0]);
+    const { userId, cultureId } = request.params;
+
+    // Rechercher la culture appartenant à cet utilisateur
+    const culture = await dataMapper.findCultureByIdAndUserId(Number(cultureId), Number(userId));
+
+    // Si aucune culture n'est trouvée, renvoyer une erreur
+    if (culture.rows.length === 0) {
+      return response.status(403).json({ error: 'User does not have permission to update this culture.' });
+    }
+
+    // Sinon, continuer avec la mise à jour de la culture
+    const updatedCulture = await dataMapper.updateCulture(request.body, Number(cultureId));
+    return response.status(200).json(updatedCulture.rows[0]);
   },
+
 
   //! Controller for Delete
   /**
@@ -206,10 +240,20 @@ const userController = {
  *                   or a 400 status code along with an error message if it is not.
  */
   async deletePlot(request, response) {
-    const plotId = Number(request.params.plotId);
-    await dataMapper.deletePlot(plotId);
-    response.status(200).json(
-      { status: 200, message: `Plot with id: ${request.params.plotId} successfully deleted.` },
+    const { userId, plotId } = request.params;
+
+    // Rechercher le plot appartenant à cet utilisateur
+    const plot = await dataMapper.findPlotByIdAndUserId(Number(plotId), Number(userId));
+
+    // Si aucun plot n'est trouvé, renvoyer une erreur
+    if (plot.rows.length === 0) {
+      return response.status(403).json({ error: 'User does not have permission to delete this plot.' });
+    }
+
+    // Sinon, continuer avec la suppression du plot
+    await dataMapper.deletePlot(Number(plotId));
+    return response.status(200).json(
+      { status: 200, message: `Plot with id: ${plotId} successfully deleted.` },
     );
   },
 
@@ -224,9 +268,20 @@ const userController = {
  *                   or a 400 status code along with an error message if it is not.
  */
   async deleteCulture(request, response) {
-    await dataMapper.deleteCulture(request.params.cultureId);
-    response.status(200).json(
-      { status: 200, message: `Culture with id: ${request.params.cultureId} successfully deleted.` },
+    const { userId, cultureId } = request.params;
+
+    // Rechercher la culture appartenant à cet utilisateur
+    const culture = await dataMapper.findCultureByIdAndUserId(Number(cultureId), Number(userId));
+
+    // Si aucune culture n'est trouvée, renvoyer une erreur
+    if (culture.rows.length === 0) {
+      return response.status(403).json({ error: 'User does not have permission to delete this culture.' });
+    }
+
+    // Sinon, continuer avec la suppression de la culture
+    await dataMapper.deleteCulture(Number(cultureId));
+    return response.status(200).json(
+      { status: 200, message: `Culture with id: ${cultureId} successfully deleted.` },
     );
   },
 

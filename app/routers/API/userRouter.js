@@ -137,30 +137,30 @@ router.get(
  * @description
  * This route creates a new plot for a user.
  * The user's ID is expected to be included in the request parameters.
- * @param {number} userId.path - ID of the user to create plot for
- * @param {object} plot.body.required - Plot info {name: string, availability: boolean}
+ * @param {number} userId.path.required - ID of the user to create plot for
+ * @param {object} request.body.required - Plot info {name: string, availability: boolean}
  * @return {Plot} 201 - success response - plot information
- * @return {error} 400 - Bad request response
- * @return {error} 500 - internal server error
+ * @return {Error} 400 - Bad request response
+ * @return {Error} 500 - internal server error
  */
 router.post(
   '/:userId/plots',
   controllerHandler(userController.insertPlot),
 );
 
-/** POST /api/users/{userId}/plots/1/cultures
+/** POST /api/users/{userId}/plots/{plotId}/cultures
  *
  * @summary Creates a new culture for a specific user
  * @tags Users - Everything about Users
  * @description
  * This route creates a new culture for a user.
  * The user's ID is expected to be included in the request parameters.
- * @param {number} userId.path - ID of the user to create culture for
- * @param {object} culture.body.required - Culture info {sowing: date, planting: date,
+ * @param {number} userId.path.required - ID of the user to create culture for
+ * @param {object} request.body.required - Culture info {sowing: date, planting: date,
  *  harvesting: date, id_plant: int, id_plot: int, comment: string}
  * @return {Culture} 201 - success response - culture information
- * @return {error} 400 - Bad request response
- * @return {error} 500 - internal server error
+ * @return {Error} 400 - Bad request response
+ * @return {Error} 500 - internal server error
  */
 router.post(
   '/:userId/plots/:plotId/cultures',
