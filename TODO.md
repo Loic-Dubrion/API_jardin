@@ -62,6 +62,9 @@
   - Commentaire swagger ✅
   - Pour Create et Update => Schémas de validation avec Joi ✅
 
-- Authentification JWT
+- implémenter une authentification basée sur les rôles et un contrôle d'accès basé sur le rôle (RBAC).
+  - Paramétrer les sessions
+  - Utiliser B-crypt pour les passwords pour
+  - Utiliser jsonwebtoken
 
 - Faire un sauvegarde automatique de la BDD

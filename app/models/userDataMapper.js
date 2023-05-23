@@ -2,6 +2,11 @@ const client = require('../services/clientdb');
 
 const userDataMapper = {
   //! Models for Reading
+  getUserByEmail: (email) => {
+    const query = 'SELECT * FROM users WHERE email = $1';
+    const values = [email];
+    return client.query(query, values);
+  },
   getProfil: (userId) => {
     const query = 'SELECT * FROM get_user_details($1);';
     const values = [userId];
