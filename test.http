@@ -92,7 +92,7 @@ Content-Type: application/json
 "availability": false
 }
 ###
-POST  http://localhost:3000/api/users/1/plots/2/cultures
+POST  http://localhost:3000/api/users/1/plots/9/cultures
 Content-Type: application/json
 
 {
