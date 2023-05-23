@@ -2,8 +2,10 @@ const express = require('express');
 
 const router = express.Router();
 
+const auth = require('../../helpers/authorizeUser');
 const controllerHandler = require('../../controllers/helpers/controllerHandler');
 const userController = require('../../controllers/API/userController');
+
 
 //!  GET
 /** GET /api/users/{userId}
@@ -20,6 +22,7 @@ const userController = require('../../controllers/API/userController');
  */
 router.get(
   '/:userId',
+  auth,
   controllerHandler(userController.getProfil),
 );
 
@@ -37,6 +40,7 @@ router.get(
  */
 router.get(
   '/:userId/cultures/in-progress',
+  auth,
   (req, res) => controllerHandler(userController.getProduction(req, res, true)),
 );
 
@@ -54,6 +58,7 @@ router.get(
  */
 router.get(
   '/:userId/cultures/completed',
+  auth,
   (req, res) => controllerHandler(userController.getProduction(req, res, false)),
 );
 
@@ -72,6 +77,7 @@ router.get(
  */
 router.get(
   '/:userId/plots/:plotId',
+  auth,
   (req, res) => controllerHandler(userController.getProduction(req, res, true, req.params.plotId)),
 );
 
@@ -90,6 +96,7 @@ router.get(
  */
 router.get(
   '/:userId/cultures/:cultureId',
+  auth,
   (req, res) => controllerHandler(userController.getProduction(req, res, true, null, req.params.cultureId)),
 );
 
@@ -108,6 +115,7 @@ router.get(
  */
 router.get(
   '/:userId/plots/:plotId/last-cultures',
+  auth,
   controllerHandler(userController.getLastCategories),
 );
 
@@ -126,6 +134,7 @@ router.get(
  */
 router.get(
   '/:userId/plots/:plotId/alliances',
+  auth,
   controllerHandler(userController.getAlliancesForPlot),
 );
 
@@ -145,6 +154,7 @@ router.get(
  */
 router.post(
   '/:userId/plots',
+  auth,
   controllerHandler(userController.insertPlot),
 );
 
@@ -164,6 +174,7 @@ router.post(
  */
 router.post(
   '/:userId/plots/:plotId/cultures',
+  auth,
   controllerHandler(userController.insertCulture),
 );
 
@@ -182,6 +193,7 @@ router.post(
  */
 router.put(
   '/:userId',
+  auth,
   controllerHandler(userController.updateUser),
 );
 
@@ -200,6 +212,7 @@ router.put(
  */
 router.put(
   '/:userId/plots/:plotId',
+  auth,
   controllerHandler(userController.updatePlot),
 );
 
@@ -218,6 +231,7 @@ router.put(
  */
 router.put(
   '/:userId/cultures/:cultureId',
+  auth,
   controllerHandler(userController.updateCulture),
 );
 
@@ -239,6 +253,7 @@ router.put(
  */
 router.delete(
   '/:userId',
+  auth,
   controllerHandler(userController.deleteUser),
 );
 
@@ -257,6 +272,7 @@ router.delete(
  */
 router.delete(
   '/:userId/plots/:plotId',
+  auth,
   controllerHandler(userController.deletePlot),
 );
 
@@ -275,6 +291,7 @@ router.delete(
  */
 router.delete(
   '/:userId/cultures/:cultureId',
+  auth,
   controllerHandler(userController.deleteCulture),
 );
 

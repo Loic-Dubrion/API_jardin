@@ -26,14 +26,14 @@ INSERT INTO "family" ("name", "id_alliance") VALUES
 
 INSERT INTO "user" ("username", "email", "password", "id_role")
 VALUES
-('johndoe', 'johndoe@example.com', 'password123', 1),
-('janesmith', 'janesmith@example.com', 'mypassword', 2),
-('bob', 'bob@example.com', 'bobspassword', 2),
-('alice', 'alice@example.com', 'alicespassword', 2),
-('guestuser', 'guest@example.com', 'guestpassword', 2),
-('testuser', 'test@example.com', 'testpassword', 2),
-('newuser', 'newuser@example.com', 'newpassword', 2),
-('demo', 'demo@example.com', 'demopassword', 2);
+('johndoe', 'johndoe@example.com', '$2b$10$RfzY8fGSuIAhsJ7H1nheIeeAZdwZ7JNQhEj7cA6KXEeIItl5jVISC', 1),
+('janesmith', 'janesmith@example.com', '$2b$10$xTFPO/TJs/2osDsflhhiSuL9DDUktGT4MgEpXDr5uSJbjKsJijDeq', 2),
+('bob', 'bob@example.com', '$2b$10$xTFPO/TJs/2osDsflhhiSuL9DDUktGT4MgEpXDr5uSJbjKsJijDeq', 2),
+('alice', 'alice@example.com', '$2b$10$xTFPO/TJs/2osDsflhhiSuL9DDUktGT4MgEpXDr5uSJbjKsJijDeq', 2),
+('guestuser', 'guest@example.com', '$2b$10$xTFPO/TJs/2osDsflhhiSuL9DDUktGT4MgEpXDr5uSJbjKsJijDeq', 2),
+('testuser', 'test@example.com', '$2b$10$xTFPO/TJs/2osDsflhhiSuL9DDUktGT4MgEpXDr5uSJbjKsJijDeq', 2),
+('newuser', 'newuser@example.com', '$2b$10$xTFPO/TJs/2osDsflhhiSuL9DDUktGT4MgEpXDr5uSJbjKsJijDeq', 2),
+('demo', 'demo@example.com', '$2b$10$xTFPO/TJs/2osDsflhhiSuL9DDUktGT4MgEpXDr5uSJbjKsJijDeq', 2);
 
 INSERT INTO "plot" ("name", "availability", "id_user") VALUES
 ('Parcelle 1', true, 1),

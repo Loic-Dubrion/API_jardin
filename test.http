@@ -126,3 +126,26 @@ DELETE http://localhost:3000/api/users/1/plots/1
 ###
 DELETE http://localhost:3000/api/users/1/cultures/98
 ###
+###
+
+### Login en admin
+POST  http://localhost:3000/api/log/in
+Content-Type: application/json
+
+{
+  "email": "johndoe@example.com",
+  "password": "1234"
+}
+###
+
+### Login en user 2
+POST  http://localhost:3000/api/log/in
+Content-Type: application/json
+
+{
+  "email": "janesmith@example.com",
+  "password": "0000"
+}
+###
+
+GET  http://localhost:3000/api/log/out

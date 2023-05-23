@@ -3,6 +3,7 @@ const ForeignKeyViolationError = require('./ForeignKeyViolationError');
 const ForbiddenError = require('./ForbiddenError');
 const BadRequestError = require('./BadRequestError');
 const UniqueConstraintViolationError = require('./UniqueConstraintViolationError');
+const UnauthorizedError = require('./UnauthorizedError');
 
 /**
  * Middleware for handling errors in API calls.
@@ -18,6 +19,7 @@ function apiErrorHandler(err, __req, res) {
     || err instanceof ForbiddenError
     || err instanceof BadRequestError
     || err instanceof UniqueConstraintViolationError
+    || err instanceof UnauthorizedError
   ) {
     res.status(err.httpStatusCode).json({
       httpCode: err.httpStatusCode,

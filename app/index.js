@@ -1,3 +1,4 @@
+require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
@@ -10,13 +11,12 @@ const swagger = require('./helpers/swagger');
 const app = express();
 
 // Session setup
-app.use(
-  session({
-    saveUninitialized: true,
-    resave: true,
-    secret: 'Shhh! It\'s a secret...',
-  }),
-);
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: process.env.NODE_ENV === 'production' },
+}));
 
 // Swagger setup
 swagger(app, path.join(__dirname, 'routers'));
