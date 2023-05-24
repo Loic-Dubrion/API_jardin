@@ -3,14 +3,13 @@ const NoResourceFoundError = require('../../errors/NoResourceFoundError');
 const ForbiddenError = require('../../errors/ForbiddenError');
 
 const userController = {
+
   //! Controller for Reading
-  /**
-   * Get profile information of a specific user
-   *
-   * @param {object} request - The request object
-   * @param {object} response - The response object
-   * @returns {void}
-   */
+  async getAllUsers(request, response) {
+    const result = await dataMapper.getAllUsers();
+    response.json(result.rows);
+  },
+
   async getProfil(request, response) {
     const userId = Number(request.params.userId);
     const result = await dataMapper.getProfil(userId);
@@ -21,16 +20,6 @@ const userController = {
     }
   },
 
-  /**
-   * Get production details based on specified filters
-   *
-   * @param {object} request - The request object
-   * @param {object} response - The response object
-   * @param {boolean} isHarvestingNull - Flag indicating whether the harvesting date is null or not
-   * @param {number|null} plotId - ID of the plot to filter by (optional)
-   * @param {number|null} cultureId - ID of the culture to filter by (optional)
-   * @returns {void}
-   */
   async getProduction(request, response, isHarvestingNull, plotIdParam = null, cultIdParam = null) {
     const userId = Number(request.params.userId);
     const plotId = plotIdParam ? Number(request.params.plotId) : null;
@@ -39,26 +28,12 @@ const userController = {
     response.json(result.rows);
   },
 
-  /**
-   * Get the last three categories
-   *
-   * @param {object} request - The request object
-   * @param {object} response - The response object
-   * @returns {void}
-   */
   async getLastCategories(request, response) {
     const plotId = Number(request.params.plotId);
     const result = await dataMapper.getLastCultures(plotId);
     response.json(result.rows);
   },
 
-  /**
-   * Get all the alliances for the plants in a specific plot
-   *
-   * @param {object} request - The request object
-   * @param {object} response - The response object
-   * @returns {void}
-   */
   async getAlliancesForPlot(request, response) {
     const plotId = Number(request.params.plotId);
     const userId = Number(request.params.userId);
@@ -95,32 +70,17 @@ const userController = {
   },
 
   //! Controller for Creating
-  /**
-   * Inserts a new plot in the database.
-   *
-   * @param {object} request - The request object
-   * @param {object} response - The response object
-   * @returns {void} - This function does not return anything.
-   *                   It ends the request-response cycle by sending a response to the client.
-   *                   Sends a 201 status code along with the details if the operation is successful
-   *                   or a 400 status code along with an error message if it is not.
-   */
+  async insertUser(request, response) {
+    const newUser = await dataMapper.insertUser(request.body);
+    response.status(201).json(newUser.rows[0]);
+  },
+
   async insertPlot(request, response) {
     const userId = Number(request.params.userId);
     const newPlot = await dataMapper.insertPlot(userId, request.body);
     response.status(201).json(newPlot.rows[0]);
   },
 
-  /**
- * Inserts a new culture in the database.
- *
- * @param {object} request - The request object
- * @param {object} response - The response object
- * @returns {void} - This function does not return anything.
- *                   It ends the request-response cycle by sending a response to the client.
- *                   Sends a 201 status code along with the details if the operation is successful,
- *                   or a 400 status code along with an error message if it is not.
- */
   async insertCulture(request, response) {
     const { userId, plotId } = request.params;
 
@@ -138,31 +98,11 @@ const userController = {
   },
 
   //! Controller for Updating
-  /**
-   * Updates an existing user in the database.
-   *
-   * @param {object} request - The request object
-   * @param {object} response - The response object
-   * @returns {void} - This function does not return anything.
-   *                   It ends the request-response cycle by sending a response to the client.
-   *                   Sends a 200 status code along with the details if the operation is successful,
-   *                   or a 400 status code along with an error message if it is not.
-   */
   async updateUser(request, response) {
     const updatedUser = await dataMapper.updateUser(request.body, request.params.userId);
     response.status(200).json(updatedUser.rows[0]);
   },
 
-  /**
-     * Updates an existing plot in the database.
-     *
-     * @param {object} request - The request object
-     * @param {object} response - The response object
-     * @returns {void} - This function does not return anything.
-     *                   It ends the request-response cycle by sending a response to the client.
-     *                   Sends a 200 status code along with the details if the operation is successful,
-     *                   or a 400 status code along with an error message if it is not.
-     */
   async updatePlot(request, response) {
     const { userId, plotId } = request.params;
 
@@ -179,16 +119,6 @@ const userController = {
     return response.status(200).json(updatedPlot.rows[0]);
   },
 
-  /**
-     * Updates an existing culture in the database.
-     *
-     * @param {object} request - The request object
-     * @param {object} response - The response object
-     * @returns {void} - This function does not return anything.
-     *                   It ends the request-response cycle by sending a response to the client.
-     *                   Sends a 200 status code along with the details if the operation is successful,
-     *                   or a 400 status code along with an error message if it is not.
-     */
   async updateCulture(request, response) {
     const { userId, cultureId } = request.params;
 
@@ -205,18 +135,7 @@ const userController = {
     return response.status(200).json(updatedCulture.rows[0]);
   },
 
-
   //! Controller for Delete
-  /**
- * Deletes an existing user from the database.
- *
- * @param {object} request - The request object
- * @param {object} response - The response object
- * @returns {void} - This function does not return anything.
- *                   It ends the request-response cycle by sending a response to the client.
- *                   Sends a 200 status code along with the details if the operation is successful,
- *                   or a 400 status code along with an error message if it is not.
- */
   async deleteUser(request, response) {
     const userId = Number(request.params.userId);
     const existingUser = await dataMapper.getProfil(userId);
@@ -229,16 +148,6 @@ const userController = {
     );
   },
 
-  /**
- * Deletes an existing plot from the database.
- *
- * @param {object} request - The request object
- * @param {object} response - The response object
- * @returns {void} - This function does not return anything.
- *                   It ends the request-response cycle by sending a response to the client.
- *                   Sends a 200 status code along with the details if the operation is successful,
- *                   or a 400 status code along with an error message if it is not.
- */
   async deletePlot(request, response) {
     const { userId, plotId } = request.params;
 
@@ -257,16 +166,6 @@ const userController = {
     );
   },
 
-  /**
- * Deletes an existing culture from the database.
- *
- * @param {object} request - The request object
- * @param {object} response - The response object
- * @returns {void} - This function does not return anything.
- *                   It ends the request-response cycle by sending a response to the client.
- *                   Sends a 200 status code along with the details if the operation is successful,
- *                   or a 400 status code along with an error message if it is not.
- */
   async deleteCulture(request, response) {
     const { userId, cultureId } = request.params;
 

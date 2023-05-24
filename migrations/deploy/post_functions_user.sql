@@ -2,6 +2,30 @@
 
 BEGIN;
 
+CREATE OR REPLACE FUNCTION "insert_new_user"("o_user" JSON)
+ RETURNS TABLE("id" INT, "username" TEXT, "email" TEXT, "role" TEXT)
+ LANGUAGE sql
+AS $$
+  WITH "new_user" AS (
+    INSERT INTO "user" ("username", "email", "password", "id_role")
+      VALUES (
+        o_user->>'username',
+        o_user->>'email',
+        o_user->>'password',
+        (o_user->>'id_role')::INTEGER
+      )
+      RETURNING *
+    )
+    SELECT
+      "new_user"."id",
+      "new_user"."username",
+      "new_user"."email",
+      "role"."name" AS "role"
+    FROM "new_user"
+    INNER JOIN "role" ON "new_user"."id_role" = "role"."id";
+$$;
+
+
 CREATE OR REPLACE FUNCTION "insert_new_plot"("_id_user" INT, "o_plot" JSON)
  RETURNS TABLE("id" integer, "name" text, "availability" boolean, "id_user" integer, "username" text)
  LANGUAGE sql

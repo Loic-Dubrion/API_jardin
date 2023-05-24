@@ -1,7 +1,7 @@
 require('dotenv').config();
 const http = require('http');
 
-const logger = require('./app/helpers/logger');
+const logger = require('./app/services/logger');
 const app = require('./app');
 
 const PORT = process.env.PORT ?? 3000;

@@ -2,6 +2,10 @@ const client = require('../services/clientdb');
 
 const userDataMapper = {
   //! Models for Reading
+  getAllUsers: () => {
+    const query = 'SELECT * FROM get_all_users()';
+    return client.query(query);
+  },
   getUserByEmail: (email) => {
     const query = 'SELECT * FROM "user" WHERE "email" = $1';
     const values = [email];
@@ -29,6 +33,11 @@ const userDataMapper = {
   },
 
   //! Models for Creating
+  insertUser: (objUser) => {
+    const query = 'SELECT * FROM insert_new_user($1);';
+    const values = [objUser];
+    return client.query(query, values);
+  },
   insertPlot: (userId, objPlot) => {
     const query = 'SELECT * FROM insert_new_plot($1, $2);';
     const values = [userId, objPlot];

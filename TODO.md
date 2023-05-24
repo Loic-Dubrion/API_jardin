@@ -63,8 +63,19 @@
   - Pour Create et Update => Schémas de validation avec Joi ✅
 
 - implémenter une authentification basée sur les rôles et un contrôle d'accès basé sur le rôle (RBAC).
-  - Paramétrer les sessions
-  - Utiliser B-crypt pour les passwords pour
-  - Utiliser jsonwebtoken
+  - Paramétrer les sessions ✅
+  - Utiliser B-crypt pour les passwords ✅
+  - Gérer les rôles (admin pour la partie plantes et CRUD user) ✅
+
+- Sécurité
+  - Mettre en place des regex pour les params des url ✅
+  - Vérifier la protection contre les injections SQL ✅
+  - Vérifier la protection contre les attaque XSS (Regex ✅, Joy et sanitizer ✅)
+  - Vérifier la protection contre les attaques CSRF (CORS ✅, token )
+
+- mise en ligne
 
 - Faire un sauvegarde automatique de la BDD
+
+- Mise en ligne
+  - Chiffrement HTTPS : obtenir un certificat SSL gratuit via Let's Encrypt.

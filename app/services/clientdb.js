@@ -1,4 +1,4 @@
-const logger = require('../helpers/logger');
+const logger = require('./logger');
 const { Pool } = require('pg');
 
 const client = new Pool();

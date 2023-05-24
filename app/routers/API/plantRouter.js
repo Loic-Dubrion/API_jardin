@@ -2,11 +2,19 @@ const express = require('express');
 
 const router = express.Router();
 
+const isAdmin = require('../../helpers/isAdmin');
+const validateParam = require('../../helpers/validateParam');
 const controllerHandler = require('../../controllers/helpers/controllerHandler');
 const plantController = require('../../controllers/API/plantController');
 
 const validate = require('../../validations/validate');
 const { plantBody } = require('../../validations/schemas');
+
+router.param('plantId', validateParam('plantId'));
+router.param('categoryId', validateParam('categoryId'));
+router.param('familyId', validateParam('familyId'));
+router.param('allianceId', validateParam('allianceId'));
+router.use('/', isAdmin);
 
 /**
  * @swagger
@@ -26,6 +34,28 @@ const { plantBody } = require('../../validations/schemas');
  */
 router.get('/', controllerHandler(plantController.getAllPlants));
 
+/** GET /api/plants
+ *
+ * @summary get all plants with category, familly and alliance
+ * @tags Families
+ * @description
+ * This route returns all families
+ * @return {Plant} 200 - success response
+ * @return {Error} 500 - internal server error
+ */
+router.get('/families', controllerHandler(plantController.getFamilies));
+
+/** GET /api/plants
+ *
+ * @summary get all plants with category, familly and alliance
+ * @tags Categories
+ * @description
+ * This route returns all categories
+ * @return {Plant} 200 - success response
+ * @return {Error} 500 - internal server error
+ */
+router.get('/categories', controllerHandler(plantController.getCategories));
+
 /** GET /api/plants/{plantId}
  *
  * @summary Get all plants with category, familly and alliance
@@ -38,7 +68,10 @@ router.get('/', controllerHandler(plantController.getAllPlants));
  * @return {error} 404 - Plant not found error
  * @return {error} 500 - internal server error
  */
-router.get('/:plantId', controllerHandler(plantController.getOnePlant));
+router.get(
+  '/:plantId',
+  controllerHandler(plantController.getOnePlant),
+);
 
 //! ROUTER POST
 /** POST /api/plants/
@@ -63,7 +96,7 @@ router.post('/', validate(plantBody, 'body'), controllerHandler(plantController.
 /** POST /api/plants/categories
  *
  * @summary Creates a new category for plants
- * @tags Plants
+ * @tags Categories - All operations related to plant categories
  * @description
  * This route creates a new plant category.
  * @bodyRequired
@@ -77,7 +110,7 @@ router.post('/categories', controllerHandler(plantController.postCategory));
 
 /** POST /api/plants/families *
  * @summary Creates a new family for plants
- * @tags Plants
+ * @tags Families - All operations related to plant families
  * @description
  * This route creates a new plant family.
  * @bodyRequired
@@ -92,7 +125,7 @@ router.post('/families', controllerHandler(plantController.postFamily));
 /** POST /api/plants/alliance
  *
  * @summary Creates a new alliance for plants
- * @tags Plants
+ * @tags Alliances - All operations related to plant alliances
  * @description
  * This route creates a new plant alliance.
  * @bodyRequired
@@ -124,12 +157,16 @@ router.post('/alliances', controllerHandler(plantController.postAlliance));
  * @return {Error} 400 - Bad request error
  * @return {Error} 500 - internal server error
  */
-router.put('/:plantId', validate(plantBody, 'body'), controllerHandler(plantController.updatePlant));
+router.put(
+  '/:plantId',
+  validate(plantBody, 'body'),
+  controllerHandler(plantController.updatePlant),
+);
 
 /** PUT /api/plants/categories/{categoryId}
  *
  * @summary Update a category with new information
- * @tags Plants
+ * @tags Categories
  * @description
  * This route allows for the updating of a category's information
  * @param {number} categoryId.path.required - ID of the category to update
@@ -141,12 +178,15 @@ router.put('/:plantId', validate(plantBody, 'body'), controllerHandler(plantCont
  * @return {Error} 400 - Bad request error
  * @return {Error} 500 - internal server error
  */
-router.put('/categories/:categoryId', controllerHandler(plantController.updateCategory));
+router.put(
+  '/categories/:categoryId',
+  controllerHandler(plantController.updateCategory),
+);
 
 /** PUT /api/plants/families/{familyId}
  *
  * @summary Update a family with new information
- * @tags Plants
+ * @tags Families
  * @description
  * This route allows for the updating of a family's information
  * @param {number} familyId.path.required - ID of the family to update
@@ -158,12 +198,15 @@ router.put('/categories/:categoryId', controllerHandler(plantController.updateCa
  * @return {Error} 400 - Bad request error
  * @return {Error} 500 - internal server error
  */
-router.put('/families/:familyId', controllerHandler(plantController.updateFamily));
+router.put(
+  '/families/:familyId',
+  controllerHandler(plantController.updateFamily),
+);
 
 /** PUT /api/plants/alliances/{allianceId}
  *
  * @summary Update an alliance with new information
- * @tags Plants
+ * @tags Alliances
  * @description
  * This route allows for the updating of an alliance's information
  * @param {number} allianceId.path.required - ID of the alliance to update
@@ -175,7 +218,10 @@ router.put('/families/:familyId', controllerHandler(plantController.updateFamily
  * @return {error} 400 - Bad request error
  * @return {error} 500 - internal server error
  */
-router.put('/alliances/:allianceId', controllerHandler(plantController.updateAlliance));
+router.put(
+  '/alliances/:allianceId',
+  controllerHandler(plantController.updateAlliance),
+);
 
 //! ROUTER DELETE
 /** DELETE /api/plants/{plantId}
@@ -194,7 +240,7 @@ router.delete('/:plantId', controllerHandler(plantController.deletePlant));
 /** DELETE /api/plants/categories/{categoryId}
  *
  * @summary Delete a category IF NO ASSOCIATED PLANTS EXIST
- * @tags Plants
+ * @tags Categories
  * @description
  * This route allows for the deletion of a category
  * @param {number} categoryId.path.required - ID of the category to delete
@@ -202,12 +248,15 @@ router.delete('/:plantId', controllerHandler(plantController.deletePlant));
  * @return {error} 400 - Bad request error
  * @return {error} 500 - internal server error
  */
-router.delete('/categories/:categoryId', controllerHandler(plantController.deleteCategory));
+router.delete(
+  '/categories/:categoryId',
+  controllerHandler(plantController.deleteCategory),
+);
 
 /** DELETE /api/plants/families/{familyId}
  *
  * @summary Delete a family
- * @tags Plants
+ * @tags Families
  * @description
  * This route allows for the deletion of a family IF NO ASSOCIATED PLANTS EXIST
  * @param {number} familyId.path.required - ID of the family to delete
@@ -215,12 +264,15 @@ router.delete('/categories/:categoryId', controllerHandler(plantController.delet
  * @return {error} 400 - Bad request error
  * @return {error} 500 - internal server error
  */
-router.delete('/families/:familyId', controllerHandler(plantController.deleteFamily));
+router.delete(
+  '/families/:familyId',
+  controllerHandler(plantController.deleteFamily),
+);
 
 /** DELETE /api/plants/alliances/{allianceId}
  *
  * @summary Delete an alliance
- * @tags Plants
+ * @tags Alliances
  * @description
  * This route allows for the deletion of an allianceIF NO ASSOCIATED PLANTS EXIST
  * @param {number} allianceId.path.required - ID of the alliance to delete
@@ -228,6 +280,9 @@ router.delete('/families/:familyId', controllerHandler(plantController.deleteFam
  * @return {error} 400 - Bad request error
  * @return {error} 500 - internal server error
  */
-router.delete('/alliances/:allianceId', controllerHandler(plantController.deleteAlliance));
+router.delete(
+  '/alliances/:allianceId',
+  controllerHandler(plantController.deleteAlliance),
+);
 
 module.exports = router;

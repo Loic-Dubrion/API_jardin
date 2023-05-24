@@ -2,6 +2,9 @@
 
 BEGIN;
 
-DROP VIEW "plants_details";
+DROP VIEW IF EXISTS
+  "plants_details",
+  "get_families",
+  "get_categories";
 
 COMMIT;

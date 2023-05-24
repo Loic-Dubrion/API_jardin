@@ -6,8 +6,30 @@ const auth = require('../../helpers/authorizeUser');
 const controllerHandler = require('../../controllers/helpers/controllerHandler');
 const userController = require('../../controllers/API/userController');
 
+const validateParam = require('../../helpers/validateParam');
+
+router.use('/:userId', auth);
+
+router.param('userId', validateParam('userId'));
+router.param('plotId', validateParam('plotId'));
+router.param('cultureId', validateParam('cultureId'));
 
 //!  GET
+/** GET /api/users
+ *
+ * @summary Get profile information of all users
+ * @tags Users - Everything about Users
+ * @description
+ * This route retrieves the profile information of all users.
+ * @return {User} 200 - success response - user's profile information
+ * @return {error} 404 - User not found error
+ * @return {error} 500 - internal server error
+ */
+router.get(
+  '/',
+  controllerHandler(userController.getAllUsers),
+);
+
 /** GET /api/users/{userId}
  *
  * @summary Get profile information of a specific user
@@ -22,14 +44,13 @@ const userController = require('../../controllers/API/userController');
  */
 router.get(
   '/:userId',
-  auth,
   controllerHandler(userController.getProfil),
 );
 
 /** GET /api/users/{userId}/cultures/in-progress
  *
  * @summary Get in-progress cultures of a specific user
- * @tags Users
+ * @tags Cultures - Everything about user cultures
  * @description
  * This route retrieves the in-progress cultures of a specific user.
  * The user's ID is expected to be included in the request parameters.
@@ -40,14 +61,13 @@ router.get(
  */
 router.get(
   '/:userId/cultures/in-progress',
-  auth,
   (req, res) => controllerHandler(userController.getProduction(req, res, true)),
 );
 
 /** GET /api/users/{userId}/cultures/completed
  *
  * @summary Get completed cultures of a specific user
- * @tags Users
+ * @tags Cultures
  * @description
  * This route retrieves the completed cultures of a specific user.
  * The user's ID is expected to be included in the request parameters.
@@ -58,14 +78,13 @@ router.get(
  */
 router.get(
   '/:userId/cultures/completed',
-  auth,
   (req, res) => controllerHandler(userController.getProduction(req, res, false)),
 );
 
 /** GET /api/users/{userId}/plots/{plotId}
  *
  * @summary Get cultures of a specific user for a particular plot
- * @tags Users
+ * @tags Plots - all about user plots
  * @description
  * This route retrieves the cultures of a specific user for a particular plot.
  * The user's ID and plot ID are expected to be included in the request parameters.
@@ -77,14 +96,13 @@ router.get(
  */
 router.get(
   '/:userId/plots/:plotId',
-  auth,
   (req, res) => controllerHandler(userController.getProduction(req, res, true, req.params.plotId)),
 );
 
 /** GET /api/users/{userId}/cultures/{cultureId}
  *
  * @summary Get details of a specific culture of a user
- * @tags Users
+ * @tags Cultures
  * @description
  * This route retrieves the details of a specific culture of a user.
  * The user's ID and culture ID are expected to be included in the request parameters.
@@ -96,14 +114,13 @@ router.get(
  */
 router.get(
   '/:userId/cultures/:cultureId',
-  auth,
   (req, res) => controllerHandler(userController.getProduction(req, res, true, null, req.params.cultureId)),
 );
 
 /** GET /api/users/{userId}/plots/{plotId}/last-cultures
  *
  * @summary Get the last three categories of culture
- * @tags Users
+ * @tags Cultures
  * @description
  * This route retrieves the last three categories of one plot.
  * The user's ID and plot ID are expected to be included in the request parameters.
@@ -115,14 +132,13 @@ router.get(
  */
 router.get(
   '/:userId/plots/:plotId/last-cultures',
-  auth,
   controllerHandler(userController.getLastCategories),
 );
 
 /** GET /api/users/{userId}/plots/{plotId}/alliances
  *
  * @summary Get the list of possible plants for this plot
- * @tags Users
+ * @tags Cultures
  * @description
  * This route retrieves the list of possible plants for this plot.
  * The user's ID and plot ID are expected to be included in the request parameters.
@@ -134,15 +150,29 @@ router.get(
  */
 router.get(
   '/:userId/plots/:plotId/alliances',
-  auth,
   controllerHandler(userController.getAlliancesForPlot),
 );
 
 //! POST
+/** POST /api/users/
+ *
+ * @summary Creates a new plot for a specific user
+ * @tags User
+ * @description
+ * This route creates a new user.
+ * @return {User} 201 - success response - plot information
+ * @return {Error} 400 - Bad request response
+ * @return {Error} 500 - internal server error
+ */
+router.post(
+  '/',
+  controllerHandler(userController.insertUser),
+);
+
 /** POST /api/users/{userId}/plots
  *
  * @summary Creates a new plot for a specific user
- * @tags Users - Everything about Users
+ * @tags Plots
  * @description
  * This route creates a new plot for a user.
  * The user's ID is expected to be included in the request parameters.
@@ -154,14 +184,13 @@ router.get(
  */
 router.post(
   '/:userId/plots',
-  auth,
   controllerHandler(userController.insertPlot),
 );
 
 /** POST /api/users/{userId}/plots/{plotId}/cultures
  *
  * @summary Creates a new culture for a specific user
- * @tags Users - Everything about Users
+ * @tags Cultures
  * @description
  * This route creates a new culture for a user.
  * The user's ID is expected to be included in the request parameters.
@@ -174,7 +203,6 @@ router.post(
  */
 router.post(
   '/:userId/plots/:plotId/cultures',
-  auth,
   controllerHandler(userController.insertCulture),
 );
 
@@ -182,7 +210,7 @@ router.post(
 /** PUT /api/users/{userId}
  *
  * @summary Update profile information of a specific user
- * @tags Users - Everything about Users
+ * @tags Users
  * @description
  * This route updates the profile information of a user.
  * The user's ID is expected to be included in the request parameters.
@@ -193,14 +221,13 @@ router.post(
  */
 router.put(
   '/:userId',
-  auth,
   controllerHandler(userController.updateUser),
 );
 
 /** PUT /api/users/{userId}/plots/{plotId}
  *
  * @summary Update a specific plot information
- * @tags Users - Everything about Plots
+ * @tags Plots
  * @description
  * This route updates the information of a plot.
  * The user's ID and the plot's ID are expected to be included in the request parameters.
@@ -212,14 +239,13 @@ router.put(
  */
 router.put(
   '/:userId/plots/:plotId',
-  auth,
   controllerHandler(userController.updatePlot),
 );
 
 /** PUT /api/users/{userId}/cultures/{cultureId}
  *
  * @summary Update a specific culture information
- * @tags Users - Everything about Cultures
+ * @tags Cultures
  * @description
  * This route updates the information of a culture.
  * The user's ID and the culture's ID are expected to be included in the request parameters.
@@ -231,18 +257,15 @@ router.put(
  */
 router.put(
   '/:userId/cultures/:cultureId',
-  auth,
   controllerHandler(userController.updateCulture),
 );
 
-//! ==================//
-//! ===== DELETE ==== //
-//! ==================//
+//! DELETE
 
 /** DELETE /api/users/{userId}
  *
  * @summary Delete a specific user and all related plots and cultures
- * @tags Users - Everything about Users
+ * @tags Users
  * @description
  * This route deletes a user and all the plots and cultures related to this user.
  * The user's ID is expected to be included in the request parameters.
@@ -253,14 +276,13 @@ router.put(
  */
 router.delete(
   '/:userId',
-  auth,
   controllerHandler(userController.deleteUser),
 );
 
 /** DELETE /api/users/{userId}/plots/{plotId}
  *
  * @summary Delete a specific plot and all related cultures
- * @tags Users - Everything about Plots
+ * @tags Plots
  * @description
  * This route deletes a plot and all the cultures related to this plot.
  * The user's ID and the plot's ID are expected to be included in the request parameters.
@@ -272,14 +294,13 @@ router.delete(
  */
 router.delete(
   '/:userId/plots/:plotId',
-  auth,
   controllerHandler(userController.deletePlot),
 );
 
 /** DELETE /api/users/{userId}/cultures/{cultureId}
  *
  * @summary Delete a specific culture
- * @tags Users - Everything about Cultures
+ * @tags Cultures
  * @description
  * This route deletes a culture.
  * The user's ID and the culture's ID are expected to be included in the request parameters.
@@ -291,7 +312,6 @@ router.delete(
  */
 router.delete(
   '/:userId/cultures/:cultureId',
-  auth,
   controllerHandler(userController.deleteCulture),
 );
 

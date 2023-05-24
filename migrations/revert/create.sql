@@ -2,7 +2,7 @@
 
 BEGIN;
 
-DROP TABLE
+DROP TABLE IF EXISTS
     "culture",
     "plot",
     "plant",

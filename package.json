@@ -45,6 +45,7 @@
     "express-jsdoc-swagger": "^1.8.0",
     "express-session": "^1.17.3",
     "joi": "^17.9.2",
-    "pg": "^8.10.0"
+    "pg": "^8.10.0",
+    "sanitize": "^2.1.2"
   }
 }

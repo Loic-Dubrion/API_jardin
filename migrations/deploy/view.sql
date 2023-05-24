@@ -24,5 +24,10 @@ LEFT JOIN (
     GROUP BY "plant"."id"
 ) AS "plant_alliances" ON "plant_alliances"."plant_id" = "plant"."id";
 
+CREATE VIEW "get_families" AS
+SELECT * FROM "family";
+
+CREATE VIEW "get_categories" AS
+SELECT * FROM "category";
 
 COMMIT;

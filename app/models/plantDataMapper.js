@@ -7,6 +7,16 @@ const plantDataMapper = {
     const promiseData = client.query(query);
     return promiseData;
   },
+  getCategories: () => {
+    const query = 'SELECT * FROM get_categories';
+    const promiseData = client.query(query);
+    return promiseData;
+  },
+  getFamilies: () => {
+    const query = 'SELECT * FROM get_families';
+    const promiseData = client.query(query);
+    return promiseData;
+  },
   getOnePlant: (plantId) => {
     const query = 'SELECT * FROM get_plant_detail($1)';
     const values = [plantId];

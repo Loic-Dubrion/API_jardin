@@ -2,8 +2,10 @@
 
 BEGIN;
 
-SELECT table_name
-FROM information_schema.views
-WHERE table_schema = 'public' AND table_name = 'plants_details';
+SELECT * FROM plants_details WHERE FALSE;
+SELECT * FROM get_families WHERE FALSE;
+SELECT * FROM get_categories WHERE FALSE;
+
+
 
 ROLLBACK;

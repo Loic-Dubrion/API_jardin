@@ -2,6 +2,25 @@
 
 BEGIN;
 
+CREATE FUNCTION "get_all_users"()
+    RETURNS TABLE (
+        "username" TEXT,
+        "email" TEXT,
+        "id_role" INT,
+        "total_plots" BIGINT
+    )
+AS $$
+    SELECT
+        "user"."username",
+        "user"."email",
+        "user"."id_role",
+        COUNT("plot") AS "total_plots"
+    FROM "user"
+    JOIN "plot" ON "user"."id" = "plot"."id_user"
+    GROUP BY "user"."id";
+$$
+LANGUAGE SQL STABLE;
+
 -- For the user profil
 CREATE FUNCTION "get_user_details"("user_id" INT)
     RETURNS TABLE (

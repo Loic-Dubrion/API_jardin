@@ -4,6 +4,7 @@ BEGIN;
 
 DROP FUNCTION IF EXISTS
   "insert_new_plot",
-  "insert_new_culture";
+  "insert_new_culture",
+  "insert_new_user";
 
 COMMIT;

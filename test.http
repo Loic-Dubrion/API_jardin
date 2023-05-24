@@ -1,4 +1,8 @@
-http://localhost:3000/api/plants
+@baseUrl = http://localhost:3000/api
+
+
+GET {{baseUrl}}/plants/families
+
 ###
 http://localhost:3000/api/plants/1
 ###
@@ -74,7 +78,9 @@ DELETE  http://localhost:3000/api/plants/10
 // All culture in-progress for one user
 http://localhost:3000/api/users/1/cultures/in-progress
 ###
-http://localhost:3000/api/users/3
+http://localhost:3000/api/users/2n
+###
+http://localhost:3000/api/users/
 ###
 http://localhost:3000/api/users/2/cultures/in-progress
 ###
@@ -90,6 +96,17 @@ Content-Type: application/json
 {
 "name": "Plot",
 "availability": false
+}
+###
+
+POST  http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+"username": "Chuck",
+"email": "mail@mail.com",
+"password": "123",
+"id_role": 1
 }
 ###
 POST  http://localhost:3000/api/users/1/plots/9/cultures

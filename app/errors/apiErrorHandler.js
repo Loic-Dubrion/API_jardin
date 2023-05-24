@@ -4,6 +4,7 @@ const ForbiddenError = require('./ForbiddenError');
 const BadRequestError = require('./BadRequestError');
 const UniqueConstraintViolationError = require('./UniqueConstraintViolationError');
 const UnauthorizedError = require('./UnauthorizedError');
+const logger = require('../services/logger')
 
 /**
  * Middleware for handling errors in API calls.
@@ -13,6 +14,7 @@ const UnauthorizedError = require('./UnauthorizedError');
  * @param {import('express').Response} res - The response object.
  */
 function apiErrorHandler(err, __req, res) {
+  // logger.error(err);
   if (
     err instanceof NoResourceFoundError
     || err instanceof ForeignKeyViolationError
