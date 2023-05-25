@@ -11,6 +11,8 @@ Content-Type: application/json
 
 {
   "name": "test",
+  "specification": [],
+  "culture_advice": [],
   "id_family": 3,
   "id_category": 3
 }
@@ -26,7 +28,7 @@ POST  http://localhost:3000/api/plants/families
 Content-Type: application/json
 
 {
-  "nime": "try"
+  "name": "test"
 }
 ###
 POST  http://localhost:3000/api/plants/alliances
@@ -41,7 +43,6 @@ Content-Type: application/json
 
 {
   "name": "tt",
-  "id_family": 2,
   "id_category": 2
 }
 ###

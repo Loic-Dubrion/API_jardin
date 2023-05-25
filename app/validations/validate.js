@@ -5,7 +5,7 @@ const BadRequestError = require('../errors/BadRequestError');
  * a dataSource and a schema
  *
  * @param {Object} schema - A Joi validation schema
- * @param {'query'|'body'} dataSource - The source of data to validate
+ * @param {'body'} dataSource - The source of data to validate
  * @returns {function} - A middleware function
  */
 function validate(schema, dataSource) {

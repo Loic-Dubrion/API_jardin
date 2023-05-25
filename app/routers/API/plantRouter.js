@@ -8,7 +8,9 @@ const controllerHandler = require('../../controllers/helpers/controllerHandler')
 const plantController = require('../../controllers/API/plantController');
 
 const validate = require('../../validations/validate');
-const { plantBody } = require('../../validations/schemas');
+const {
+  plantBody, categoryBody, familyBody, allianceBody,
+} = require('../../validations/schemas');
 
 router.param('plantId', validateParam('plantId'));
 router.param('categoryId', validateParam('categoryId'));
@@ -106,7 +108,11 @@ router.post('/', validate(plantBody, 'body'), controllerHandler(plantController.
  * @return {Error} 400 - Bad request response
  * @return {Error} 500 - internal server error
  */
-router.post('/categories', controllerHandler(plantController.postCategory));
+router.post(
+  '/categories',
+  validate(categoryBody, 'body'),
+  controllerHandler(plantController.postCategory),
+);
 
 /** POST /api/plants/families *
  * @summary Creates a new family for plants
@@ -120,7 +126,11 @@ router.post('/categories', controllerHandler(plantController.postCategory));
  * @return {Error} 400 - Bad request response
  * @return {Error} 500 - internal server error
  */
-router.post('/families', controllerHandler(plantController.postFamily));
+router.post(
+  '/families',
+  validate(familyBody, 'body'),
+  controllerHandler(plantController.postFamily),
+);
 
 /** POST /api/plants/alliance
  *
@@ -135,7 +145,11 @@ router.post('/families', controllerHandler(plantController.postFamily));
  * @return {Error} 400 - Bad request response
  * @return {Error} 500 - internal server error
  */
-router.post('/alliances', controllerHandler(plantController.postAlliance));
+router.post(
+  '/alliances',
+  validate(allianceBody, 'body'),
+  controllerHandler(plantController.postAlliance),
+);
 
 //! ROUTER PUT
 /** PUT /api/plants/{plantId}
@@ -180,6 +194,7 @@ router.put(
  */
 router.put(
   '/categories/:categoryId',
+  validate(categoryBody, 'body'),
   controllerHandler(plantController.updateCategory),
 );
 
@@ -200,6 +215,7 @@ router.put(
  */
 router.put(
   '/families/:familyId',
+  validate(familyBody, 'body'),
   controllerHandler(plantController.updateFamily),
 );
 
@@ -220,6 +236,7 @@ router.put(
  */
 router.put(
   '/alliances/:allianceId',
+  validate(allianceBody, 'body'),
   controllerHandler(plantController.updateAlliance),
 );
 

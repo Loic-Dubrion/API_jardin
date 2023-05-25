@@ -14,7 +14,7 @@ describe('Access Control Tests', () => {
 
     expect(response.statusCode).toBe(200);
 
-    // Enregistrez le cookie de session à utiliser dans les tests ultérieurs
+    // Save the session cookie for use in future tests
     userSession = response.headers['set-cookie'];
   });
 
