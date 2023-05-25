@@ -6,6 +6,8 @@
 - Recensement des cultures faites ou en cours avec leurs infos
 - Gestion des rotations
 - Proposition de culture en fonction des précédentes cultures et plantes "amies"
+- Seul l'admin peut mettre à jour des plantes
+- Les utilisateurs ne doivent pas avoir accès aux données des autres utilisateurs
 
 ## Conception
 
@@ -14,12 +16,13 @@ Gestion de la BDD avec sqitch
 Architecture en MCV
 
 ## Compétences à couvrir
-  - Conception d'une BDD
-  - Création et connexion d'une BDD
-  - Requête SQl
-  - Sécurité (injection, XSS, CSRF, etc)
-  - Test
-  - Documentation
-  - Gestion des erreures
-  - Outil de gestion du code source
-  - Mécanisme d'authentification
+
+- Conception d'une BDD
+- Création et connexion d'une BDD
+- Requête SQl
+- Sécurité (injection, XSS, CSRF, etc)
+- Test
+- Documentation
+- Gestion des erreures
+- Outil de gestion du code source
+- Mécanisme d'authentification
