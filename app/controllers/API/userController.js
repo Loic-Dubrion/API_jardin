@@ -30,8 +30,16 @@ const userController = {
 
   async getLastCategories(request, response) {
     const plotId = Number(request.params.plotId);
-    const result = await dataMapper.getLastCultures(plotId);
-    response.json(result.rows);
+    const userId = Number(request.params.userId);
+
+    const plot = await dataMapper.findPlotByIdAndUserId(plotId, userId);
+    console.log(plot.rows);
+    if (!plot.rows === null) {
+      const result = await dataMapper.getLastCultures(plotId);
+      response.json(result.rows);
+    } else {
+      throw new ForbiddenError(`Plot with ID ${plotId} not found or doesn't belong to the user`);
+    }
   },
 
   async getAlliancesForPlot(request, response) {

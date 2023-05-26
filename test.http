@@ -1,11 +1,19 @@
 @baseUrl = http://localhost:3000/api
 
-
+### All access
+GET {{baseUrl}}/plants/
+### All access
+GET {{baseUrl}}/plants/1
+### All access
 GET {{baseUrl}}/plants/families
+### All access
+GET {{baseUrl}}/plants/categories
+### All access
+GET {{baseUrl}}/plants/alliances
+### All access
+GET {{baseUrl}}/plants/alliances_families
 
-###
-http://localhost:3000/api/plants/1
-###
+### Admin
 POST  http://localhost:3000/api/plants
 Content-Type: application/json
 
@@ -21,7 +29,7 @@ POST  http://localhost:3000/api/plants/categories
 Content-Type: application/json
 
 {
-  "name": "try"
+  "name": "test"
 }
 ###
 POST  http://localhost:3000/api/plants/families
@@ -43,7 +51,8 @@ Content-Type: application/json
 
 {
   "name": "tt",
-  "id_category": 2
+  "id_category": 2,
+  "id_family": 2
 }
 ###
 PUT  http://localhost:3000/api/plants/categories/1
@@ -57,7 +66,7 @@ PUT  http://localhost:3000/api/plants/families/1
 Content-Type: application/json
 
 {
-  "name": 1
+  "name": "dgr"
 }
 ###
 PUT  http://localhost:3000/api/plants/alliances/2
@@ -75,22 +84,20 @@ DELETE  http://localhost:3000/api/plants/alliances/2
 ###
 DELETE  http://localhost:3000/api/plants/10
 
+### Acces User
+GET http://localhost:3000/api/users/1/cultures/in-progress
 ###
-// All culture in-progress for one user
-http://localhost:3000/api/users/1/cultures/in-progress
+GET http://localhost:3000/api/users/2
 ###
-http://localhost:3000/api/users/2n
+GET http://localhost:3000/api/users/
 ###
-http://localhost:3000/api/users/
+GET http://localhost:3000/api/users/2/cultures/completed
 ###
-http://localhost:3000/api/users/2/cultures/in-progress
+GET http://localhost:3000/api/users/2/plots/1/last-cultures
 ###
-http://localhost:3000/api/users/2/cultures/completed
+GET http://localhost:3000/api/users/1/plots/1/alliances
 ###
-http://localhost:3000/api/users/1/plots/1/last-cultures
-###
-http://localhost:3000/api/users/1/plots/6/alliances
-###
+
 POST  http://localhost:3000/api/users/1/plots
 Content-Type: application/json
 

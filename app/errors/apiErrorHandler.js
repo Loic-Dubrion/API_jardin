@@ -14,7 +14,7 @@ const logger = require('../services/logger');
  * @param {import('express').Response} res - The response object.
  */
 function apiErrorHandler(err, __req, res) {
-  // logger.error(err);
+  logger.error(err);
   if (
     err instanceof NoResourceFoundError
     || err instanceof ForeignKeyViolationError

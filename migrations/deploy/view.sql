@@ -30,4 +30,11 @@ SELECT * FROM "family";
 CREATE VIEW "get_categories" AS
 SELECT * FROM "category";
 
+CREATE VIEW "get_alliances" AS
+SELECT "alliance"."id", array_agg("family"."name") AS "family_names"
+FROM "alliance"
+JOIN "family" ON "alliance"."id" = "family"."id_alliance"
+GROUP BY "alliance"."id";
+;
+
 COMMIT;

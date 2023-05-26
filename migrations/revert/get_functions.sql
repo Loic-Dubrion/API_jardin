@@ -8,6 +8,7 @@ DROP FUNCTION IF EXISTS
   "get_production_by_user",
   "get_plant_detail",
   "get_alliance",
-  "get_last_cultures";
+  "get_last_cultures",
+  "get_alliances_and_families";
 
 COMMIT;

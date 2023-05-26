@@ -1,5 +1,6 @@
 const Joi = require('joi');
 
+// For plant
 const plantBody = Joi.object({
   id: Joi.number(),
   name: Joi.string().required(),
@@ -25,6 +26,22 @@ const allianceBody = Joi.object({
   alliance: Joi.array().items(Joi.number()).required(),
 }).required();
 
+// FOR USER
+const createUserBody = Joi.object({
+  id: Joi.number(),
+  username: Joi.string().alphanum().max(12).required(),
+  email: Joi.string().pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/).required(),
+  password: Joi.string().pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/).required(),
+  id_role: Joi.number().required(),
+}).required();
+
+const updateUserBody = Joi.object({
+  username: Joi.string().alphanum().max(12),
+  email: Joi.string().pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
+  password: Joi.string().pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/),
+  id_role: Joi.number(),
+});
+
 module.exports = {
-  plantBody, categoryBody, familyBody, allianceBody,
+  plantBody, categoryBody, familyBody, allianceBody, createUserBody, updateUserBody,
 };

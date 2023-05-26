@@ -7,6 +7,12 @@ const controllerHandler = require('../../controllers/helpers/controllerHandler')
 const userController = require('../../controllers/API/userController');
 
 const validateParam = require('../../helpers/validateParam');
+const isAdmin = require('../../helpers/isAdmin');
+
+const validate = require('../../validations/validate');
+const {
+  createUserBody, updateUserBody,
+} = require('../../validations/schemas');
 
 router.use('/:userId', auth);
 
@@ -27,6 +33,7 @@ router.param('cultureId', validateParam('cultureId'));
  */
 router.get(
   '/',
+  isAdmin,
   controllerHandler(userController.getAllUsers),
 );
 
@@ -166,6 +173,7 @@ router.get(
  */
 router.post(
   '/',
+  validate(createUserBody, 'body'),
   controllerHandler(userController.insertUser),
 );
 
@@ -221,6 +229,7 @@ router.post(
  */
 router.put(
   '/:userId',
+  validate(updateUserBody, 'body'),
   controllerHandler(userController.updateUser),
 );
 

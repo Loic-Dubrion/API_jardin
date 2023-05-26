@@ -171,4 +171,35 @@ RETURNS TABLE (
     WHERE "family_id" = ANY ("alliance"."alliance");
 $$ LANGUAGE sql STABLE;
 
+CREATE OR REPLACE FUNCTION "get_alliances_and_families"()
+RETURNS TABLE(
+  family_id INT,
+  family_name TEXT,
+  alliance_id INT,
+  alliance_ids INT[],
+  alliance_families TEXT[]
+) AS $$
+DECLARE
+  _id INT;
+  _family_id INT;
+  _family_name TEXT;
+  _alliance_id INT;
+  _alliance_ids INT[];
+  _alliance_families TEXT[];
+BEGIN
+  FOR _family_id, _family_name, _alliance_id, _alliance_ids IN
+    SELECT "family"."id", "family"."name", "alliance"."id", "alliance"."alliance"
+    FROM "family"
+    JOIN "alliance" ON "family"."id_alliance" = "alliance"."id"
+  LOOP
+    _alliance_families := '{}';
+    FOREACH _id IN ARRAY _alliance_ids
+    LOOP
+      _alliance_families := _alliance_families || (SELECT ARRAY["name"] FROM "family" WHERE "id" = _id);
+    END LOOP;
+    RETURN QUERY SELECT _family_id, _family_name, _alliance_id, _alliance_ids, _alliance_families;
+  END LOOP;
+END;
+$$ LANGUAGE plpgsql STABLE;
+
 COMMIT;

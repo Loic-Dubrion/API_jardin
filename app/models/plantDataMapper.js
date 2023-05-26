@@ -7,6 +7,8 @@ const plantDataMapper = {
   getAllPlants: () => executeQuery('SELECT * FROM plants_details'),
   getCategories: () => executeQuery('SELECT * FROM get_categories'),
   getFamilies: () => executeQuery('SELECT * FROM get_families'),
+  getAlliances: () => executeQuery('SELECT * FROM get_alliances'),
+  getAlliancesAndFamilies: () => executeQuery('SELECT * FROM get_alliances_and_families()'),
   getOnePlant: (plantId) => executeQuery('SELECT * FROM get_plant_detail($1)', [plantId]),
 
   //! Models for Create

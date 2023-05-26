@@ -19,6 +19,16 @@ const plantController = {
     response.json(result.rows);
   },
 
+  async getAlliances(request, response) {
+    const result = await dataMapper.getAlliances();
+    response.json(result.rows);
+  },
+
+  async getAlliancesAndFamilies(request, response) {
+    const result = await dataMapper.getAlliancesAndFamilies();
+    response.json(result.rows);
+  },
+
   async getOnePlant(request, response) {
     const plantId = Number(request.params.plantId);
     const result = await dataMapper.getOnePlant(plantId);

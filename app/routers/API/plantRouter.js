@@ -16,7 +16,6 @@ router.param('plantId', validateParam('plantId'));
 router.param('categoryId', validateParam('categoryId'));
 router.param('familyId', validateParam('familyId'));
 router.param('allianceId', validateParam('allianceId'));
-router.use('/', isAdmin);
 
 /**
  * @swagger
@@ -47,7 +46,7 @@ router.get('/', controllerHandler(plantController.getAllPlants));
  */
 router.get('/families', controllerHandler(plantController.getFamilies));
 
-/** GET /api/plants
+/** GET /api/plants/categories
  *
  * @summary get all plants with category, familly and alliance
  * @tags Categories
@@ -57,6 +56,28 @@ router.get('/families', controllerHandler(plantController.getFamilies));
  * @return {Error} 500 - internal server error
  */
 router.get('/categories', controllerHandler(plantController.getCategories));
+
+/** GET /api/plants/alliances_families
+ *
+ * @summary get all alliances with families
+ * @tags Alliances
+ * @description
+ * This route returns all alliances with families
+ * @return {Plant} 200 - success response
+ * @return {Error} 500 - internal server error
+ */
+router.get('/alliances_families', controllerHandler(plantController.getAlliancesAndFamilies));
+
+/** GET /api/plants
+ *
+ * @summary get all alliances
+ * @tags Alliances
+ * @description
+ * This route returns all alliances
+ * @return {Plant} 200 - success response
+ * @return {Error} 500 - internal server error
+ */
+router.get('/alliances', controllerHandler(plantController.getAlliances));
 
 /** GET /api/plants/{plantId}
  *
@@ -74,6 +95,9 @@ router.get(
   '/:plantId',
   controllerHandler(plantController.getOnePlant),
 );
+
+//! access restrictions for other roads
+router.use('/', isAdmin);
 
 //! ROUTER POST
 /** POST /api/plants/
